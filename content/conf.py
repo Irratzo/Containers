@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "A lesson in ``sphinx-lesson`` format"
+project = "A lesson"
 copyright = "2021, Hossein Ehteshami and individual contributors."
 author = "Hossein Ehteshami and individual contributors."
 github_user = "ENCCS"
