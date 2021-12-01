@@ -1,6 +1,8 @@
-# A lesson in ``sphinx-lesson`` format
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ENCCS/Containers/Container)
 
-Course materials for workshop
+# Up Scaling AI with Containers
+
+Course materials for the workshop.
 
 ## Credit and license
 
