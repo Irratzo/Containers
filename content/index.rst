@@ -12,7 +12,7 @@ Intro
 
 
 
-.. toctree:
+.. toctree::
    :maxdepth: 1
    
    setup
