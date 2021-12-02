@@ -63,22 +63,13 @@ About the course
 ----------------
 
 This lesson material is developed by the `EuroCC National Competence Center
-Sweden (ENCCS) <https://enccs.se/>`_ and taught in ENCCS workshops. It is aimed
-at researchers and developers who have experience of working with AI and wish to train 
-their application on 
-
-might have had some exposure to `CMake`_ and
-want to learn how to use it effectively. This lesson targets **CMake >=3.18**.
-Each lesson episode has clearly defined learning objectives and includes
-multiple exercises along with solutions, and is therefore also useful for
-self-learning.
+Sweden (ENCCS) <https://enccs.se/>`_ and taught in ENCCS workshops. It aims 
+at researchers and developers who have experience working with AI and wish to train their applications on supercomputers. 
 The lesson material is licensed under `CC-BY-4.0
 <https://creativecommons.org/licenses/by/4.0/>`_ and can be reused in any form
 (with appropriate credit) in other courses and workshops.
 Instructors who wish to teach this lesson can refer to the :doc:`guide` for
 practical advice.
-
-
 
 
 
