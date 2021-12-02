@@ -6,8 +6,9 @@ Accordingly, a vast effort has been put into bringing AI to researchers and prac
 Nonetheless, the computationally intensive task of training an AI increasingly requires more computational power than what our laptops and PCs can offer. Therefore, the ability to develop and train a neural network on large clusters seems imperative. This workshop teaches us how to scale an AI-powered application in large clusters, i.e., supercomputers.
 
 .. prereq::
+   
    Working knowledge of Unix OS is required. In addition, a basic understanding of Neural Networks (NNs) is desirable. Please follow the link below to create a username and password on the Docker website, as we will use Play-with-Docker (PWD) freely available service. 
-   Details of using and access to `Alvis` are given in :setup: section.
+   Details of using and access to `Alvis` are given in :doc:`setup` section.
 
 
 .. toctree::
