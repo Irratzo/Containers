@@ -7,7 +7,8 @@ Nonetheless, the computationally intensive task of training an AI increasingly r
 
 .. prereq::
    
-   Working knowledge of Unix OS is required. In addition, a basic understanding of Neural Networks (NNs) is desirable. Please follow the link below to create a username and password on the Docker website, as we will use Play-with-Docker (PWD) freely available service. 
+   Working knowledge of Unix OS is required. In addition, a basic understanding of Neural Networks (NNs) is desirable. 
+   Please follow the `link <https://hub.docker.com>`_ to create a username and password on the DockerHub website, as we will use Play-with-Docker (PWD) [![PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)] freely available service. 
    Details of using and access to `Alvis` are given in :doc:`setup` section.
 
 
@@ -27,7 +28,18 @@ Nonetheless, the computationally intensive task of training an AI increasingly r
 .. toctree::
    :maxdepth: 1
    :caption: The lesson
-
+   
+   intro-container
+   namespc-cgroup
+   docker-intro
+   hands-docker
+   sing-intro
+   sing-examples
+   hands-sing
+   crash-tf
+   hands-tf
+   crash-horovod
+   hands-horovod
 
 .. toctree::
    :maxdepth: 1
@@ -50,6 +62,21 @@ Who is the course for?
 About the course
 ----------------
 
+This lesson material is developed by the `EuroCC National Competence Center
+Sweden (ENCCS) <https://enccs.se/>`_ and taught in ENCCS workshops. It is aimed
+at researchers and developers who have experience of working with AI and wish to train 
+their application on 
+
+might have had some exposure to `CMake`_ and
+want to learn how to use it effectively. This lesson targets **CMake >=3.18**.
+Each lesson episode has clearly defined learning objectives and includes
+multiple exercises along with solutions, and is therefore also useful for
+self-learning.
+The lesson material is licensed under `CC-BY-4.0
+<https://creativecommons.org/licenses/by/4.0/>`_ and can be reused in any form
+(with appropriate credit) in other courses and workshops.
+Instructors who wish to teach this lesson can refer to the :doc:`guide` for
+practical advice.
 
 
 
