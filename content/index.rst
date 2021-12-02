@@ -11,10 +11,10 @@ Intro
    prerequisites
 
 
-
 .. toctree::
+   :hidden:
    :maxdepth: 1
-   
+
    setup
 
 .. csv-table::
