@@ -1,4 +1,4 @@
-A lesson in ``sphinx-lesson`` format
+Upscaling AI with Containers
 ====================================
 
 
