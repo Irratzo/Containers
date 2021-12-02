@@ -15,7 +15,7 @@ Intro
 .. toctree:
    :maxdepth: 1
    
-   setup_cluster
+   setup
 
 .. csv-table::
    :widths: auto
