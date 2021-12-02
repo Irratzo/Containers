@@ -9,7 +9,7 @@ Nonetheless, the computationally intensive task of training an AI increasingly r
    
    Working knowledge of Unix OS is required. In addition, a basic understanding of Neural Networks (NNs) is desirable. 
    Please follow the `link <https://hub.docker.com>`_ to create a username and password on the DockerHub website, as we will use `Play-with-Docker (PWD) <https://labs.play-with-docker.com>`_ freely available service. 
-   Details of using and access to `Alvis` are given in :doc:`setup` section.
+   Details of using and access to the cluster are given in :doc:`setup` section.
 
 
 .. toctree::
