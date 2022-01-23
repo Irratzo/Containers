@@ -27,6 +27,13 @@ and cgroups (as we will discuss them in detail at :doc:`namespc-cgroup` section)
 The key differentiator between containers and VMs is that VMs virtualize an entire machine down to the hardware layers and containers only virtualize software layers above the operating system level.
 
 .. image:: img/conts_vms.jpeg
-   :width: 45%   
+   :width: 100%   
 
+Cons and Pros of Containers
+___________________________
 
+Cons:
++++++
+- Containers are lightweight software packages that contain all the dependencies.
+- Because of their lightweight, it is easy and very fast to iteratively modify them.
+- 
