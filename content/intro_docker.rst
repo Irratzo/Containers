@@ -120,24 +120,29 @@ To try something more ambitious, you can run an Ubuntu container with:
 
   $docker run -it ubuntu bash
 
+.. exercise:: ``docker run``
 
-What just happened? When we use the ``docker run`` command, Docker does
-three things:
+  What just happened? When we use the ``docker run`` command, Docker does
+  three things:
 
-+--------------------------+----------------------+--------------------+
-| 1. Starts a Running      | 2. Performs Default  | 3. Shuts Down the  |
-| Container                | Action               | Container          |
-+==========================+======================+====================+
-| Starts a running         | If the container has | Once the default   |
-| container, based on the  | a default action     | action is          |
-| image. Think of this as  | set, it will perform | complete, the      |
-| the “alive” or“inflated” | that default action. | container stops    |
-| version of the container | This could be as     | running (or        |
-| – it’s actually doing    | simple as printing a | exits). The image  |
-| something                | message (as above)   | is still there,    |
-|                          | or running a whole   | but nothing is     |
-|                          | analysis pipeline!   | actively running.  |
-+--------------------------+----------------------+--------------------+
+  .. tabs::
+
+    .. tab:: 1. Starts a Running Container
+
+      Starts a running container, based on the image. Think of this as
+      the “alive” or“inflated” version of the container – it’s actually doing something
+
+    .. tab:: 2. Performs Default Action
+
+      If the container has a default action set, it will perform that default action.
+      This could be as simple as printing a message (as above) or running a whole
+      analysis pipeline!
+
+    .. tab:: 3. Shuts Down the Container
+      Once the default action is complete, the container stops
+      running (or exits). The image is still there, but nothing is
+      actively running.
+
 
 The ``hello-world`` container is set up to run an action by default -
 namely to print this message.
@@ -200,7 +205,7 @@ a few additional bits of information.
 
       .. code-block:: bash
 
-      $ docker run alpine echo ‘Hello World’
+        $ docker run alpine echo ‘Hello World’
 
 So here, we see another option – we can provide commands at the end of
 the ``docker run`` command and they will execute inside the running
