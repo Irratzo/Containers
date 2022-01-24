@@ -73,7 +73,7 @@ At the time of writing, `v3.7.0` is the latest release of Singularity.
 
   HPC systems often use *modules* to provide access to software on the system.
   If you get a command not found error (e.g. `bash: singularity: command not found` or similar)
-  you may need to load the _singularity module_ before you can use the `singularity` command:
+  you may need to load the *singularity module* before you can use the `singularity` command:
 
   .. code-block :: bash
 
@@ -84,14 +84,14 @@ Images and containers
 +++++++++++++++++++++
 
 We'll start with a brief note on the terminology used in this section of the course.
-We refer to both **_images_** and **_containers_**. What is the distinction between these two terms?
+We refer to both **images** and **containers**. What is the distinction between these two terms?
 
-**_Images_** are bundles of files including an operating system, software and potentially data
-and other application-related files. They may sometimes be referred to as a _disk image_ or _container image_
+**Images** are bundles of files including an operating system, software and potentially data
+and other application-related files. They may sometimes be referred to as a disk image or container image
 and they may be stored in different ways, perhaps as a single file, or as a group of files.
 Either way, we refer to this file, or collection of files, as an image.
 
-A **_container_** is a virtual environment that is based on an image. That is, the files, applications,
+A **container** is a virtual environment that is based on an image. That is, the files, applications,
 tools, etc that are available within a running container are determined by the image that the container
 is started from. It may be possible to start multiple container instances from an image. You could, perhaps,
 consider an image to be a form of template from which running container instances can be started.
@@ -99,7 +99,7 @@ consider an image to be a form of template from which running container instance
 Getting an image and running a Singularity container
 ++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-If you recall from learning about Docker, Docker images are formed of a set of _layers_ that make up
+If you recall from learning about Docker, Docker images are formed of a set of layers that make up
 the complete image. When you pull a Docker image from Docker Hub, you see the different layers being
 downloaded to your system. They are stored in your local Docker repository on your system and you can
 see details of the available images using the `docker` command.
@@ -128,7 +128,7 @@ Output
 .. code-block :: bash
 
   INFO:    Downloading shub image
-  59.75 MiB / 59.75 MiB [===============================================================================================================] 100.00% 52.03 MiB/s 1s
+  59.75 MiB / 59.75 MiB [=====================================================================] 100.00% 52.03 MiB/s 1s
 
 
 What just happened?! We pulled a SIF image from Singularity Hub using the `singularity pull` command and
@@ -147,7 +147,7 @@ Output
   RaawwWWWWWRRRR!! Avocado!
 
 
-The above command ran the _hello-world_ container from the image we downloaded from Singularity Hub and
+The above command ran the hello-world container from the image we downloaded from Singularity Hub and
 the resulting output was shown.
 
 
