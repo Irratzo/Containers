@@ -1,2 +1,2 @@
-Access to Alvis
+Access to Vega
 ===============

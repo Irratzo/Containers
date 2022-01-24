@@ -6,6 +6,7 @@ so far we have mostly covered the mechanics of using Docker with only passing re
 the reproducibility aspects. In this section, we discuss these aspects in more detail.
 
 .. callout :: Work in progress
+
   Note that reproducibility aspects of software and containers are an active area of research,
   discussion and development so are subject to many changes. We will present some ideas and approaches
   here but best practices will likely evolve in the near future.
@@ -49,6 +50,7 @@ If for any reason you decided to archive an image, you can use the command below
 
 
 .. callout :: Restoring the image from a save
+
   Unsurprisingly, the command `docker load alpine-python.tar.gz` would be used to load
   the saved container and make it available to be used on your system. Note that the
   command can restore the compressed container directly without the need to uncompress
@@ -85,9 +87,10 @@ Of course, many real applications will sit somewhere between these two extremes.
   workflows described above? Think about this and write a few bullet points for advantages and disadvantages
   for each approach in the course Etherpad.
 
+  Single large container:
+
   .. tabs::
 
-    Single large container:
 
     .. tab:: Advantages
 
@@ -104,9 +107,9 @@ Of course, many real applications will sit somewhere between these two extremes.
       - Potentially more complex to test
       - Less re-useable for different, but related, work
 
-  .. tabs ::
+  Multiple smaller containers:
 
-    Multiple smaller containers:
+  .. tabs ::
 
     .. tab :: Advantages
 
@@ -116,7 +119,7 @@ Of course, many real applications will sit somewhere between these two extremes.
       - Easier to test
 
     .. tab :: Disadvantage
-    
+
       - More difficult to document
       - Potentially more difficult to maintain (though could be easier if working with large, distributed group)
       - May end up with dependency issues between component containers if they get out of sync
@@ -133,21 +136,17 @@ a few options and point to useful resources on using these tools to allow you to
   - Kubernetes
   - Docker Swarm
 
-> ## The Wild West
-> Use of container orchestration tools for research workflows is a relatively new concept and so there
-> is not a huge amount of documentation and experience out there at the moment. You may need to search
-> around for useful information or, better still, contact your
-> [friendly neighbourhood RSE](https://society-rse.org/community/rse-groups/) to discuss what you want to do.
-{: .callout}
+.. callout :: The Wild West
+  Use of container orchestration tools for research workflows is a relatively new concept and so there
+  is not a huge amount of documentation and experience out there at the moment. You may need to search
+  around for useful information or, better still, contact your friendly neighbourhood to discuss what you want to do.
 
-**Docker Compose** provides a way of constructing a unified workflow (or service) made up of multiple
+``**Docker Compose** <https://docs.docker.com/compose/>`` provides a way of constructing a unified workflow (or service) made up of multiple
 individual Docker containers. In addition to the individual Dockerfiles for each container, you provide
 a higher-level configuration file which describes the different containers and how they link together
 along with shared storage definitions between the containers. Once this high-level configuration has been
 defined, you can use single commands to start and stop the orchestrated set of containers.
 
-  - [Using Docker Compose for the Simple Deployment of an Integrated Drug Target Screening Platform](https://www.degruyter.com/view/journals/jib/14/2/article-20170016.xml)
-  - [Docker Compose Overview](https://docs.docker.com/compose/)
 
 **Kubernetes** is an open source framework that provides similar functionality to Docker Compose. Its
 particular strengths are that is platform independent and can be used with many different container
@@ -155,12 +154,8 @@ technologies and that it is widely available on cloud platforms so once you have
 in Kubernetes it can be deployed in different locations as required. It has become the de facto standard
 for container orchestration.
 
-  - [What is Kubernetes](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
-
-**Docker Swarm** provides a way to scale out to multiple copies of similar containers. This potentially
+**``Docker Swarm** <https://docs.docker.com/engine/swarm/>``provides a way to scale out to multiple copies of similar containers. This potentially
 allows you to parallelise and scale out your research workflow so that you can run multiple copies and
 increase throughput. This would allow you, for example, to take advantage of multiple cores on a local
 system or run your workflow in the cloud to access more resources. Docker Swarm uses the concept of
 a manager container and worker containers to implement this distribution.
-
-  - [Docker Swarm Overview](https://docs.docker.com/engine/swarm/)
