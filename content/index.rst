@@ -35,6 +35,7 @@ Nonetheless, the computationally intensive task of training an AI increasingly r
    docker-intro
    mang_cont
    create_cont
+   compx_cont
 
 .. toctree::
    :maxdepth: 1
