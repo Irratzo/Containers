@@ -49,3 +49,52 @@ Cons
 ++++
 - It is time consuming to build and regenerate VMs, because they encompass a full stack system. Any modifications to a VM snapshot can take significant time to regenerate and validate they behave as expected.
 - VMs can take up a lot of storage space. They can quickly grow to several Gigabytes in size. This can lead to disk space shortage issues on the VMs host machine.
+
+.. rubric:: Virtualization
+     :name: virtualization
+
+  Containers are an example of what’s called **virtualization** –
+  having a second “virtual” computer running and accessible from a main
+  or **host** computer. Another example of virtualization are **virtual
+  machines** or VMs. A virtual machine typically contains a whole copy
+  of an operating system in addition to its own file system and has to
+  get booted up in the same way a computer would. A container is
+  considered a lightweight version of a virtual machine; underneath,
+  the container is using the Linux kernel and simply has some flavor of
+  Linux + the file system inside. {: .callout}
+
+One final term: if the *container* is an alternative file system layer
+that you can access and run from your computer, the **container image**
+is like a template for that container. The container image has all the
+needed information to start up a running copy of the container. A
+running container tends to be transient and can be started and shut
+down. The image is more long-lived, as a source file for the container.
+You could think of the container image like a cookie cutter – it can be
+used to create multiple copies of the same shape (or container) and is
+relatively unchanging, where cookies come and go. If you want a
+different type of container (cookie) you need a different image (cookie
+cutter).
+
+Putting the Pieces Together
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Think back to some of the challenges we described at the beginning. The
+many layers of scientific software installations make it hard to install
+and re-install scientific software – which ultimately, hinders
+reliability and reproducibility.
+
+But now, think about what a container is - a self-contained, complete,
+separate computer file system. What if you put your scientific software
+tools into a container?
+
+This solves several of our problems: - There is a clear record of what
+software and software dependencies were used, from bottom to top. - The
+container can be used on any computer that has Docker installed – it
+doesn’t matter whether the computer is Mac, Windows or Linux-based. -
+The container ensures that you can use the exact same software and
+environment on your computer and on other resources (like a large-scale
+computing cluster).
+
+The rest of this workshop will show you how to download and run
+pre-existing containers on your own computer, and how to create and
+share your own containers.
