@@ -1,5 +1,5 @@
-Containers in research workflows: reproducibility and granularity
-=================================================================
+Containers in research workflows
+================================
 
 Although this workshop is titled "Reproducible computational environments using containers",
 so far we have mostly covered the mechanics of using Docker with only passing reference to
