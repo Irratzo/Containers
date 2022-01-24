@@ -25,10 +25,13 @@ Let’s say we wanted to try running the script using our recently created ``alp
 If we try running the container and Python script, what happens?
 
 .. code-block :: bash
+
   $docker run alice/alpine-python python3 dummy.py
 
 Output
+
 ..code-block :: bash
+
   python3: can’t open file ‘dummy.py’: [Errno 2] No such file or directory
 
 .. callout :: No such file or directory
@@ -206,7 +209,7 @@ the screen. The bigger your image becomes, the harder it will be to easily downl
     RUN git clone https://github.com/alice/mycode
 
   Similarly, the `wget` command can be used to download any file publicly available on the internet:
-  
+
   .. code-block :: bash
 
     RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.10.0/ncbi-blast-2.10.0+-x64-linux.tar.gz
