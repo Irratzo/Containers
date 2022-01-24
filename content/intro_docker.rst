@@ -120,7 +120,7 @@ To try something more ambitious, you can run an Ubuntu container with:
 
   $docker run -it ubuntu bash
 
-.. exercise:: ``docker run``
+.. callout:: ``docker run``
 
   What just happened? When we use the ``docker run`` command, Docker does
   three things:
