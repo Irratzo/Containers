@@ -57,19 +57,19 @@ You should see output like this:
   DockerHub website, which is a place to share Docker images with other
   people. More on that in a later episode.
 
-
-.. typealong:: Exercise: Check on Your Images
-
+.. exercise:: Exercise: Check on Your Images
   What command would you use to see if the ``hello-world`` Docker image
   had downloaded successfully and was on your computer? Give it a try
   before checking the solution.
+  
+  .. tabs::
+    .. tab:: Try!
 
-  Solution:
-  To see if the ``hello-world`` image is now on your computer, run:
+    .. tab:: Solution
+      To see if the ``hello-world`` image is now on your computer, run:
+      .. code-block:: bash
 
-  .. code-block:: bash
-
-    $ docker image ls
+      $ docker image ls
 
 Note that the downloaded ``hello-world`` image is not in the folder
 where you are in the terminal! (Run ``ls`` by itself to check.) The
@@ -155,10 +155,10 @@ command. The suggestion above is to use ``ubuntu``, but we’re going to
 run a different type of Linux, ``alpine`` instead because it’s quicker
 to download.
 
-.. rubric:: Run the Alpine Docker container
+.. callout:: Run the Alpine Docker container
 
   Try downloading and running the ``alpine`` Docker container. You can
-  do it in two steps, or one. What are they? {: .challenge}
+  do it in two steps, or one. What are they?
 
 What happened when you ran the Alpine Docker container?
 
@@ -293,12 +293,3 @@ So far, we’ve seen how to download Docker images, use them to run
 commands inside running containers, and even how to explore a running
 container from the inside. Next, we’ll take a closer look at all the
 different kinds of Docker images that are out there.
-
-{% include links.md %}
-
-{% comment %} {% endcomment %}
-
-
-.. code-block:: bash
-
-   $
