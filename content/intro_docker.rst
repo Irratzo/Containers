@@ -58,18 +58,21 @@ You should see output like this:
   people. More on that in a later episode.
 
 .. exercise:: Exercise: Check on Your Images
+
   What command would you use to see if the ``hello-world`` Docker image
   had downloaded successfully and was on your computer? Give it a try
   before checking the solution.
-  
+
   .. tabs::
+
     .. tab:: Try!
 
     .. tab:: Solution
-      To see if the ``hello-world`` image is now on your computer, run:
-      .. code-block:: bash
 
-      $ docker image ls
+      To see if the ``hello-world`` image is now on your computer, run:
+
+      .. code-block:: bash
+        $ docker image ls
 
 Note that the downloaded ``hello-world`` image is not in the folder
 where you are in the terminal! (Run ``ls`` by itself to check.) The
@@ -180,19 +183,23 @@ You should see the output of the ``cat /etc/os-release`` command, which
 prints out the version of Alpine Linux that this container is using and
 a few additional bits of information.
 
-.. rubric:: Hello World, Part 2
+.. exercise:: Exercise: Hello World, Part 2
 
   Can you run the container and make it print a “hello world” message?
   Give it a try before checking the solution.
 
-     .. rubric:: Solution
+  .. tabs::
 
-     Use the same command as above, but with the ``echo`` command to
-     print a message.
+    .. tab:: Try!
 
-     .. code-block:: bash
+    .. tab:: Solution
 
-     $ docker run alpine echo ‘Hello World’
+      Use the same command as above, but with the ``echo`` command to
+      print a message.
+
+      .. code-block:: bash
+
+      $ docker run alpine echo ‘Hello World’
 
 So here, we see another option – we can provide commands at the end of
 the ``docker run`` command and they will execute inside the running
