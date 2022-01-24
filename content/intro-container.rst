@@ -86,11 +86,10 @@ separate computer file system. What if you put your scientific software
 tools into a container?
 
 This solves several of our problems:
+
 - There is a clear record of what software and software dependencies were used, from bottom to top.
 - The container can be used on any computer that has Docker installed
 – It doesn’t matter whether the computer is Mac, Windows or Linux-based.
 - The container ensures that you can use the exact same software and environment on your computer and on other resources (like a large-scale computing cluster).
 
-The rest of this workshop will show you how to download and run
-pre-existing containers on your own computer, and how to create and
-share your own containers.
+The rest of this workshop will show you how to download and run pre-existing containers on your own computer, and how to create and share your own containers.

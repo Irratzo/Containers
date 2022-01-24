@@ -6,11 +6,13 @@ Docker has proven to an extraordinary tool for developers and researchers alike.
 Most of today's workshop will be spent of Docker command line (CLI) utility.
 
 .. callout:: You need an account on Docker Hub
+
   You need an account on `Docker Hub <https://hub.docker.com>` in order to run examples provide in this workshop. After that
   please head over to `Play-with-Docker (PWD) <https://labs.play-with-docker.com>` to try examples provided here.
 
 
   .. callout:: Reminder of terminology: images and containers
+
   Recall that a container “image” is the template from which particular
   instances of containers will be created.
 
@@ -42,9 +44,10 @@ You should see output like this:
 
 .. code-block:: bash
 
-  Using default tag: latest latest:
-  Pulling from library/hello-world 1b930d010525: Pull complete Digest:
-  sha256:f9dfddf63636d84ef479d645ab5885156ae030f611a56f3a7ac7f2fdd86d7e4e
+  Using default tag: latest
+  latest: Pulling from library/hello-world
+  93288797bd35: Pull complete
+  Digest: sha256:975f4b14f326b05db86e16de00144f9c12257553bba9484fed41f9b6f2257800
   Status: Downloaded newer image for hello-world:latest
   docker.io/library/hello-world:latest
 
@@ -85,17 +88,27 @@ Note that it does not matter what your current working directory is.
 .. code-block:: bash
 
   $ docker run hello-world
+
   Hello from Docker!
+  This message shows that your installation appears to be working correctly.
 
-This message shows that your installation appears to be working correctly.
+  To generate this message, Docker took the following steps:
+   1. The Docker client contacted the Docker daemon.
+   2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+      (arm64v8)
+   3. The Docker daemon created a new container from that image which runs the
+      executable that produces the output you are currently reading.
+   4. The Docker daemon streamed that output to the Docker client, which sent it
+      to your terminal.
 
-To generate this message, Docker took the following steps:
-1. The Docker client contacted the Docker daemon.
-2. The Docker daemon pulled the “hello-world” image from the Docker Hub. (amd64)
-3. The Docker daemon created a new container from that image which runs the executable that
-produces the output you are currently reading.
-4. The Docker daemon streamed that output to the Docker client, which sent it to your
-terminal.
+  To try something more ambitious, you can run an Ubuntu container with:
+   $ docker run -it ubuntu bash
+
+  Share images, automate workflows, and more with a free Docker ID:
+   https://hub.docker.com/
+
+  For more examples and ideas, visit:
+   https://docs.docker.com/get-started/
 
 To try something more ambitious, you can run an Ubuntu container with:
 
@@ -126,6 +139,7 @@ The ``hello-world`` container is set up to run an action by default -
 namely to print this message.
 
 .. callout:: Using ``docker run`` to get the image
+
   We could have skipped the ``docker pull`` step; if you use the
   ``docker run`` command and you don’t already have a copy of the
   Docker image, Docker will automatically pull the image first and then
@@ -141,19 +155,16 @@ command. The suggestion above is to use ``ubuntu``, but we’re going to
 run a different type of Linux, ``alpine`` instead because it’s quicker
 to download.
 
-  .. rubric:: Run the Alpine Docker container
-     :name: run-the-alpine-docker-container
+.. rubric:: Run the Alpine Docker container
 
   Try downloading and running the ``alpine`` Docker container. You can
   do it in two steps, or one. What are they? {: .challenge}
 
 What happened when you ran the Alpine Docker container?
 
-::
+.. code-block:: bash
 
   $ docker run alpine
-
-{: .language-bash}
 
 If you never used the *alpine* docker image on your computer, docker
 probably printed a message that it couldn’t find the image and had to
@@ -161,29 +172,27 @@ download it. If you used the alpine image before, the command will
 probably show no output. That’s because this particular container is
 designed for you to provide commands yourself. Try running this instead:
 
-::
+.. code-block:: bash
 
   $ docker run alpine cat /etc/os-release
-
-{: .language-bash}
 
 You should see the output of the ``cat /etc/os-release`` command, which
 prints out the version of Alpine Linux that this container is using and
 a few additional bits of information.
 
-  .. rubric:: Hello World, Part 2
-     :name: hello-world-part-2
+.. rubric:: Hello World, Part 2
 
   Can you run the container and make it print a “hello world” message?
-
   Give it a try before checking the solution.
 
      .. rubric:: Solution
-        :name: solution-1
 
      Use the same command as above, but with the ``echo`` command to
-     print a message. ~~~ $ docker run alpine echo ‘Hello World’ ~~~ {:
-     .language-bash} {: .solution} {: .challenge}
+     print a message.
+
+     .. code-block:: bash
+
+     $ docker run alpine echo ‘Hello World’
 
 So here, we see another option – we can provide commands at the end of
 the ``docker run`` command and they will execute inside the running
