@@ -33,6 +33,7 @@ Nonetheless, the computationally intensive task of training an AI increasingly r
    intro_docker
    namespc-cgroup
    docker-intro
+   mang_cont
 
 .. toctree::
    :maxdepth: 1
@@ -40,8 +41,6 @@ Nonetheless, the computationally intensive task of training an AI increasingly r
 
    quick-reference
    guide
-
-
 
 .. _learner-personas:
 
