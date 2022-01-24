@@ -7,8 +7,8 @@ Most of today's workshop will be spent of Docker command line (CLI) utility.
 
 .. callout:: You need an account on Docker Hub
 
-  You need an account on `Docker Hub <https://hub.docker.com>` in order to run examples provide in this workshop. After that
-  please head over to `Play-with-Docker (PWD) <https://labs.play-with-docker.com>` to try examples provided here.
+  You need an account on `Docker Hub <https://hub.docker.com>`_ in order to run examples provide in this workshop. After that
+  please head over to `Play-with-Docker (PWD) <https://labs.play-with-docker.com>`_ to try examples provided here.
 
 
   .. callout:: Reminder of terminology: images and containers

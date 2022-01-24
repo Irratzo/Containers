@@ -13,8 +13,8 @@ This material is split into 2 parts:
 
 *Part II: Creating images, running parallel codes*
 
-  1. Building Singularity images : Explaining how to build and share your own Singularity images
-  2. Running MPI parallel jobs using Singularity containers: Explaining how to run MPI parallel codes from within Singularity containers
+  1. **Building Singularity images**: Explaining how to build and share your own Singularity images
+  2. **Running MPI parallel jobs using Singularity containers**: Explaining how to run MPI parallel codes from within Singularity containers
 
 
 Singularity - Part I
@@ -23,7 +23,7 @@ ____________________
 What is Singularity?
 ++++++++++++++++++++
 
-`Singularity <https://sylabs.io/singularity/>` is another container platform. In some ways
+`Singularity <https://sylabs.io/singularity/>`_ is another container platform. In some ways
 it appears similar to Docker from a user perspective, but in others, particularly in the system's
 architecture, it is fundamentally different. These differences mean that Singularity is particularly
 well-suited to running on distributed, High Performance Computing (HPC)
@@ -39,14 +39,15 @@ Getting started with Singularity
 ++++++++++++++++++++++++++++++++
 
 Initially developed within the research community, Singularity is open source and
-the `repository <https://github.com/hpcng/singularity>` is currently available in
-the "`The Next Generation of High Performance Computing <https://github.com/hpcng>`" GitHub organisation.
+the `repository <https://github.com/hpcng/singularity>`_ is currently available in
+the "`The Next Generation of High Performance Computing <https://github.com/hpcng>`_" GitHub organisations.
 Part I of this Singularity material is intended to be undertaken on a remote platform where Singularity has been pre-installed.
 
 If you're attending a taught version of this course, you will be provided with access details for a remote platform
 made available to you for use for Part I of the Singularity material. This platform will have the Singularity software pre-installed.
 
 .. callout :: Installing Singularity on your own laptop/desktop
+
   If you have a Linux system on which you have administrator access
   and you would like to install Singularity locally on this system.
 
@@ -73,6 +74,7 @@ At the time of writing, `v3.7.0` is the latest release of Singularity.
   HPC systems often use *modules* to provide access to software on the system.
   If you get a command not found error (e.g. `bash: singularity: command not found` or similar)
   you may need to load the _singularity module_ before you can use the `singularity` command:
+
   .. code-block :: bash
 
     $ module load singularity
@@ -102,18 +104,19 @@ the complete image. When you pull a Docker image from Docker Hub, you see the di
 downloaded to your system. They are stored in your local Docker repository on your system and you can
 see details of the available images using the `docker` command.
 
-Singularity images are a little different. Singularity uses the `Signularity Image Format (SIF) <https://github.com/sylabs/sif>`
-and images are provided as single `SIF` files. Singularity images can be pulled from `Singularity Hub <https://singularity-hub.org/>``,
+Singularity images are a little different. Singularity uses the `Signularity Image Format (SIF) <https://github.com/sylabs/sif>`_
+and images are provided as single `SIF` files. Singularity images can be pulled from `Singularity Hub <https://singularity-hub.org/>`_,
 a registry for container images. Singularity is also capable of running containers based on images pulled from
 `Docker Hub <https://hub.docker.com/>` and some other sources. We'll look at accessing containers from Docker Hub later in the Singularity material.
 
 .. callout :: Singularity Hub
+
   Note that in addition to providing a repository that you can pull images from,
-  `Singularity Hub <https://singularity-hub.org/>` can also build Singularity images
+  `Singularity Hub <https://singularity-hub.org/>`_ can also build Singularity images
   for you from a `recipe` - a configuration file defining the steps to build an image.
   We'll look at recipes and building images later.
 
-Let's begin by creating a `test` directory, changing into it and _pulling_ a test _Hello World_ image from Singularity Hub:
+Let's begin by creating a `test` directory, changing into it and pulling a test Hello World image from Singularity Hub:
 
 .. code-block :: bash
   $ mkdir test
@@ -123,6 +126,7 @@ Let's begin by creating a `test` directory, changing into it and _pulling_ a tes
 Output
 
 .. code-block :: bash
+
   INFO:    Downloading shub image
   59.75 MiB / 59.75 MiB [===============================================================================================================] 100.00% 52.03 MiB/s 1s
 

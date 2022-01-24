@@ -76,8 +76,7 @@ is what level of *granularity* you wish to employ. The two extremes of this deci
 as:
 
 - Create a single container image with all the tools you require for your research or analysis workflow
-- Create many container images each running a single command (or step) of the workflow and use them in
-    sequence
+- Create many container images each running a single command (or step) of the workflow and use them in sequence
 
 Of course, many real applications will sit somewhere between these two extremes.
 
@@ -87,7 +86,7 @@ Of course, many real applications will sit somewhere between these two extremes.
   workflows described above? Think about this and write a few bullet points for advantages and disadvantages
   for each approach in the course Etherpad.
 
-  Single large container:
+  **Single large container**
 
   .. tabs::
 
@@ -107,7 +106,7 @@ Of course, many real applications will sit somewhere between these two extremes.
       - Potentially more complex to test
       - Less re-useable for different, but related, work
 
-  Multiple smaller containers:
+  **Multiple smaller containers**
 
   .. tabs ::
 
@@ -142,20 +141,20 @@ a few options and point to useful resources on using these tools to allow you to
   is not a huge amount of documentation and experience out there at the moment. You may need to search
   around for useful information or, better still, contact your friendly neighbourhood to discuss what you want to do.
 
-`Docker Compose <https://docs.docker.com/compose/>` provides a way of constructing a unified workflow (or service) made up of multiple
+**`Docker Compose <https://docs.docker.com/compose/>`_** provides a way of constructing a unified workflow (or service) made up of multiple
 individual Docker containers. In addition to the individual Dockerfiles for each container, you provide
 a higher-level configuration file which describes the different containers and how they link together
 along with shared storage definitions between the containers. Once this high-level configuration has been
 defined, you can use single commands to start and stop the orchestrated set of containers.
 
 
-Kubernetes is an open source framework that provides similar functionality to Docker Compose. Its
+**`Kubernetes <https://kubernetes.io>`_** is an open source framework that provides similar functionality to Docker Compose. Its
 particular strengths are that is platform independent and can be used with many different container
 technologies and that it is widely available on cloud platforms so once you have implemented your workflow
 in Kubernetes it can be deployed in different locations as required. It has become the de facto standard
 for container orchestration.
 
-`Docker Swarm <https://docs.docker.com/engine/swarm/>` provides a way to scale out to multiple copies of similar containers. This potentially
+**`Docker Swarm** <https://docs.docker.com/engine/swarm/>`_** provides a way to scale out to multiple copies of similar containers. This potentially
 allows you to parallelise and scale out your research workflow so that you can run multiple copies and
 increase throughput. This would allow you, for example, to take advantage of multiple cores on a local
 system or run your workflow in the cloud to access more resources. Docker Swarm uses the concept of
