@@ -50,8 +50,7 @@ Cons
 - It is time consuming to build and regenerate VMs, because they encompass a full stack system. Any modifications to a VM snapshot can take significant time to regenerate and validate they behave as expected.
 - VMs can take up a lot of storage space. They can quickly grow to several Gigabytes in size. This can lead to disk space shortage issues on the VMs host machine.
 
-.. rubric:: Virtualization
-     :name: virtualization
+.. callout:: Virtualization
 
   Containers are an example of what’s called **virtualization** –
   having a second “virtual” computer running and accessible from a main
@@ -61,7 +60,7 @@ Cons
   get booted up in the same way a computer would. A container is
   considered a lightweight version of a virtual machine; underneath,
   the container is using the Linux kernel and simply has some flavor of
-  Linux + the file system inside. {: .callout}
+  Linux + the file system inside.
 
 One final term: if the *container* is an alternative file system layer
 that you can access and run from your computer, the **container image**
