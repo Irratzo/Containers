@@ -1,14 +1,14 @@
 Upscaling AI with Containers
 ====================================
 
-Artificial Intelligence (AI) has become a foundational building block of our modern world. 
-Accordingly, a vast effort has been put into bringing AI to researchers and practitioners of a wide range of fields. 
+Artificial Intelligence (AI) has become a foundational building block of our modern world.
+Accordingly, a vast effort has been put into bringing AI to researchers and practitioners of a wide range of fields.
 Nonetheless, the computationally intensive task of training an AI increasingly requires more computational power than what our laptops and PCs can offer. Therefore, the ability to develop and train a neural network on large clusters seems imperative. This workshop teaches us how to scale an AI-powered application in large clusters, i.e., supercomputers.
 
 .. prereq::
-   
-   Working knowledge of Unix OS is required. In addition, a basic understanding of Neural Networks (NNs) is desirable. 
-   Please follow the `link <https://hub.docker.com>`_ to create a username and password on the DockerHub website, as we will use `Play-with-Docker (PWD) <https://labs.play-with-docker.com>`_ freely available service. 
+
+   Working knowledge of Unix OS is required. In addition, a basic understanding of Neural Networks (NNs) is desirable.
+   Please follow the `link <https://hub.docker.com>`_ to create a username and password on the DockerHub website, as we will use `Play-with-Docker (PWD) <https://labs.play-with-docker.com>`_ freely available service.
    Details of using and access to the cluster are given in :doc:`setup` section.
 
 
@@ -28,18 +28,11 @@ Nonetheless, the computationally intensive task of training an AI increasingly r
 .. toctree::
    :maxdepth: 1
    :caption: The lesson
-   
+
    intro-container
+   intro_docker
    namespc-cgroup
    docker-intro
-   hands-docker
-   sing-intro
-   sing-examples
-   hands-sing
-   crash-tf
-   hands-tf
-   crash-horovod
-   hands-horovod
 
 .. toctree::
    :maxdepth: 1
@@ -63,8 +56,8 @@ About the course
 ----------------
 
 This lesson material is developed by the `EuroCC National Competence Center
-Sweden (ENCCS) <https://enccs.se/>`_ and taught in ENCCS workshops. It aims 
-at researchers and developers who have experience working with AI and wish to train their applications on supercomputers. 
+Sweden (ENCCS) <https://enccs.se/>`_ and taught in ENCCS workshops. It aims
+at researchers and developers who have experience working with AI and wish to train their applications on supercomputers.
 The lesson material is licensed under `CC-BY-4.0
 <https://creativecommons.org/licenses/by/4.0/>`_ and can be reused in any form
 (with appropriate credit) in other courses and workshops.
@@ -132,4 +125,3 @@ Software
 Except where otherwise noted, the example programs and other software provided
 with this repository are made available under the `OSI <http://opensource.org/>`_-approved
 `MIT license <https://opensource.org/licenses/mit-license.html>`_.
-
