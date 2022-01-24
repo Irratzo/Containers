@@ -215,7 +215,7 @@ _______________________________
 We can expand on the example above to make our container even more "automatic".
 Here are some ideas:
 
-- Make the `dummy.py` script run automatically:
+Make the `dummy.py` script run automatically:
 
 .. code-block :: bash
 
@@ -229,17 +229,17 @@ Here are some ideas:
   # OR
   # CMD ["python3", "/home/dummy.py"]
 
-  Build and test it:
+Build and test it:
 
 .. code-block :: bash
 
   $ docker build -t alpine-dummy:v1 .
   $ docker run alpine-dummy:v1
 
-
-- Make the `dummy.py` script run automatically with arguments from the command line:
+Make the `dummy.py` script run automatically with arguments from the command line:
 
 .. code-block :: bash
+
   FROM alpine
 
   COPY dummy.py /home
@@ -250,12 +250,13 @@ Here are some ideas:
   ENTRYPOINT ["python3", "/home/dummy.py"]
 
 Build and test it:
+
 .. code-block :: bash
 
   $ docker build -t alpine-dummy:v2 .
   $ docker run alpine-dummy:v2 1 2 3 4
 
-- Add the `dummy.py` script to the `PATH` so you can run it directly:
+Add the `dummy.py` script to the `PATH` so you can run it directly:
 
 .. code-block :: bash
 
@@ -272,5 +273,6 @@ Build and test it:
 Build and test it:
 
 .. code-block :: bash
+
   $ docker build -t alpine-dummy:v3 .
   $ docker run alpine-dummy:v3 dummy.py 1 2 3 4
