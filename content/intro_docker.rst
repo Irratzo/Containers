@@ -72,6 +72,7 @@ You should see output like this:
       To see if the ``hello-world`` image is now on your computer, run:
 
       .. code-block:: bash
+
         $ docker image ls
 
 Note that the downloaded ``hello-world`` image is not in the folder
@@ -216,23 +217,15 @@ flag ``-it`` to the ``docker run`` command and by providing a shell
 (usually ``bash`` or ``sh``) as our command. The alpine docker image
 doesn’t include ``bash`` so we need to use ``sh``.
 
-::
+.. code-block:: bash
 
   $ docker run -it alpine sh
 
-{: .language-bash}
+Your prompt should change significantly to look like this:
 
-  .. rubric:: Technically…
-     :name: technically
+.. code-block:: bash
 
-  Technically, the interactive flag is just ``-i``, the extra ``-t``
-  (combined as ``-it`` above) is an option that allows you to connect
-  to a shell like bash. But since usually you want to have a command
-  line when run interactively, it always makes sense to use the two
-  together. {: .callout}
-
-Your prompt should change significantly to look like this: ~~~ / # ~~~
-{: .language-bash}
+  / #
 
 That’s because you’re now inside the running container! Try these
 commands:
@@ -247,51 +240,33 @@ All of these are being run from inside the running container, so you’ll
 get information about the container itself, instead of your computer. To
 finish using the container, just type ``exit``.
 
-::
+.. code-block:: bash
 
   / # exit
 
-{: .language-bash}
-
-  .. rubric:: Practice Makes Perfect
-     :name: practice-makes-perfect
+.. exercise:: Practice Makes Perfect
 
   Can you find out the version of Linux installed on the ``busybox``
   container? Can you find the ``busybox`` program? What does it do?
   (Hint: passing ``--help`` to almost any command will give you more
   information.)
 
-     .. rubric:: Solution 1 - Interactive
-        :name: solution-1---interactive
+  What command would you use to see if the ``hello-world`` Docker image
+  had downloaded successfully and was on your computer? Give it a try
+  before checking the solution.
 
-     Run the busybox container interactively – you can use
-     ``docker pull`` first, or just run it with this command: ~~~ $
-     docker run -it busybox sh ~~~ {: .language-bash}
+  .. tabs::
 
-     Then try, running these commands
+    .. tab:: Try!
 
-     ::
+    .. tab:: Solution
 
-        /# cat /proc/version
-        /# busybox --help
+      To see if the ``hello-world`` image is now on your computer, run:
 
-     {: .language-bash}
+      .. code-block:: bash
 
-     Exit when you’re done. ~~~ /# exit ~~~ {: .language-bash} {:
-     .solution}
+        $ docker image ls
 
-  ..
-
-     .. rubric:: Solution 2 - Run commands
-        :name: solution-2---run-commands
-
-     Run the busybox container, first with a command to read out the
-     Linux version: ~~~ $ docker run busybox cat /proc/version ~~~ {:
-     .language-bash}
-
-     Then run the container again with a command to print out the
-     busybox help: ~~~ $ docker run busybox busybox –help ~~~ {:
-     .language-bash} {: .solution} {: .challenge}
 
 Conclusion
 ----------
