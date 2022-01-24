@@ -24,6 +24,17 @@ Containers use the operating system (OS) level virtualization, isolating process
 the rest of the OS environment and controlling the allocation of (hardware) resources. The isolation is enabled via kernel namespaces
 and cgroups (as we will discuss them in detail at :doc:`namespc-cgroup` section), which have been in Linux for a long time.
 
+.. callout:: Virtualization
+
+  Containers are an example of what’s called **virtualization** –
+  having a second “virtual” computer running and accessible from a main
+  or **host** computer. A VM typically contains a whole copy
+  of an operating system in addition to its own file system and has to
+  get booted up in the same way a computer would. A container is
+  considered a lightweight version of a virtual machine; underneath,
+  the container is using the Linux kernel and simply has some flavor of
+  Linux + the file system inside.
+
 The key differentiator between containers and VMs is that VMs virtualize an entire machine down to the hardware layers and containers only virtualize software layers above the operating system level.
 
 .. image:: img/conts_vms.jpeg
@@ -49,18 +60,6 @@ Cons
 ++++
 - It is time consuming to build and regenerate VMs, because they encompass a full stack system. Any modifications to a VM snapshot can take significant time to regenerate and validate they behave as expected.
 - VMs can take up a lot of storage space. They can quickly grow to several Gigabytes in size. This can lead to disk space shortage issues on the VMs host machine.
-
-.. callout:: Virtualization
-
-  Containers are an example of what’s called **virtualization** –
-  having a second “virtual” computer running and accessible from a main
-  or **host** computer. Another example of virtualization are **virtual
-  machines** or VMs. A virtual machine typically contains a whole copy
-  of an operating system in addition to its own file system and has to
-  get booted up in the same way a computer would. A container is
-  considered a lightweight version of a virtual machine; underneath,
-  the container is using the Linux kernel and simply has some flavor of
-  Linux + the file system inside.
 
 One final term: if the *container* is an alternative file system layer
 that you can access and run from your computer, the **container image**
