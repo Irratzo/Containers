@@ -240,33 +240,6 @@ All of these are being run from inside the running container, so you’ll
 get information about the container itself, instead of your computer. To
 finish using the container, just type ``exit``.
 
-.. code-block:: bash
-
-  / # exit
-
-.. exercise:: Practice Makes Perfect
-
-  Can you find out the version of Linux installed on the ``busybox``
-  container? Can you find the ``busybox`` program? What does it do?
-  (Hint: passing ``--help`` to almost any command will give you more
-  information.)
-
-  What command would you use to see if the ``hello-world`` Docker image
-  had downloaded successfully and was on your computer? Give it a try
-  before checking the solution.
-
-  .. tabs::
-
-    .. tab:: Try!
-
-    .. tab:: Solution
-
-      To see if the ``hello-world`` image is now on your computer, run:
-
-      .. code-block:: bash
-
-        $ docker image ls
-
 
 Conclusion
 ----------
