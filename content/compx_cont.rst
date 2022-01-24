@@ -12,32 +12,29 @@ using the first 1-2 sections on this page.
 Using scripts and files from outside the container
 --------------------------------------------------
 
-In your shell, change to the ``sum`` folder in the ``docker-intro``
-folder and look at the files inside. ~~~ $ cd ~/Desktop/docker-intro/sum
-$ ls ~~~ {: .language-bash}
+Let's create a file and folder called it ``foo/dummy.py`` in the root folder.
 
-This folder has both a ``Dockerfile`` and a python script called
-``sum.py``. Let’s say we wanted to try running the script using our
-recently created ``alpine-python`` container.
+Please copy the ``Dockerfile`` and place it in the ``foo`` directory.
+Let’s say we wanted to try running the script using our recently created ``alpine-python`` container.
 
-.. rubric:: Running containers
-  :name: running-containers
+.. callout :: Running containers
 
    What command would we use to run python from the ``alpine-python``
-   container? {: .challenge}
+   container?
 
-If we try running the container and Python script, what happens? ~~~ $
-docker run alice/alpine-python python3 sum.py ~~~ {: .language-bash} ~~~
-python3: can’t open file ‘sum.py’: [Errno 2] No such file or directory
-~~~ {: .output}
+If we try running the container and Python script, what happens?
 
-   .. rubric:: No such file or directory
-      :name: no-such-file-or-directory
+.. code-block :: bash
+  $docker run alice/alpine-python python3 sum.py
+
+Output
+..code-block :: bash
+  python3: can’t open file ‘dummy.py’: [Errno 2] No such file or directory
+
+.. callout :: No such file or directory
 
    What does the error message mean? Why might the Python inside the
    container not be able to find or open our script?
-
-   {: .challenge}
 
 The problem here is that the container and its file system is separate
 from our host computer’s file system. When the container runs, it can’t
@@ -55,10 +52,15 @@ using an additional option to ``docker run``. We’ll also use the
 variable ``$PWD`` which will substitute in our current working
 directory. The option will look like this
 
-``-v $PWD:/temp``
+.. code-block :: bash
+
+  ``-v $PWD:/temp``
 
 What this means is – link my current directory with the container, and
 inside the container, name the directory ``/temp``
 
-Let’s try running the command now: ~~~ $ docker run -v $PWD:/temp
-alice/alpine-python python3 sum.py ~~~
+Let’s try running the command now:
+
+.. code-block :: bash
+
+  $ docker run -v $PWD:/temp alice/alpine-python python3 dummy.py
