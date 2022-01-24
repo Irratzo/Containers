@@ -202,10 +202,13 @@ the screen. The bigger your image becomes, the harder it will be to easily downl
   to download the latest version every time you build the container:
 
   .. code-block :: bash
+
     RUN git clone https://github.com/alice/mycode
 
   Similarly, the `wget` command can be used to download any file publicly available on the internet:
+  
   .. code-block :: bash
+
     RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.10.0/ncbi-blast-2.10.0+-x64-linux.tar.gz
 
 
