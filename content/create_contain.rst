@@ -246,6 +246,7 @@ name your image as described above, with your Docker Hub username, all you need 
 is run the opposite of `docker pull` -- `docker push`.
 
 .. code-block :: bash
+
   $ docker push alice/alpine-python
 
 Make sure to substitute the full name of your container!

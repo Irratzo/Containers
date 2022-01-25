@@ -119,6 +119,7 @@ a registry for container images. Singularity is also capable of running containe
 Let's begin by creating a `test` directory, changing into it and pulling a test Hello World image from Singularity Hub:
 
 .. code-block :: bash
+
   $ mkdir test
   $ cd test
   $ singularity pull hello-world.sif shub://vsoch/hello-world

@@ -110,11 +110,13 @@ It will ask you if to confirm you want to remove these containers, see output be
 If successful it will print the full `CONTAINER ID` back to you.
 
 .. code-block:: bash
+
   $ docker container prune
 
-output:
+Output:
 
 .. code-block:: bash
+
   WARNING! This will remove all stopped containers.
   Are you sure you want to continue? [y/N] y
   Deleted Containers:
