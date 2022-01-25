@@ -134,10 +134,9 @@ resulting container as a new container image. To do this we will use the
 We have to provide `docker build` with two pieces of information:
 - the location of the `Dockerfile`
 - the name of the new image. Remember the naming scheme from before? You should name
-your new image with your Docker Hub username and a name for the container, like this:
-    ```
-    USERNAME/CONTAINERNAME
-    ```
+your new image with your Docker Hub username and a name for the container,
+like this: ```USERNAME/CONTAINERNAME```
+
 All together, the build command will look like this:
 
 .. code-block :: bash
