@@ -260,7 +260,7 @@ In a web browser, open <https://hub.docker.com>, and on your user page you shoul
   try `docker push` again.
 
 What's in a name? (again)
-________________________
+_________________________
 
 You don't *have* to name your containers using the `USERNAME/CONTAINER:TAG` naming
 scheme. On your own computer, you can call containers whatever you want and refer to
