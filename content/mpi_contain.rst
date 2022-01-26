@@ -73,7 +73,7 @@ MPICH version 3.3.2 from the `MPICH downloads page <https://www.mpich.org/downlo
 In the same directory, save the following [definition file content]({{site.url}}{{site.baseurl}}/files/osu_benchmarks.def)
 to a `.def` file, e.g. `osu_benchmarks.def`:
 
-.. code-block :: bash
+.. code-block:: bash
 
   Bootstrap: docker
   From: ubuntu:20.04
@@ -131,7 +131,7 @@ A quick overview of what the above definition file is doing:
 
         You should be able to build an image from the definition file as follows:
 
-        .. code-block :: bash
+        .. code-block:: bash
 
           $ singularity build osu_benchmarks.sif osu_benchmarks.def
 
@@ -145,13 +145,13 @@ A quick overview of what the above definition file is doing:
 
         Let's begin with a single-process run of `osu_hello` on the local system to ensure that we can run the container as expected:
 
-        .. code-block :: bash
+        .. code-block:: bash
 
           $ singularity run osu_benchmarks.sif startup/osu_hello
 
         You should see output similar to the following:
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         Rank  - About to run: /usr/local/osu/libexec/osu-micro-benchmarks/mpi/startup/osu_hello
         # OSU MPI Hello World Test v5.6.2
@@ -206,7 +206,7 @@ some information will be provided below in relation to the cluster that you've b
       You should be able to run the benchmark using a command similar to the one shown below. However, if you are running
       on a cluster, you may need to write and submit a job submission script at this point to initiate running of the benchmark.
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         $ mpirun -np 2 singularity run osu_benchmarks.sif pt2pt/osu_latency
 
@@ -219,7 +219,7 @@ some information will be provided below in relation to the cluster that you've b
       The following shows an example of the output you should expect to see. You should have latency values shown for message
       sizes up to 4MB.
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         Rank 1 - About to run: /.../mpi/pt2pt/osu_latency
         Rank 0 - About to run: /.../mpi/pt2pt/osu_latency
@@ -247,7 +247,7 @@ some information will be provided below in relation to the cluster that you've b
     Download this [template script]({{site.url}}{{site.baseurl}}/files/osu_latency.slurm.template) and edit it to suit your configuration.
     Submit the modified job submission script to the `Slurm` scheduler using the `sbatch` command.
 
-    .. code-block :: bash
+    .. code-block:: bash
 
       $ sbatch osu_latency.slurm
 
@@ -261,7 +261,7 @@ some information will be provided below in relation to the cluster that you've b
       The following shows an example of the output you should expect to see. You should have latency values shown
       for message sizes up to 4MB.
 
-      .. code-block :: bsah
+      .. code-block:: bsah
 
         INFO:    Convert SIF file to sandbox...
         INFO:    Convert SIF file to sandbox...

@@ -24,13 +24,13 @@ Let’s say we wanted to try running the script using our recently created ``alp
 
 If we try running the container and Python script, what happens?
 
-.. code-block :: bash
+.. code-block:: bash
 
   $docker run alice/alpine-python python3 dummy.py
 
 Output
 
-..code-block :: bash
+..code-block:: bash
 
   python3: can’t open file ‘dummy.py’: [Errno 2] No such file or directory
 
@@ -55,7 +55,7 @@ using an additional option to ``docker run``. We’ll also use the
 variable ``$PWD`` which will substitute in our current working
 directory. The option will look like this
 
-.. code-block :: bash
+.. code-block:: bash
 
   ``-v $PWD:/temp``
 
@@ -64,13 +64,13 @@ inside the container, name the directory ``/temp``
 
 Let’s try running the command now:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ docker run -v $PWD:/temp alice/alpine-python python3 dummy.py
 
 But we get the same error!
 
-.. code-block :: bash
+.. code-block:: bash
 
   python3: can't open file 'dummy.py': [Errno 2] No such file or directory
 
@@ -79,7 +79,7 @@ inside the container. Where is the `dummy.py` file? It's in the directory that's
 mapped to `/temp` -- so we need to include that in the path to the script. This
 command should give us what we need:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ docker run -v $PWD:/temp alice/alpine-python python3 /temp/dummy.py
 
@@ -111,14 +111,14 @@ and will stay there even when the container stops.
 
       2. The docker command to run the container interactively is:
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         $ docker run -v $PWD:/temp -it alice/alpine-python sh
 
       Once inside, you should be able to navigate to the `/temp` folder and see that's
       contents are the same as the files on your computer:
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         /# cd /temp
         /# ls
@@ -138,13 +138,13 @@ with our `dummy.py` script and want to add it to the container itself.
 
 In your shell, you should still be in the `dummy` folder in the `docker-intro` folder.
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ pwd
 
 Output
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ /Users/yourname/foo
 
@@ -153,7 +153,7 @@ We will modify our Dockerfile again to build an image based on Alpine Linux with
 Python 3 installed (just as we did perviously). This time we will add an additional
 line before the `CMD` line:
 
-.. code-block :: bash
+.. code-block:: bash
 
   COPY dummy.py /home
 
@@ -162,7 +162,7 @@ file system *at build time*. Modify the Dockerfile as before (or copy the versio
 the `basic/` subdirectory) and add the extra copy line. Once you have done that, build
 the container like before, but give it a different name:
 
-.. code-block ::
+.. code-block::
 
   $ docker build -t alice/alpine-dummy .
 
@@ -179,13 +179,13 @@ the container like before, but give it a different name:
     .. tab:: Solution
 
       You can start the container interactively like so:
-      .. code-block :: bash
+      .. code-block:: bash
 
         $ docker run -it alice/alpine-dummy sh
 
       You should be able to run the python command inside the container like this:
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         /# python3 /home/dummy.py
 
@@ -204,13 +204,13 @@ the screen. The bigger your image becomes, the harder it will be to easily downl
   is in a GitHub repository, you could include this statement in your Dockerfile
   to download the latest version every time you build the container:
 
-  .. code-block :: bash
+  .. code-block:: bash
 
     RUN git clone https://github.com/alice/mycode
 
   Similarly, the `wget` command can be used to download any file publicly available on the internet:
 
-  .. code-block :: bash
+  .. code-block:: bash
 
     RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.10.0/ncbi-blast-2.10.0+-x64-linux.tar.gz
 
@@ -223,7 +223,7 @@ Here are some ideas:
 
 Make the `dummy.py` script run automatically:
 
-.. code-block :: bash
+.. code-block:: bash
 
   FROM alpine
 
@@ -237,14 +237,14 @@ Make the `dummy.py` script run automatically:
 
 Build and test it:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ docker build -t alpine-dummy:v1 .
   $ docker run alpine-dummy:v1
 
 Make the `dummy.py` script run automatically with arguments from the command line:
 
-.. code-block :: bash
+.. code-block:: bash
 
   FROM alpine
 
@@ -257,14 +257,14 @@ Make the `dummy.py` script run automatically with arguments from the command lin
 
 Build and test it:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ docker build -t alpine-dummy:v2 .
   $ docker run alpine-dummy:v2 1 2 3 4
 
 Add the `dummy.py` script to the `PATH` so you can run it directly:
 
-.. code-block :: bash
+.. code-block:: bash
 
   FROM alpine
 
@@ -278,7 +278,7 @@ Add the `dummy.py` script to the `PATH` so you can run it directly:
 
 Build and test it:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ docker build -t alpine-dummy:v3 .
   $ docker run alpine-dummy:v3 dummy.py 1 2 3 4

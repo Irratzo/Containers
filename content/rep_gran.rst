@@ -44,7 +44,7 @@ ________________
 
 If for any reason you decided to archive an image, you can use the command below to take a snapshot of the image.
 
-.. code-block :: bash
+.. code-block:: bash
 
   docker save alice/alpine-python:v1 -o alpine-python.tar
 

@@ -124,13 +124,13 @@ The `Singularity Docker image <https://quay.io/repository/singularity/singularit
 
       To run the `singularity` command within the docker container directly from the host system's terminal:
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         docker run -it --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim cache list
 
       To start a shell within the Singularity Docker container where the `singularity` command can be run directly:
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         docker run -it --entrypoint=/bin/sh --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim
 
@@ -205,7 +205,7 @@ It was pointed out earlier in the course, when covering Docker, that this proper
 
 We'll now look at a very simple example of a definition file:
 
-.. code-block :: bash
+.. code-block:: bash
 
   Bootstrap: docker
   From: ubuntu:20.04
@@ -223,7 +223,7 @@ In our very simple example here, we only use the `%post` and `%runscript` sectio
 
 Let's step through this definition file and look at the lines in more detail:
 
-.. code-block :: bash
+.. code-block:: bash
 
   Bootstrap: docker
   From: ubuntu:20.04
@@ -243,7 +243,7 @@ are supported. `From: ubuntu:20.04` says that we want to use the `ubuntu` image 
 
 Next we have the `%post` section of the definition file:
 
-.. code-block :: bash
+.. code-block:: bash
 
   %post
     apt-get -y update && apt-get install -y python3
@@ -261,7 +261,7 @@ This is required because our definition file should be able to run in an unatten
 
 Finally we have the `%runscript` section:
 
-.. code-block :: bash
+.. code-block:: bash
 
   %runscript
     python3 -c 'print("Hello World! Hello from our custom Singularity image!")'
@@ -273,14 +273,14 @@ We can now save the contents of the simple defintion file shown above to a file 
 In the case of this example, the definition file has been named `my_test_image.def`. (Note that the instructions
 here assume you've bound the image output directory you created to the `/home/singularity` directory in your Docker Singularity container):
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ singularity build /home/singularity/my_test_image.sif /home/singularity/my_test_image.def
 
 Recall from the details at the start of this section that if you are running your command from the host system command line,
 running an instance of a Docker container for each run of the command, your command will look something like this:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ docker run -it --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim build /home/singularity/my_test_image.sif /home/singularity/my_test_image.def
 
@@ -289,7 +289,7 @@ saved to the `my_test_image.sif` file. Note that you will need to prefix the com
 a locally installed version of Singularity and not running via Docker because it is necessary to have administrative
 privileges to build the image. You should see output similar to the following:
 
-.. code-block :: bash
+.. code-block:: bash
 
   INFO:    Starting build...
   Getting image source signatures
@@ -352,7 +352,7 @@ the Docker Singularity container and run your singularity image there.
 
     .. tab :: Solution
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         $ docker run -it --entrypoint=/bin/sh --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim
         / # cd /home/singularity
@@ -360,7 +360,7 @@ the Docker Singularity container and run your singularity image there.
 
       Output
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         Hello World! Hello from our custom Singularity image!
         /home/singularity #
@@ -376,7 +376,7 @@ Now we'll test our image on an HPC platform. Move your created `.sif` image file
 You could, for example, do this using the command line secure copy command `scp`. For example, the following command would copy
 `my_test_image.sif` to the remote server identified by `<target hostname>` (don't forget the colon at the end of the hostname!):
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ scp -i <full path to SSH key file> my_test_image.sif <target hostname>:
 
@@ -395,7 +395,7 @@ Try to run the container on the login node of the HPC platform and check that yo
   named `$USER-singularity`. We then need to 	set Singularity's temporary directory environment variable to point to this location.
   Run the following commands:
 
-  .. code-block :: bash
+  .. code-block:: bash
 
     mkdir /lustre/home/shared/$USER-singularity
     export TMPDIR=/lustre/home/shared/$USER-singularity
@@ -410,13 +410,13 @@ the image using the Docker container. However, if you do try to use the Docker c
 
 Now that we've built an image, we can attempt to run it:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ singularity run my_test_image.sif
 
 If everything worked successfully, you should see the message printed by Python:
 
-.. code-block :: bash
+.. code-block:: bash
 
   Hello World! Hello from our custom Singularity image!
 
@@ -427,7 +427,7 @@ If everything worked successfully, you should see the message printed by Python:
   if you are trying to run the container using the `singularity` command from within the Docker container, it is likely that
   you will get an error relating to `/etc/localtime` similar to the following:
 
-  .. code-block :: bash
+  .. code-block:: bash
 
     WARNING: skipping mount of /etc/localtime: no such file or directory
     FATAL:   container creation failed: mount /etc/localtime->/etc/localtime error: while mounting /etc/localtime: mount source /etc/localtime doesn't exist
@@ -436,7 +436,7 @@ If everything worked successfully, you should see the message printed by Python:
   If you want to use the Docker container to test that your newly created image runs, you'll need to open a shell in
   the Docker container and add a timezone configuration as described in the `Alpine Linux documentation <https://wiki.alpinelinux.org/wiki/Setting_the_timezone>`_:
 
-  .. code-block :: bash
+  .. code-block:: bash
 
     $ apk add tzdata
     $ cp /usr/share/zoneinfo/Europe/London /etc/localtime

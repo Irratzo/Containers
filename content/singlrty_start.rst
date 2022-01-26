@@ -56,13 +56,13 @@ made available to you for use for Part I of the Singularity material. This platf
 Sign in to the remote platform, with Singularity installed, that you've been provided with access to.
 Check that the `singularity` command is available in your terminal:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ singularity --version
 
 Output
 
-.. code-block :: bash
+.. code-block:: bash
 
   singularity version 3.7.0
 
@@ -75,7 +75,7 @@ At the time of writing, `v3.7.0` is the latest release of Singularity.
   If you get a command not found error (e.g. `bash: singularity: command not found` or similar)
   you may need to load the *singularity module* before you can use the `singularity` command:
 
-  .. code-block :: bash
+  .. code-block:: bash
 
     $ module load singularity
 
@@ -118,7 +118,7 @@ a registry for container images. Singularity is also capable of running containe
 
 Let's begin by creating a `test` directory, changing into it and pulling a test Hello World image from Singularity Hub:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ mkdir test
   $ cd test
@@ -126,7 +126,7 @@ Let's begin by creating a `test` directory, changing into it and pulling a test 
 
 Output
 
-.. code-block :: bash
+.. code-block:: bash
 
   INFO:    Downloading shub image
   59.75 MiB / 59.75 MiB [=====================================================================] 100.00% 52.03 MiB/s 1s
@@ -137,13 +137,13 @@ directed it to store the image file using the name `hello-world.sif`. If you run
 that the `hello-world.sif` file is now in your current directory. This is our image and we can now run a
 container based on this image:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ singularity run hello-world.sif
 
 Output
 
-.. code-block :: bash
+.. code-block:: bash
 
   RaawwWWWWWRRRR!! Avocado!
 
@@ -160,14 +160,14 @@ the container runs the default run script that is embedded within the image. Thi
 script that can be used to run commands, tools or applications stored within the image on container
 startup. We can inspect the image's run script using the `singularity inspect` command:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ singularity inspect -r hello-world.sif
 
 
 Output
 
-.. code-block :: bash
+.. code-block:: bash
 
   #!/bin/sh
 

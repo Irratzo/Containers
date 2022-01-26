@@ -16,14 +16,14 @@ being downloaded again from the remote source. This removes unnecessary network 
 and is particularly useful for large images which may take some time to transfer over the network.
 To demonstrate this, remove the `hello-world.sif` file stored in your `test` directory and then issue the `pull` command again:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ rm hello-world.sif
   $ singularity pull hello-world.sif shub://vsoch/hello-world
 
 Output
 
-.. code-block :: bash
+.. code-block:: bash
 
   INFO:    Use image from cache
 
@@ -32,11 +32,11 @@ we don't see the output that we saw previously showing the image being downloade
 
 How do we know what is stored in the local cache? We can find out using the `singularity cache` command:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ singularity cache list
 
-.. code-block :: bash
+.. code-block:: bash
 
   There are 1 container file(s) using 62.65 MB and 0 oci blob file(s) using 0.00 kB of space
   Total space used: 62.65 MB
@@ -45,13 +45,13 @@ This tells us how many container files are stored in the cache and how much disk
 but it doesn't tell us **what** is actually being stored. To find out more information we can add
 the `-v` verbose flag to the `list` command:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ singularity cache list -v
 
 Output
 
-.. code-block :: bash
+.. code-block:: bash
 
   NAME                     DATE CREATED           SIZE             TYPE
   hello-world_latest.sif   2020-04-03 13:20:44    62.65 MB         shub
@@ -78,12 +78,12 @@ In the `TYPE` column we can see that our image type is `shub` because it's a `SI
 
   .. tab :: Solution
 
-    .. code-block :: bash
+    .. code-block:: bash
 
       $ singularity cache clean --type=shub
       $ singularity cache clean -n --type=shub
 
-    .. code-block :: bash
+    .. code-block:: bash
 
       Removing /<cache_dir>/.singularity/cache/shub
 
@@ -103,13 +103,13 @@ the `singularity exec` command. For example, using the `hello-world.sif` contain
 we've already pulled from Singularity Hub, we can run the following within the `test` directory
 where the `hello-world.sif` file is located:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ singularity exec hello-world.sif /bin/echo Hello World!
 
 Output
 
-.. code-block :: bash
+.. code-block:: bash
 
   Hello World!
 
@@ -127,13 +127,13 @@ The command has echoed the provided input to the console and the container has t
 
   .. tab :: Solution
 
-    .. code-block :: bash
+    .. code-block:: bash
 
       $ singularity exec hello-world.sif /bin/date
 
     Output
 
-    .. code-block :: bash
+    .. code-block:: bash
 
       Fri Jun 26 15:17:44 BST 2020
 
@@ -144,13 +144,13 @@ If you want to open an interactive shell within a container, Singularity provide
 the `singularity shell` command. Again, using the `hello-world.sif` image, and within
 our `test` directory, we can run a shell within a container from the hello-world image:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ singularity shell hello-world.sif
 
 Output
 
-.. code-block :: bash
+.. code-block:: bash
 
   Singularity> whoami
   [<your username>]
@@ -175,7 +175,7 @@ The first thing to note is that when you run `whoami` within the container you s
 the username that you are signed in as on the host system when you run the container.
 For example, if my username is `jc1000`:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ singularity shell hello-world.sif
   Singularity> whoami
@@ -209,7 +209,7 @@ One directory that is likely to be accessible within a container that you start 
 The mapping of file content and directories from a host system into a Singularity container is illustrated in
 the example below showing a subset of the directories on the host Linux system and in a Singularity container:
 
-.. code-block ::
+.. code-block::
 
   Host system:                                                      Singularity container:
   -------------                                                     ----------------------
@@ -272,13 +272,13 @@ For example, moving on from the simple **Hello World** examples that we've looke
 the `official Docker Python images <https://hub.docker.com/_/python>`_. We'll use the image with the tag `3.8.6-slim-buster`
 which has Python 3.8.6 installed on Debian's `Buster <https://www.debian.org/releases/buster/>`_ (v10) Linux distribution:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ singularity pull python-3.8.6.sif docker://python:3.8.6-slim-buster
 
 Output
 
-.. code-block :: bash
+.. code-block:: bash
 
   INFO:    Converting OCI blobs to SIF format
   INFO:    Starting build...
@@ -318,12 +318,12 @@ We can now run a container from this image as we would with any other singularit
 
       Running the Python 3.8.6 image
 
-      .. code-block :: bash
+      .. code-block:: bash
         $ singularity run python-3.8.6.sif
 
       This should put you straight into a Python interactive shell within the running container:
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         Python 3.8.6 (default, Nov 25 2020, 02:47:44)
         [GCC 8.3.0] on linux
@@ -332,7 +332,7 @@ We can now run a container from this image as we would with any other singularit
 
       Now try running some simple Python statements:
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         >>> import math
         >>> math.pi
@@ -360,7 +360,7 @@ any configuration prior to running Python. This is covered in the following exer
       Recall from the earlier material that we can use the `singularity shell` command to open a shell within a container.
       To open a regular shell within a container based on the `python-3.8.6.sif` image, we can therefore simply run:
 
-      .. code-block ::
+      .. code-block::
 
         $ singularity shell python-3.8.6.sif
 
@@ -376,7 +376,7 @@ any configuration prior to running Python. This is covered in the following exer
       It is also possible to use the `singularity exec` command to run an executable within a container.
       We could, therefore, use the `exec` command to run `/bin/bash`:
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         $ singularity exec python-3.8.6.sif /bin/bash
 

@@ -12,40 +12,40 @@ ________________________
 Before creating a reproducible installation, let's experiment with installing
 software inside a container. Start the `alpine` container from before, interactively:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ docker run -it alpine sh
 
 Because this is a basic container, there's a lot of things not installed -- for
 example, `python3`.
 
-.. code-block :: bash
+.. code-block:: bash
 
   /# python3
 
 Output
 
-.. code-block :: bash
+.. code-block:: bash
 
   sh: python3: not found
 
 Inside the container, we can run commands to install Python 3. The Alpine version of
 Linux has a installation tool called `apk` that we can use to install Python 3.
 
-.. code-block :: bash
+.. code-block:: bash
 
   /# apk add --update python3 py3-pip python3-dev
 
 We can test our installation by running a Python command:
 
-.. code-block ::
+.. code-block::
 
   /# python3 --version
 
 
 Once Python is installed, we can add Python packages using the pip package installer:
 
-.. code-block :: bash
+.. code-block:: bash
 
   /# pip install cython
 
@@ -73,7 +73,7 @@ known as a `Dockerfile`.
 
 If you haven't already, exit out of the interactively running container.
 
-.. code-block :: bash
+.. code-block:: bash
 
   /# exit
 
@@ -85,7 +85,7 @@ can be used to create a new container image.
 
 Every Dockerfile is composed of three main parts as shown below.
 
-.. code-block :: bash
+.. code-block:: bash
 
   FROM <EXISTING IMAGE>
   RUN <INSTALL CMDS FROM SHELL>
@@ -139,7 +139,7 @@ like this: ``USERNAME/CONTAINERNAME``
 
 All together, the build command will look like this:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ docker build -t USERNAME/CONTAINERNAME .
 
@@ -150,7 +150,7 @@ our current directory.
 For example, if my user name was `alice` and I wanted to call my
 image `alpine-python`, I would use this command:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ docker build -t alice/alpine-python .
 
@@ -184,7 +184,7 @@ image `alpine-python`, I would use this command:
 
       should run the container and print out our default message, including the version of Linux and Python.
 
-      .. code-block :: bash
+      .. code-block:: bash
 
         $ docker run alice/alpine-python echo "Hello World"
 
@@ -244,7 +244,7 @@ Images that you release publicly can be stored on the Docker Hub for free.  If y
 name your image as described above, with your Docker Hub username, all you need to do
 is run the opposite of `docker pull` -- `docker push`.
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ docker push alice/alpine-python
 
@@ -273,7 +273,7 @@ on her own computer. She now wants to share it in her `alice` Docker Hub account
 with the name `workflow-complete` and a tag of `v1`. Her `docker tag` command
 would look like this:
 
-.. code-block :: bash
+.. code-block:: bash
 
   $ docker tag workflow-test alice/workflow-complete:v1
 
