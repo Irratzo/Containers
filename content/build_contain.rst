@@ -42,7 +42,7 @@ We'll focus on the first option in this part of the course. If you would like to
 see the box below for some further pointers. Note that the installation process is an advanced task that is beyond the scope
 of this course so we won't be covering this.
 
-.. callout :: Installing Singularity on your local system (optional)
+.. callout:: Installing Singularity on your local system (optional)
 
   If you are running Linux and would like to install Singularity locally on your system, Singularity provide the free,
   open source `Singularity Community Edition <https://github.com/hpcng/singularity/releases>`_. You will need to install
@@ -60,7 +60,7 @@ of this course so we won't be covering this.
   you'll need to install on your system. The process of installing Go and any other requirements is detailed in the INSTALL.md file.
 
 
-.. callout :: Note
+.. callout:: Note
 
   If you do not have access to a system with Docker installed, or a Linux system where you can
   build and install Singularity but you have administrative privileges on another system, you could
@@ -84,7 +84,7 @@ _________________________________________________
 The `Singularity Docker image <https://quay.io/repository/singularity/singularity>`_ is available from
 `Quay.io <https://quay.io/>`_.
 
-.. exercise :: Familiarise yourself with the Docker Singularity image
+.. exercise:: Familiarise yourself with the Docker Singularity image
 
   - Using your previously acquired Docker knowledge, get the
     Singularity image for `v3.7.0` and ensure that you can run a Docker
@@ -176,7 +176,7 @@ This is Singularity's equivalent to building a Docker container from a `Dockerfi
 
 You can take a look at Singularity's "`Build a Container <https://sylabs.io/guides/3.7/user-guide/build_a_container.html>`_" documentation for more details on different approaches to building containers.
 
-.. exercise :: Why look at Singularity Definition Files?
+.. exercise:: Why look at Singularity Definition Files?
 
   .. tabs::
 
@@ -349,7 +349,7 @@ root-owned file since the default permissions should allow this.
 In a moment we'll test the created image on our HPC platform but, first, you should be able to run a shell in an instance of
 the Docker Singularity container and run your singularity image there.
 
-.. exercise :: Run the Singularity image you've created
+.. exercise:: Run the Singularity image you've created
 
   .. tabs::
 
@@ -372,7 +372,7 @@ the Docker Singularity container and run your singularity image there.
         Hello World! Hello from our custom Singularity image!
         /home/singularity #
 
-.. callout :: Using `singularity run` from within the Docker container
+.. callout:: Using `singularity run` from within the Docker container
 
   It is strongly recommended that you don't use the Docker container for running Singularity images
   in any production setting, only for creating them, since the Singularity command runs within the container as the root user.
@@ -393,7 +393,7 @@ but by default, the file will be uploaded to you home directory.
 
 Try to run the container on the login node of the HPC platform and check that you get the expected output.
 
-.. callout :: Cluster platform configuration for running Singularity containers
+.. callout:: Cluster platform configuration for running Singularity containers
 
   On the cluster platform that we're using for the course, it is necesary to setup a shared temporary storage space
   for Singularity to use because it is not possible for it to use the standard `/tmp` directory on this platform.
@@ -427,7 +427,7 @@ If everything worked successfully, you should see the message printed by Python:
 
   Hello World! Hello from our custom Singularity image!
 
-.. callout :: Using `singularity run` from within the Docker container
+.. callout:: Using `singularity run` from within the Docker container
 
   It is strongly recommended that you don't use the Docker container for running Singularity images, only for creating then,
   since the Singularity command runs within the container as the root user. However, for the purposes of this simple example,

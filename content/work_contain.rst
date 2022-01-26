@@ -62,14 +62,14 @@ Output
 This provides us with some more useful information about the actual images stored in the cache.
 In the `TYPE` column we can see that our image type is `shub` because it's a `SIF` image that has been pulled from Singularity Hub.
 
-.. callout :: Cleaning the Singularity image cache
+.. callout:: Cleaning the Singularity image cache
 
   We can remove images from the cache using the `singularity cache clean` command.
   Running the command without any options will display a warning and ask you to confirm
   that you want to remove everything from your cache. You can also remove specific images
   or all images of a particular type. Look at the output of `singularity cache clean --help` for more information.
 
-.. exercise :: Basic exercise: Clearing specific image types from the cache
+.. exercise:: Basic exercise: Clearing specific image types from the cache
 
   .. tabs:: Question
 
@@ -117,7 +117,7 @@ Here we see that a container has been started from the `hello-world.sif` image a
 the `/bin/echo` command has been run within the container, passing the input `Hello World!`.
 The command has echoed the provided input to the console and the container has terminated.
 
-.. exercise :: Basic exercise: Running a different command within the "hello-world" container
+.. exercise:: Basic exercise: Running a different command within the "hello-world" container
 
   .. tabs::
 
@@ -160,7 +160,7 @@ Output
 
 As shown above, we have opened a shell in a new container started from the `hello-world.sif` image.
 
-.. callout :: Running a shell inside a Singularity container
+.. callout:: Running a shell inside a Singularity container
 
   Q: What do you notice about the output of the above commands entered within the Singularity container shell?
 
@@ -225,7 +225,7 @@ the example below showing a subset of the directories on the host Linux system a
   ├── sbin                                                    └────────>└── jc1000
   └── ...                                                           └── ...
 
-.. exercise :: Questions and exercises: Files in Singularity containers
+.. exercise:: Questions and exercises: Files in Singularity containers
 
   .. tabs::
 
@@ -305,7 +305,7 @@ we should see the python-3.8.6.sif image file in the current directory.
 
 We can now run a container from this image as we would with any other singularity image.
 
-.. exercise :: Running the Python 3.8.6 image that we just pulled from Docker Hub
+.. exercise:: Running the Python 3.8.6 image that we just pulled from Docker Hub
 
   .. tabs::
 
@@ -343,7 +343,7 @@ In addition to running a container and having it run the default run script,
 you could also start a container running a shell in case you want to undertake
 any configuration prior to running Python. This is covered in the following exercise:
 
-.. exercise :: Open a shell within a Python container
+.. exercise:: Open a shell within a Python container
 
   .. tabs::
 

@@ -17,7 +17,7 @@ Let's create a file and folder called it ``foo/dummy.py`` in the root folder.
 Please copy the ``Dockerfile`` and place it in the ``foo`` directory.
 Let’s say we wanted to try running the script using our recently created ``alpine-python`` container.
 
-.. callout :: Running containers
+.. callout:: Running containers
 
    What command would we use to run python from the ``alpine-python``
    container?
@@ -34,7 +34,7 @@ Output
 
   python3: can’t open file ‘dummy.py’: [Errno 2] No such file or directory
 
-.. callout :: No such file or directory
+.. callout:: No such file or directory
 
    What does the error message mean? Why might the Python inside the
    container not be able to find or open our script?
@@ -197,7 +197,7 @@ did in the previous section. You also want to think carefully about size -- if y
 run `docker image ls` you'll see the size of each image all the way on the right of
 the screen. The bigger your image becomes, the harder it will be to easily download.
 
-.. callout :: Copying alternatives
+.. callout:: Copying alternatives
 
   Another trick for getting your own files into a container is by using the `RUN`
   keyword and downloading the files from the internet. For example, if your code

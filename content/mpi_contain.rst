@@ -115,7 +115,7 @@ A quick overview of what the above definition file is doing:
 
 *Note that base path of the the executable to run is hardcoded in the run script* so the command line parameter to provide when running a container based on this image is relative to this base path, for example, `startup/osu_hello`, `collective/osu_allgather`, `pt2pt/osu_latency`, `one-sided/osu_put_latency`.
 
-.. exercise :: Build and test the OSU Micro-Benchmarks image
+.. exercise:: Build and test the OSU Micro-Benchmarks image
 
   .. tabs::
 
@@ -194,7 +194,7 @@ you can run on a cluster. Note that you may need to submit this command via a jo
 to a job scheduler if you're running on a cluster. If you're attending a taught version of this course,
 some information will be provided below in relation to the cluster that you've been provided with access to.
 
-.. exercise :: Undertake a parallel run of the `osu_latency` benchmark (general example)
+.. exercise:: Undertake a parallel run of the `osu_latency` benchmark (general example)
 
   .. tabs::
 
@@ -229,7 +229,7 @@ some information will be provided below in relation to the cluster that you've b
         1                       0.34
         ...
 
-.. exercise :: Undertake a parallel run of the `osu_latency` benchmark (taught course cluster example)
+.. exercise:: Undertake a parallel run of the `osu_latency` benchmark (taught course cluster example)
 
   .. tabs::
 
@@ -284,7 +284,7 @@ the performance of the interconnects between nodes.
 You could now try running a larger-scale test. You can also try running a benchmark that uses multiple processes,
 for example try `collective/osu_gather`.
 
-.. exercise :: Investigate performance when using a container image built on a local system and run on a cluster
+.. exercise:: Investigate performance when using a container image built on a local system and run on a cluster
 
   .. tabs::
 

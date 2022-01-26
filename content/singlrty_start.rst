@@ -46,7 +46,7 @@ Part I of this Singularity material is intended to be undertaken on a remote pla
 If you're attending a taught version of this course, you will be provided with access details for a remote platform
 made available to you for use for Part I of the Singularity material. This platform will have the Singularity software pre-installed.
 
-.. callout :: Installing Singularity on your own laptop/desktop
+.. callout:: Installing Singularity on your own laptop/desktop
 
   If you have a Linux system on which you have administrator access
   and you would like to install Singularity locally on this system.
@@ -69,7 +69,7 @@ Output
 Depending on the version of Singularity installed on your system, you may see a different version.
 At the time of writing, `v3.7.0` is the latest release of Singularity.
 
-.. callout :: Singularity on HPC systems: Loading a module
+.. callout:: Singularity on HPC systems: Loading a module
 
   HPC systems often use *modules* to provide access to software on the system.
   If you get a command not found error (e.g. `bash: singularity: command not found` or similar)
@@ -109,7 +109,7 @@ and images are provided as single `SIF` files. Singularity images can be pulled 
 a registry for container images. Singularity is also capable of running containers based on images pulled from
 `Docker Hub <https://hub.docker.com/>` and some other sources. We'll look at accessing containers from Docker Hub later in the Singularity material.
 
-.. callout :: Singularity Hub
+.. callout:: Singularity Hub
 
   Note that in addition to providing a repository that you can pull images from,
   `Singularity Hub <https://singularity-hub.org/>`_ can also build Singularity images

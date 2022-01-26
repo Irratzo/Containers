@@ -252,7 +252,7 @@ Make sure to substitute the full name of your container!
 
 In a web browser, open <https://hub.docker.com>, and on your user page you should now see your container listed, for anyone to use or build on.
 
-.. callout :: Logging In
+.. callout:: Logging In
 
   Technically, you have to be logged into Docker on your computer for this to work.
   Usually it happens by default, but if `docker push` doesn't work for you,

@@ -5,7 +5,7 @@ Although this workshop is titled "Reproducible computational environments using 
 so far we have mostly covered the mechanics of using Docker with only passing reference to
 the reproducibility aspects. In this section, we discuss these aspects in more detail.
 
-.. callout :: Work in progress
+.. callout:: Work in progress
 
   Note that reproducibility aspects of software and containers are an active area of research,
   discussion and development so are subject to many changes. We will present some ideas and approaches
@@ -49,7 +49,7 @@ If for any reason you decided to archive an image, you can use the command below
   docker save alice/alpine-python:v1 -o alpine-python.tar
 
 
-.. callout :: Restoring the image from a save
+.. callout:: Restoring the image from a save
 
   Unsurprisingly, the command `docker load alpine-python.tar.gz` would be used to load
   the saved container and make it available to be used on your system. Note that the
@@ -135,7 +135,7 @@ a few options and point to useful resources on using these tools to allow you to
   - Kubernetes
   - Docker Swarm
 
-.. callout :: The Wild West
+.. callout:: The Wild West
 
   Use of container orchestration tools for research workflows is a relatively new concept and so there
   is not a huge amount of documentation and experience out there at the moment. You may need to search
