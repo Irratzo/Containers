@@ -100,28 +100,28 @@ and will stay there even when the container stops.
 
       1. Here's a breakdown of each piece of the command above
 
-      - `docker run`: use Docker to run a container
-      - `-v $PWD:/temp`: connect my current working directory (`$PWD`) as a folder
-      inside the container called `/temp`
-      - `alice/alpine-python`: name of the container to run
-      - `python3 /temp/dummy.py`: what commands to run in the container
+         - `docker run`: use Docker to run a container
+         - `-v $PWD:/temp`: connect my current working directory (`$PWD`) as a folder inside the container called `/temp`
+         - `alice/alpine-python`: name of the container to run
+         - `python3 /temp/dummy.py`: what commands to run in the container
 
-      More generally, every Docker command will have the form:
-      `docker [action] [docker options] [docker image] [command to run inside]`
+         More generally, every Docker command will have the form:
+         `docker [action] [docker options] [docker image] [command to run inside]`
 
       2. The docker command to run the container interactively is:
 
+         .. code-block:: bash
+
+            $ docker run -v $PWD:/temp -it alice/alpine-python sh
+
+         Once inside, you should be able to navigate to the `/temp`
+         folder and see that's contents are the same as the files on your
+         computer:
+
       .. code-block:: bash
 
-        $ docker run -v $PWD:/temp -it alice/alpine-python sh
-
-      Once inside, you should be able to navigate to the `/temp` folder and see that's
-      contents are the same as the files on your computer:
-
-      .. code-block:: bash
-
-        /# cd /temp
-        /# ls
+         /# cd /temp
+         /# ls
 
 Mounting a folder can be very useful when you want to run the software inside your
 container on many different input files. In other situations, you may want to save

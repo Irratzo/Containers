@@ -199,50 +199,62 @@ _____________________________________________
 There are a lot of choices when it comes to installing software - sometimes too many!
 Here are some things to consider when creating your own container:
 
-- **Start smart**, or, don't install everything from scratch! If you're using Python
-as your main tool, start with a Python container](https://hub.docker.com/_/python).
-We've used Alpine Linux as an example in this lesson, but it's generally not a good container
-to start with because it is a less common version of Linux; using Ubuntu,
-Debian and CentOS are all good options for scientific software installations. The program you're using might
-recommend a particular version of Linux; if this happens, start with that particular
-Linux container.
+- **Start smart**, or, don't install everything from scratch! If
+  you're using Python as your main tool, start with a Python
+  container](https://hub.docker.com/_/python).  We've used Alpine Linux
+  as an example in this lesson, but it's generally not a good container
+  to start with because it is a less common version of Linux; using
+  Ubuntu, Debian and CentOS are all good options for scientific software
+  installations. The program you're using might recommend a particular
+  version of Linux; if this happens, start with that particular Linux
+  container.
 
-- **How big?** How much software do you really need to install? When you have a choice,
-lean towards using smaller starting images and installing only what's needed for
-your software, as a bigger image means longer download times to use.
+- **How big?** How much software do you really need to install? When
+  you have a choice, lean towards using smaller starting images and
+  installing only what's needed for your software, as a bigger image
+  means longer download times to use.
 
-- **Know (or Google) your Linux**. Each version of Linux has a special set of tools specifically for installing software. The `apk` command we used above is the installer for Alpine Linux. The installers for various common Linux versions are listed below:
-    - Ubuntu: `apt` or `apt-get`
-    - Debian: `deb`
-    - CentOS: `yum`
+- **Know (or Google) your Linux**. Each version of Linux has a special
+  set of tools specifically for installing software. The `apk` command
+  we used above is the installer for Alpine Linux. The installers for
+  various common Linux versions are listed below:
 
-  Most common software installations are available to be installed via these tools.
-  Searching for "install X on Y Linux" is always a good start for common software
-  installations; if something isn't available via the Linux distribution's installation
-  tools, try the options below.
+   - Ubuntu: `apt` or `apt-get`
+   - Debian: `deb`
+   - CentOS: `yum`
 
-- **Use what you know**. You've probably used commands like `pip` or `install.packages()`
-before on your own computer -- these will also work to install things in containers (if the basic scripting
-language is installed).
+  Most common software installations are available to be installed via
+  these tools.  Searching for "install X on Y Linux" is always a good
+  start for common software installations; if something isn't
+  available via the Linux distribution's installation tools, try the
+  options below.
 
-- **README**. Many scientific software tools have a README or installation instructions
-that lay out how to install software. You want to look for instructions for Linux. If
-the install instructions include options like those suggested above, try those first.
+- **Use what you know**. You've probably used commands like `pip` or
+  `install.packages()` before on your own computer -- these will also
+  work to install things in containers (if the basic scripting language
+  is installed).
+
+- **README**. Many scientific software tools have a README or
+  installation instructions that lay out how to install software. You
+  want to look for instructions for Linux. If the install instructions
+  include options like those suggested above, try those first.
 
 In general, a good strategy for installing software is:
+
 - Make a list of what you want to install.
 - Look for pre-existing containers.
 - Read through instructions for software you'll need to install.
 - Try installing everything interactively in your base container - take notes!
-- From your interactive installation, create a Dockerfile and then try to build
-the container again from that.
+- From your interactive installation, create a Dockerfile and then try
+  to build the container again from that.
 
 Share your new container on Docker Hub
 ______________________________________
 
-Images that you release publicly can be stored on the Docker Hub for free.  If you
-name your image as described above, with your Docker Hub username, all you need to do
-is run the opposite of `docker pull` -- `docker push`.
+Images that you release publicly can be stored on the Docker Hub for
+free.  If you name your image as described above, with your Docker Hub
+username, all you need to do is run the opposite of `docker pull` --
+`docker push`.
 
 .. code-block:: bash
 

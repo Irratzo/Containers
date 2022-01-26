@@ -41,25 +41,46 @@ The key differentiator between containers and VMs is that VMs virtualize an enti
 
 Cons and Pros of Containers
 ___________________________
+
 Pros
 ++++
-- Containers are lightweight software packages that contain all the dependencies.
-- Because of their lightweight, it is easy and very fast to iteratively modify them.
+
+- Containers are lightweight software packages that contain all the
+  dependencies.
+- Because of their lightweight, it is easy and very fast to
+  iteratively modify them.
+
 Cons
 ++++
-- Since containers share the same underlying hardware system, it is possible that an exploit in one container could break out of the container and affect the shared hardware.
+
+- Since containers share the same underlying hardware system, it is
+  possible that an exploit in one container could break out of the
+  container and affect the shared hardware.
 
 Cons and Pros of VMs
-____________________
+--------------------
+
 Pros
 ++++
-- VMs are immune to any exploits or interference from other VMs on a shared host due run in isolation as because of a fully standalone system.
-- Since VMs are full-flegded OS, they are more dynamic and can be interactively developed. Once the basic hardware definition is specified for a VM, the VM can then be treated as a bare bones computer.
+
+- VMs are immune to any exploits or interference from other VMs on a
+  shared host due run in isolation as because of a fully standalone
+  system.
+- Since VMs are full-flegded OS, they are more dynamic and can be
+  interactively developed. Once the basic hardware definition is
+  specified for a VM, the VM can then be treated as a bare bones
+  computer.
 
 Cons
 ++++
-- It is time consuming to build and regenerate VMs, because they encompass a full stack system. Any modifications to a VM snapshot can take significant time to regenerate and validate they behave as expected.
-- VMs can take up a lot of storage space. They can quickly grow to several Gigabytes in size. This can lead to disk space shortage issues on the VMs host machine.
+
+- It is time consuming to build and regenerate VMs, because they
+  encompass a full stack system. Any modifications to a VM snapshot
+  can take significant time to regenerate and validate they behave as
+  expected.
+- VMs can take up a lot of storage space. They can quickly grow to
+  several Gigabytes in size. This can lead to disk space shortage
+  issues on the VMs host machine.
 
 One final term: if the *container* is an alternative file system layer
 that you can access and run from your computer, the **container image**
@@ -89,7 +110,9 @@ This solves several of our problems:
 
 - There is a clear record of what software and software dependencies were used, from bottom to top.
 - The container can be used on any computer that has Docker installed
-– It doesn’t matter whether the computer is Mac, Windows or Linux-based.
-- The container ensures that you can use the exact same software and environment on your computer and on other resources (like a large-scale computing cluster).
+- It doesn’t matter whether the computer is Mac, Windows or Linux-based.
+- The container ensures that you can use the exact same software and
+  environment on your computer and on other resources (like a
+  large-scale computing cluster).
 
 The rest of this workshop will show you how to download and run pre-existing containers on your own computer, and how to create and share your own containers.

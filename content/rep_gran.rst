@@ -59,69 +59,88 @@ If for any reason you decided to archive an image, you can use the command below
 Reproducibility good practice
 _____________________________
 
-   - Make use of images to capture the computational environment required for your work.
-   - Decide on the appropriate granularity for the images you will use for your computational work - this
-   will be different for each project/area. Take note of accepted practice from contemporary work in the same area.
-   What are the right building blocks for individual images in your work?
-   - Document what you have done and why - this can be put in comments in the Dockerfile
-   and the use of the image described in associated documentation and/or publications.
-   Make sure that references are made in both directions so that the image and the documentation are appropriately linked.
+- Make use of images to capture the computational environment
+  required for your work.
+- Decide on the appropriate granularity for the images you will use
+  for your computational work - this will be different for each
+  project/area. Take note of accepted practice from contemporary work
+  in the same area.  What are the right building blocks for
+  individual images in your work?
+- Document what you have done and why - this can be put in comments
+  in the Dockerfile and the use of the image described in associated
+  documentation and/or publications.  Make sure that references are
+  made in both directions so that the image and the documentation are
+  appropriately linked.
 
 
 Container Granularity
 _____________________
 
-As mentioned above, one of the decisions you may need to make when containerising your research workflows
-is what level of *granularity* you wish to employ. The two extremes of this decision could be characterised
-as:
+As mentioned above, one of the decisions you may need to make when
+containerising your research workflows is what level of *granularity*
+you wish to employ. The two extremes of this decision could be
+characterised as:
 
-- Create a single container image with all the tools you require for your research or analysis workflow
-- Create many container images each running a single command (or step) of the workflow and use them in sequence
+- Create a single container image with all the tools you require for
+  your research or analysis workflow
+- Create many container images each running a single command (or step)
+  of the workflow and use them in sequence
 
-Of course, many real applications will sit somewhere between these two extremes.
+Of course, many real applications will sit somewhere between these two
+extremes.
 
 .. callout:: Positives and negatives
 
-  What are the advantages and disadvantages of the two approaches to container granularity for research
-  workflows described above? Think about this and write a few bullet points for advantages and disadvantages
-  for each approach in the course Etherpad.
+   What are the advantages and disadvantages of the two approaches to
+   container granularity for research workflows described above? Think
+   about this and write a few bullet points for advantages and
+   disadvantages for each approach in the course Etherpad.
 
-  **Single large container**
+   **Single large container**
 
-  .. tabs::
+   .. tabs::
 
+      .. tab:: Advantages
 
-    .. tab:: Advantages
+         - Simpler to document
+         - Full set of requirements packaged in one place
+         - Potentially easier to maintain (though could be opposite if
+           working with large, distributed group)
 
-      - Simpler to document
-      - Full set of requirements packaged in one place
-      - Potentially easier to maintain (though could be opposite if working with large, distributed group)
+       .. tab:: Disadvantages
 
-    .. tab:: Disadvantages
+         - Could get very large in size, making it more difficult to
+           distribute
+         - Could use Docker multi-stage build
+           docs.docker.com/develop/develop-images/multistage-build to
+           reduce size
+         - Singularity also has a multistage build feature:
+           sylabs.io/guides/3.2/user-guide/definition_files.html#multi-stage-builds
+         - May end up with same dependency issues within the container
+           from different software requirements
+         - Potentially more complex to test
+         - Less re-useable for different, but related, work
 
-      - Could get very large in size, making it more difficult to distribute
-      - Could use Docker multi-stage build docs.docker.com/develop/develop-images/multistage-build to reduce size
-      - Singularity also has a multistage build feature: sylabs.io/guides/3.2/user-guide/definition_files.html#multi-stage-builds
-      - May end up with same dependency issues within the container from different software requirements
-      - Potentially more complex to test
-      - Less re-useable for different, but related, work
+     **Multiple smaller containers**
 
-  **Multiple smaller containers**
+     .. tabs::
 
-  .. tabs::
+        .. tab:: Advantages
 
-    .. tab:: Advantages
+           - Individual components can be re-used for different, but
+             related, work
+           - Individual parts are smaller in size making them easier to
+             distribute
+           - Avoid dependency issues between different softwares
+           - Easier to test
 
-      - Individual components can be re-used for different, but related, work
-      - Individual parts are smaller in size making them easier to distribute
-      - Avoid dependency issues between different softwares
-      - Easier to test
+	.. tab:: Disadvantage
 
-    .. tab:: Disadvantage
-
-      - More difficult to document
-      - Potentially more difficult to maintain (though could be easier if working with large, distributed group)
-      - May end up with dependency issues between component containers if they get out of sync
+           - More difficult to document
+	   - Potentially more difficult to maintain (though could be
+             easier if working with large, distributed group)
+	   - May end up with dependency issues between component
+             containers if they get out of sync
 
 Container Orchestration
 _______________________
