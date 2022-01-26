@@ -39,6 +39,8 @@ Nonetheless, the computationally intensive task of training an AI increasingly r
    rep_gran
    singlrty_start
    work_contain
+   build_contain
+   mpi_contain
 
 .. toctree::
    :maxdepth: 1
