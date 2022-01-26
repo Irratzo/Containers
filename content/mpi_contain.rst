@@ -117,9 +117,9 @@ A quick overview of what the above definition file is doing:
 
 .. exercise :: Build and test the OSU Micro-Benchmarks image
 
-  .. tabs ::
+  .. tabs::
 
-    .. tab :: Challenge
+    .. tab:: Challenge
 
       Using the above definition file, build a Singularity image named `osu_benchmarks.sif`.
       Once you have built the image, use it to run the `osu_hello` benchmark that is found in the `startup` benchmark folder.
@@ -127,7 +127,7 @@ A quick overview of what the above definition file is doing:
       *NOTE: If you're not using the Singularity Docker image to build your Singularity image, you will need to edit the path
       to the .tar.gz file in the `%files` section of the definition file.*
 
-      .. tab :: Solution
+      .. tab:: Solution
 
         You should be able to build an image from the definition file as follows:
 
@@ -196,9 +196,9 @@ some information will be provided below in relation to the cluster that you've b
 
 .. exercise :: Undertake a parallel run of the `osu_latency` benchmark (general example)
 
-  .. tabs ::
+  .. tabs::
 
-    .. tab :: Challenge
+    .. tab:: Challenge
 
       Move the `osu_benchmarks.sif` Singularity image onto the cluster (or other suitable) platform where you're going
       to undertake your benchmark run.
@@ -210,7 +210,7 @@ some information will be provided below in relation to the cluster that you've b
 
         $ mpirun -np 2 singularity run osu_benchmarks.sif pt2pt/osu_latency
 
-    .. tab :: Expected output and discussion
+    .. tab:: Expected output and discussion
 
       As you can see in the mpirun command shown above, we have called `mpirun` on the host system and are passing to MPI
       the `singularity` executable for which the parameters are the image file and any parameters we want to pass to the image's
@@ -231,9 +231,9 @@ some information will be provided below in relation to the cluster that you've b
 
 .. exercise :: Undertake a parallel run of the `osu_latency` benchmark (taught course cluster example)
 
-  .. tabs ::
+  .. tabs::
 
-    .. tab :: Challenge
+    .. tab:: Challenge
 
     This version of the exercise for undertaking a parallel run of the osu_latency benchmark with your Singularity container
     that contains an MPI build is specific to this run of the course.
@@ -251,7 +251,7 @@ some information will be provided below in relation to the cluster that you've b
 
       $ sbatch osu_latency.slurm
 
-    .. tab :: Expected output and discussion
+    .. tab:: Expected output and discussion
 
       As you will have seen in the commands using the provided template job submission script,
       we have called `mpirun` on the host system and are passing to MPI the `singularity` executable for which
@@ -286,9 +286,9 @@ for example try `collective/osu_gather`.
 
 .. exercise :: Investigate performance when using a container image built on a local system and run on a cluster
 
-  .. tabs ::
+  .. tabs::
 
-    .. tab :: Challenge
+    .. tab:: Challenge
 
       To get an idea of any difference in performance between the code within your Singularity image and
       the same code built natively on the target HPC platform, try building the OSU benchmarks from source,
@@ -301,7 +301,7 @@ for example try `collective/osu_gather`.
 
       What do you see?
 
-    .. tab :: Discussion
+    .. tab:: Discussion
 
       You may find that performance is significantly better with the version of the code built directly on the HPC platform.
       Alternatively, performance may be similar between the two versions.

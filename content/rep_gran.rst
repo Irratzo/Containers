@@ -108,16 +108,16 @@ Of course, many real applications will sit somewhere between these two extremes.
 
   **Multiple smaller containers**
 
-  .. tabs ::
+  .. tabs::
 
-    .. tab :: Advantages
+    .. tab:: Advantages
 
       - Individual components can be re-used for different, but related, work
       - Individual parts are smaller in size making them easier to distribute
       - Avoid dependency issues between different softwares
       - Easier to test
 
-    .. tab :: Disadvantage
+    .. tab:: Disadvantage
 
       - More difficult to document
       - Potentially more difficult to maintain (though could be easier if working with large, distributed group)

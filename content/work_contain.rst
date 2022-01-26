@@ -71,12 +71,12 @@ In the `TYPE` column we can see that our image type is `shub` because it's a `SI
 
 .. exercise :: Basic exercise: Clearing specific image types from the cache
 
-  .. tabs :: Question
+  .. tabs:: Question
 
     What command would you use to remove only images of type **shub** from your local Singularity image cache?
     How could you test this safely to ensure your command is going to do the right thing?
 
-  .. tab :: Solution
+  .. tab:: Solution
 
     .. code-block:: bash
 
@@ -119,13 +119,13 @@ The command has echoed the provided input to the console and the container has t
 
 .. exercise :: Basic exercise: Running a different command within the "hello-world" container
 
-  .. tabs ::
+  .. tabs::
 
-  .. tab :: Question
+  .. tab:: Question
 
     Can you run a container based on the `hello-world.sif` image that **prints the current date and time**?
 
-  .. tab :: Solution
+  .. tab:: Solution
 
     .. code-block:: bash
 
@@ -227,9 +227,9 @@ the example below showing a subset of the directories on the host Linux system a
 
 .. exercise :: Questions and exercises: Files in Singularity containers
 
-  .. tabs ::
+  .. tabs::
 
-    .. tab :: Questions
+    .. tab:: Questions
 
       Q1:** What do you notice about the ownership of files in a container started from the hello-world image?
       (e.g. take a look at the ownership of files in the root directory (`/`))
@@ -243,7 +243,7 @@ the example below showing a subset of the directories on the host Linux system a
 
       **Exercise 2:** In your home directory within the container shell, try and create a simple text file. Is it possible to do this? If so, why? If not, why not?! If you can successfully create a file, what happens to it when you exit the shell and the container shuts down?
 
-    .. tab :: Answers
+    .. tab:: Answers
 
     **A1:** Use the `ls -l` command to see a detailed file listing including file ownership and permission details.
     You may see that all the files are owned by you, alternatively, most files in the root (`/`) directory may be
@@ -307,14 +307,14 @@ We can now run a container from this image as we would with any other singularit
 
 .. exercise :: Running the Python 3.8.6 image that we just pulled from Docker Hub
 
-  .. tabs ::
+  .. tabs::
 
-    .. tab :: Exercise
+    .. tab:: Exercise
 
       **E1**: Try running the Python 3.8.6 image. What happens?
       **E2**: Try running some simple Python statements...
 
-    .. tab :: Solutions
+    .. tab:: Solutions
 
       Running the Python 3.8.6 image
 
@@ -345,9 +345,9 @@ any configuration prior to running Python. This is covered in the following exer
 
 .. exercise :: Open a shell within a Python container
 
-  .. tabs ::
+  .. tabs::
 
-    .. tab :: Exercise
+    .. tab:: Exercise
 
       Try to run a shell within a singularity container based on the `python-3.8.6.sif` image.
       That is, run a container that opens a shell rather than the default Python interactive console
@@ -355,7 +355,7 @@ any configuration prior to running Python. This is covered in the following exer
 
       Within the shell, try starting the Python interactive console and running some Python commands.
 
-    .. tab :: Solution
+    .. tab:: Solution
 
       Recall from the earlier material that we can use the `singularity shell` command to open a shell within a container.
       To open a regular shell within a container based on the `python-3.8.6.sif` image, we can therefore simply run:

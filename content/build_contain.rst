@@ -74,7 +74,7 @@ of this course so we won't be covering this.
   how Singularity images can be built.
 
   You could also attempt to follow this section of the lesson without using root and instead using
-  the `singularity` command's ``--fakeroot` <https://sylabs.io/guides/3.7/user-guide/fakeroot.html>`_ option.
+  the `singularity` command's `--fakeroot <https://sylabs.io/guides/3.7/user-guide/fakeroot.html>`_ option.
   However, you may encounter issues with permissions when trying to build images and run your containers and
   this is why running the commands as root is strongly recommended and is the approach described in this lesson.
 
@@ -86,28 +86,35 @@ The `Singularity Docker image <https://quay.io/repository/singularity/singularit
 
 .. exercise :: Familiarise yourself with the Docker Singularity image
 
-  - Using your previously acquired Docker knowledge, get the Singularity image for `v3.7.0` and ensure that
-  you can run a Docker container using this image. You might want to use the `v3.7.0-slim` version of this image
-  since it is significantly smaller than the standard image - the _slim_ version of the image will be used in the examples below.
+  - Using your previously acquired Docker knowledge, get the
+    Singularity image for `v3.7.0` and ensure that you can run a Docker
+    container using this image. You might want to use the `v3.7.0-slim`
+    version of this image since it is significantly smaller than the
+    standard image - the _slim_ version of the image will be used in the
+    examples below.
 
-  - Create a directory (e.g. `$HOME/singularity_data`) on your host machine that you can use for storage of **definition files**
-  (we'll introduce these shortly) and generated image files.
+  - Create a directory (e.g. `$HOME/singularity_data`) on your host
+    machine that you can use for storage of **definition files** (we'll
+    introduce these shortly) and generated image files.
 
-  This directory should be bind mounted into the Docker container at the location `/home/singularity` every time you run it -
-  this will give you a location in which to store built images so that they are available on the host system once the container exits.
-  (take a look at the `-v` switch)
+    This directory should be bind mounted into the Docker container at
+    the location `/home/singularity` every time you run it - this will
+    give you a location in which to store built images so that they are
+    available on the host system once the container exits.  (take a look
+    at the `-v` switch)
 
-  **Note**: To be able to build an image using the Docker Singularity container, you'll probably need to add
-  the `--privileged` switch to your docker command line.
+    **Note**: To be able to build an image using the Docker Singularity
+    container, you'll probably need to add the `--privileged` switch to
+    your docker command line.
 
-  .. tabs ::
+    .. tabs::
 
-    .. tab :: Questions
+    .. tab:: Questions
 
       - What is happening when you run the container?
       - Can you run an interactive shell in the container?
 
-    .. tab :: Running the image
+    .. tab:: Running the image
 
       Having a bound directory from the host system accessible within your running Singularity container will give
       you somewhere to place created images so that they are accessible on the host system after the container exits.
@@ -171,13 +178,13 @@ You can take a look at Singularity's "`Build a Container <https://sylabs.io/guid
 
 .. exercise :: Why look at Singularity Definition Files?
 
-  .. tabs ::
+  .. tabs::
 
-    .. tab :: Challenge
+    .. tab:: Challenge
 
       Why do you think we might be looking at the _definition file approach_ here rather than the *sandbox approach*?
 
-    .. tab :: Discussion
+    .. tab:: Discussion
 
       The sandbox approach is great for prototyping and testing out an image configuration but it doesn't provide
       the best support for our ultimate goal of _reproducibility_. If you spend time sitting at your terminal in front
@@ -344,13 +351,13 @@ the Docker Singularity container and run your singularity image there.
 
 .. exercise :: Run the Singularity image you've created
 
-  .. tabs ::
+  .. tabs::
 
-    .. tab :: Challenge
+    .. tab:: Challenge
 
       Can you run the Singularity image you've just built from a shell within the Docker Singularity container?
 
-    .. tab :: Solution
+    .. tab:: Solution
 
       .. code-block:: bash
 
