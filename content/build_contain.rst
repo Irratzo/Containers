@@ -11,7 +11,7 @@ In the first two episodes of this Singularity material we've seen how Singularit
 on a computing platform where you don't have any administrative privileges. The software was
 pre-installed and it was possible to work with existing images such as Singularity image files
 already stored on the platform or images obtained from a remote image repository such as
-`Singularity Hub <https://singularity-hub.org/>`_ or `Docker Hub <https://hub.docker.com/`_.
+`Singularity Hub <https://singularity-hub.org/>`_ or `Docker Hub <https://hub.docker.com/>`_.
 
 It is clear that between Singularity Hub and Docker Hub there is a huge array of images available
 but what if you want to create your own images or customise existing images?
@@ -169,7 +169,7 @@ This is Singularity's equivalent to building a Docker container from a `Dockerfi
 
 You can take a look at Singularity's "`Build a Container <https://sylabs.io/guides/3.7/user-guide/build_a_container.html>`_" documentation for more details on different approaches to building containers.
 
-.. excercise :: Why look at Singularity Definition Files?
+.. exercise :: Why look at Singularity Definition Files?
 
   .. tabs ::
 
@@ -197,7 +197,11 @@ You can take a look at Singularity's "`Build a Container <https://sylabs.io/guid
 Creating a Singularity Definition File
 ++++++++++++++++++++++++++++++++++++++
 
-A Singularity Definition File is a text file that contains a series of statements that are used to create a container image. In line with the _configuration as code_ approach mentioned above, the definition file can be stored in your code repository alongside your application code and used to create a reproducible image. This means that for a given commit in your repository, the version of the definition file present at that commit can be used to reproduce a container with a known state. It was pointed out earlier in the course, when covering Docker, that this property also applies for Dockerfiles.
+A Singularity Definition File is a text file that contains a series of statements that are used to create a container image.
+In line with the *configuration as code* approach mentioned above, the definition file can be stored in your code repository
+alongside your application code and used to create a reproducible image. This means that for a given commit in your repository,
+the version of the definition file present at that commit can be used to reproduce a container with a known state.
+It was pointed out earlier in the course, when covering Docker, that this property also applies for Dockerfiles.
 
 We'll now look at a very simple example of a definition file:
 
@@ -461,6 +465,8 @@ Additional Singularity features
 Singularity has a wide range of features. You can find full details in the `Singularity User Guide <https://sylabs.io/guides/3.5/user-guide/index.html>`_
 and we highlight a couple of key features here that may be of use/interest:
 
-**Remote Builder Capabilities:** If you have access to a platform with Singularity installed but you don't have root access to create containers, you may be able to use the [Remote Builder](https://cloud.sylabs.io/builder) functionality to offload the process of building an image to remote cloud resources. You'll need to register for a _cloud token_ via the link on the Remote Builder page.
+**Remote Builder Capabilities:** If you have access to a platform with Singularity installed but you don't have root access to create containers,
+you may be able to use the [Remote Builder](https://cloud.sylabs.io/builder) functionality to offload the process of building an image to remote cloud resources.
+You'll need to register for a *cloud token* via the link on the Remote Builder page.
 
 **Signing containers:** If you do want to share container image (`.sif`) files directly with colleagues or collaborators, how can the people you send an image to be sure that they have received the file without it being tampered with or suffering from corruption during transfer/storage? And how can you be sure that the same goes for any container image file you receive from others? Singularity supports signing containers. This allows a digital signature to be linked to an image file. This signature can be used to verify that an image file has been signed by the holder of a specific key and that the file is unchanged from when it was signed. You can find full details of how to use this functionality in the Singularity documentation on [Signing and Verifying Containers](https://sylabs.io/guides/3.7/user-guide/signNverify.html).

@@ -119,46 +119,46 @@ A quick overview of what the above definition file is doing:
 
   .. tabs ::
 
-  .. tab :: Challenge
+    .. tab :: Challenge
 
-    Using the above definition file, build a Singularity image named `osu_benchmarks.sif`.
-    Once you have built the image, use it to run the `osu_hello` benchmark that is found in the `startup` benchmark folder.
+      Using the above definition file, build a Singularity image named `osu_benchmarks.sif`.
+      Once you have built the image, use it to run the `osu_hello` benchmark that is found in the `startup` benchmark folder.
 
-    *NOTE: If you're not using the Singularity Docker image to build your Singularity image, you will need to edit the path
-    to the .tar.gz file in the `%files` section of the definition file.*
+      *NOTE: If you're not using the Singularity Docker image to build your Singularity image, you will need to edit the path
+      to the .tar.gz file in the `%files` section of the definition file.*
 
-  .. tab :: Solution
+      .. tab :: Solution
 
-    You should be able to build an image from the definition file as follows:
+        You should be able to build an image from the definition file as follows:
 
-    .. code-block :: bash
+        .. code-block :: bash
 
-      $ singularity build osu_benchmarks.sif osu_benchmarks.def
+          $ singularity build osu_benchmarks.sif osu_benchmarks.def
 
-    *Note that if you're running the Singularity Docker container directly from the command line to undertake your build,
-    you'll need to provide the full path to the `.def` file at which it appears within the container* - for example,
-    if you've bind mounted the directory containing the file to `/home/singularity` within the container, the full path to
-    the `.def` file will be `/home/singularity/osu_benchmarks.def`.
+        *Note that if you're running the Singularity Docker container directly from the command line to undertake your build,
+        you'll need to provide the full path to the `.def` file at which it appears within the container* - for example,
+        if you've bind mounted the directory containing the file to `/home/singularity` within the container, the full path to
+        the `.def` file will be `/home/singularity/osu_benchmarks.def`.
 
-    Assuming the image builds successfully, you can then try running the container locally and also transfer the SIF file
-    to a cluster platform that you have access to (that has Singularity installed) and run it there.
+        Assuming the image builds successfully, you can then try running the container locally and also transfer the SIF file
+        to a cluster platform that you have access to (that has Singularity installed) and run it there.
 
-    Let's begin with a single-process run of `osu_hello` on the local system to ensure that we can run the container as expected:
+        Let's begin with a single-process run of `osu_hello` on the local system to ensure that we can run the container as expected:
 
-    .. code-block :: bash
+        .. code-block :: bash
 
-      $ singularity run osu_benchmarks.sif startup/osu_hello
+          $ singularity run osu_benchmarks.sif startup/osu_hello
 
-    You should see output similar to the following:
+        You should see output similar to the following:
 
-    .. code-block :: bash
+      .. code-block :: bash
 
-      Rank  - About to run: /usr/local/osu/libexec/osu-micro-benchmarks/mpi/startup/osu_hello
-      # OSU MPI Hello World Test v5.6.2
-      This is a test with 1 processes
+        Rank  - About to run: /usr/local/osu/libexec/osu-micro-benchmarks/mpi/startup/osu_hello
+        # OSU MPI Hello World Test v5.6.2
+        This is a test with 1 processes
 
-    Note that no rank number is shown since we didn't run the container via mpirun and so the `${PMI_RANK}` environment
-    variable that we'd normally have set in an MPICH run process is not set.
+      Note that no rank number is shown since we didn't run the container via mpirun and so the `${PMI_RANK}` environment
+      variable that we'd normally have set in an MPICH run process is not set.
 
 Running Singularity containers via MPI
 ++++++++++++++++++++++++++++++++++++++
