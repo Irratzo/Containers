@@ -7,14 +7,16 @@ Most of today's workshop will be spent of Docker command line (CLI) utility.
 
 .. callout:: You need an account on Docker Hub
 
-  You need an account on `Docker Hub <https://hub.docker.com>`_ in order to run examples provide in this workshop. After that
-  please head over to `Play-with-Docker (PWD) <https://labs.play-with-docker.com>`_ to try examples provided here.
+   You need an account on `Docker Hub <https://hub.docker.com>`_ in
+   order to run examples provide in this workshop. After that please
+   head over to `Play-with-Docker (PWD)
+   <https://labs.play-with-docker.com>`_ to try examples provided here.
 
 
   .. callout:: Reminder of terminology: images and containers
 
-  Recall that a container “image” is the template from which particular
-  instances of containers will be created.
+     Recall that a container “image” is the template from which particular
+     instances of containers will be created.
 
 Let’s explore our first Docker container. The Docker team provides a
 simple container image online called ``hello-world``. We’ll start with
@@ -44,36 +46,36 @@ You should see output like this:
 
 .. code-block:: bash
 
-  Using default tag: latest
-  latest: Pulling from library/hello-world
-  93288797bd35: Pull complete
-  Digest: sha256:975f4b14f326b05db86e16de00144f9c12257553bba9484fed41f9b6f2257800
-  Status: Downloaded newer image for hello-world:latest
-  docker.io/library/hello-world:latest
+   Using default tag: latest
+   latest: Pulling from library/hello-world
+   93288797bd35: Pull complete
+   Digest: sha256:975f4b14f326b05db86e16de00144f9c12257553bba9484fed41f9b6f2257800
+   Status: Downloaded newer image for hello-world:latest
+   docker.io/library/hello-world:latest
 
 .. callout:: DockerHub
 
-  Where did the ``hello-world`` image come from? It came from the
-  DockerHub website, which is a place to share Docker images with other
-  people. More on that in a later episode.
+   Where did the ``hello-world`` image come from? It came from the
+   DockerHub website, which is a place to share Docker images with other
+   people. More on that in a later episode.
 
 .. exercise:: Exercise: Check on Your Images
 
-  What command would you use to see if the ``hello-world`` Docker image
-  had downloaded successfully and was on your computer? Give it a try
-  before checking the solution.
+   What command would you use to see if the ``hello-world`` Docker image
+   had downloaded successfully and was on your computer? Give it a try
+   before checking the solution.
 
-  .. tabs::
+   .. tabs::
 
-    .. tab:: Try!
+      .. tab:: Try!
 
-    .. tab:: Solution
+      .. tab:: Solution
 
-      To see if the ``hello-world`` image is now on your computer, run:
+         To see if the ``hello-world`` image is now on your computer, run:
 
-      .. code-block:: bash
+         .. code-block:: bash
 
-        $ docker image ls
+            $ docker image ls
 
 Note that the downloaded ``hello-world`` image is not in the folder
 where you are in the terminal! (Run ``ls`` by itself to check.) The
@@ -91,61 +93,64 @@ Note that it does not matter what your current working directory is.
 
 .. code-block:: bash
 
-  $ docker run hello-world
+   $ docker run hello-world
 
-  Hello from Docker!
-  This message shows that your installation appears to be working correctly.
+   Hello from Docker!
+   This message shows that your installation appears to be working correctly.
 
-  To generate this message, Docker took the following steps:
+   To generate this message, Docker took the following steps:
+
    1. The Docker client contacted the Docker daemon.
    2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
       (arm64v8)
    3. The Docker daemon created a new container from that image which runs the
       executable that produces the output you are currently reading.
-   4. The Docker daemon streamed that output to the Docker client, which sent it
-      to your terminal.
+   4. The Docker daemon streamed that output to the Docker client,
+      which sent it to your terminal.
 
-  To try something more ambitious, you can run an Ubuntu container with:
-   $ docker run -it ubuntu bash
+   To try something more ambitious, you can run an Ubuntu container with:
+   ``$ docker run -it ubuntu bash``
 
-  Share images, automate workflows, and more with a free Docker ID:
+   Share images, automate workflows, and more with a free Docker ID:
    https://hub.docker.com/
 
-  For more examples and ideas, visit:
+   For more examples and ideas, visit:
    https://docs.docker.com/get-started/
 
 To try something more ambitious, you can run an Ubuntu container with:
 
 .. code-block:: bash
 
-  $docker run -it ubuntu bash
+   $ docker run -it ubuntu bash
 
 .. callout:: ``docker run``
 
-  What just happened? When we use the ``docker run`` command, Docker does
-  three things:
-  1. Starts a Running Container
-  2. Performs Default Action
-  3. Shuts Down the Container
+   What just happened? When we use the ``docker run`` command, Docker does
+   three things:
 
-  .. tabs::
+   1. Starts a Running Container
+   2. Performs Default Action
+   3. Shuts Down the Container
 
-    .. tab:: Step 1
+   .. tabs::
 
-      Starts a running container, based on the image. Think of this as
-      the “alive” or“inflated” version of the container – it’s actually doing something
+      .. tab:: Step 1
 
-    .. tab:: Step 2
+         Starts a running container, based on the image. Think of this as
+         the “alive” or“inflated” version of the container – it’s
+         actually doing something
 
-      If the container has a default action set, it will perform that default action.
-      This could be as simple as printing a message (as above) or running a whole
-      analysis pipeline!
+      .. tab:: Step 2
 
-    .. tab:: Step 3
+         If the container has a default action set, it will perform
+         that default action.  This could be as simple as printing a
+         message (as above) or running a whole analysis pipeline!
 
-        Once the default action is complete, the container stops
-        running (or exits). The image is still there, but nothing is
-        actively running.
+      .. tab:: Step 3
+
+         Once the default action is complete, the container stops
+         running (or exits). The image is still there, but nothing is
+         actively running.
 
 
 The ``hello-world`` container is set up to run an action by default -
@@ -153,10 +158,10 @@ namely to print this message.
 
 .. callout:: Using ``docker run`` to get the image
 
-  We could have skipped the ``docker pull`` step; if you use the
-  ``docker run`` command and you don’t already have a copy of the
-  Docker image, Docker will automatically pull the image first and then
-  run it.
+   We could have skipped the ``docker pull`` step; if you use the
+   ``docker run`` command and you don’t already have a copy of the
+   Docker image, Docker will automatically pull the image first and then
+   run it.
 
 Running a container with a chosen command
 -----------------------------------------
@@ -170,14 +175,14 @@ to download.
 
 .. callout:: Run the Alpine Docker container
 
-  Try downloading and running the ``alpine`` Docker container. You can
-  do it in two steps, or one. What are they?
+   Try downloading and running the ``alpine`` Docker container. You can
+   do it in two steps, or one. What are they?
 
 What happened when you ran the Alpine Docker container?
 
 .. code-block:: bash
 
-  $ docker run alpine
+   $ docker run alpine
 
 If you never used the *alpine* docker image on your computer, docker
 probably printed a message that it couldn’t find the image and had to
@@ -195,21 +200,21 @@ a few additional bits of information.
 
 .. exercise:: Exercise: Hello World, Part 2
 
-  Can you run the container and make it print a “hello world” message?
-  Give it a try before checking the solution.
+   Can you run the container and make it print a “hello world” message?
+   Give it a try before checking the solution.
 
-  .. tabs::
+   .. tabs::
 
-    .. tab:: Try!
+      .. tab:: Try!
 
-    .. tab:: Solution
+      .. tab:: Solution
 
-      Use the same command as above, but with the ``echo`` command to
-      print a message.
+         Use the same command as above, but with the ``echo`` command to
+         print a message.
 
-      .. code-block:: bash
+         .. code-block:: bash
 
-        $ docker run alpine echo ‘Hello World’
+            $ docker run alpine echo ‘Hello World’
 
 So here, we see another option – we can provide commands at the end of
 the ``docker run`` command and they will execute inside the running
@@ -228,13 +233,13 @@ doesn’t include ``bash`` so we need to use ``sh``.
 
 .. code-block:: bash
 
-  $ docker run -it alpine sh
+   $ docker run -it alpine sh
 
 Your prompt should change significantly to look like this:
 
 .. code-block:: bash
 
-  / #
+   / #
 
 That’s because you’re now inside the running container! Try these
 commands:

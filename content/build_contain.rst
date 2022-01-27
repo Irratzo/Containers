@@ -503,7 +503,7 @@ by Python:
    within the Docker container, it is likely that you will get an error
    relating to `/etc/localtime` similar to the following:
 
-   .. code-block:: bash
+   .. code-block:: text
 
       WARNING: skipping mount of /etc/localtime: no such file or directory
       FATAL: container creation failed: mount

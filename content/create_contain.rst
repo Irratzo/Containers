@@ -1,81 +1,91 @@
 Creating your own container images
 ==================================
 
-There are lots of reasons why you might want to create your **own** Docker image.
-- You can't find a container with all the tools you need on Docker Hub.
-- You want to have a container to "archive" all the specific software versions you ran for a project
+There are lots of reasons why you might want to create your **own**
+Docker image.
+
+- You can't find a container with all the tools you need on Docker
+  Hub.
+- You want to have a container to "archive" all the specific software
+  versions you ran for a project
 - You want to share your workflow with someone else.
 
 Interactive installation
 ________________________
 
-Before creating a reproducible installation, let's experiment with installing
-software inside a container. Start the `alpine` container from before, interactively:
+Before creating a reproducible installation, let's experiment with
+installing software inside a container. Start the `alpine` container
+from before, interactively:
 
 .. code-block:: bash
 
-  $ docker run -it alpine sh
+   docker run -it alpine sh
 
-Because this is a basic container, there's a lot of things not installed -- for
-example, `python3`.
+Because this is a basic container, there's a lot of things not
+installed -- for example, `python3`.
 
 .. code-block:: bash
 
-  /# python3
+   /# python3
 
 Output
 
 .. code-block:: bash
 
-  sh: python3: not found
+   sh: python3: not found
 
-Inside the container, we can run commands to install Python 3. The Alpine version of
-Linux has a installation tool called `apk` that we can use to install Python 3.
+Inside the container, we can run commands to install Python 3. The
+Alpine version of Linux has a installation tool called `apk` that we
+can use to install Python 3.
 
 .. code-block:: bash
 
-  /# apk add --update python3 py3-pip python3-dev
+   /# apk add --update python3 py3-pip python3-dev
 
 We can test our installation by running a Python command:
 
 .. code-block::
 
-  /# python3 --version
+   /# python3 --version
 
 
-Once Python is installed, we can add Python packages using the pip package installer:
+Once Python is installed, we can add Python packages using the pip
+package installer:
 
 .. code-block:: bash
 
-  /# pip install cython
+   /# pip install cython
 
 .. exercise:: Exercise: Searching for Help
 
-  .. tabs::
+   .. tabs::
 
-    .. tab:: Question
+      .. tab:: Question
 
-      Can you find instructions for installing R on Alpine Linux? Do they work?
+         Can you find instructions for installing R on Alpine Linux? Do
+         they work?
 
-    .. tab:: Solution
+      .. tab:: Solution
 
-      A quick search should hopefully show that the way to install R on Alpine Linux is:
+         A quick search should hopefully show that the way to install
+         R on Alpine Linux is:
 
-      .. code-block:: bash
+         .. code-block:: bash
 
-        /# apk add R
+            /# apk add R
 
-Once we exit, these changes are not saved to a new container by default. There is
-a command that will "snapshot" our changes, but building containers this way is
-not very reproducible. Instead, we're going to take what we've learned from this
-interactive installation and create our container from a reproducible recipe,
-known as a `Dockerfile`.
+Once we exit, these changes are not saved to a new container by
+default. There is a command that will "snapshot" our changes, but
+building containers this way is not very reproducible. Instead, we're
+going to take what we've learned from this interactive installation
+and create our container from a reproducible recipe, known as a
+`Dockerfile`.
 
 If you haven't already, exit out of the interactively running container.
 
 .. code-block:: bash
 
-  /# exit
+   /# exit
 
 Put installation instructions in a `Dockerfile`
 _______________________________________________
@@ -85,119 +95,133 @@ can be used to create a new container image.
 
 Every Dockerfile is composed of three main parts as shown below.
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
-  FROM <EXISTING IMAGE>
-  RUN <INSTALL CMDS FROM SHELL>
-  RUN <INSTALL CMDS FROM SHELL>
-  CMD <CMD TO RUN BY DEFAULT>
+   FROM <EXISTING IMAGE>
+   RUN <INSTALL CMDS FROM SHELL>
+   RUN <INSTALL CMDS FROM SHELL>
+   CMD <CMD TO RUN BY DEFAULT>
 
 Let's break this file down:
+
 - The first line, `FROM`, indicates which container we're starting with.
-- The next two lines `RUN`, will indicate installation commands we want to run. These
-are the same commands that we used interactively above.
-- The last line, `CMD` indicates the default command we want the container to run,
-if no other command is provided.
+- The next two lines `RUN`, will indicate installation commands we
+  want to run. These are the same commands that we used interactively
+  above.
+- The last line, `CMD` indicates the default command we want the
+  container to run, if no other command is provided.
 
 .. exercise:: Take a Guess
 
-  .. tabs::
+   .. tabs::
 
-    .. tab:: Question
+      .. tab:: Question
 
-      Do you have any ideas about what we should use to fill in the sample Dockerfile
-      to replicate the installation we did above?
+         Do you have any ideas about what we should use to fill in the
+         sample Dockerfile to replicate the installation we did above?
 
-    .. tab:: Solution
+      .. tab:: Solution
 
-      Based on our experience above, edit the `Dockerfile` (in your text editor of choice) to look like this:
+         Based on our experience above, edit the `Dockerfile` (in your
+         text editor of choice) to look like this:
 
-      .. code-block:: bash
+         .. code-block:: dockerfile
 
-        FROM alpine
-        RUN apk add --update python3 py3-pip python3-dev
-        RUN pip install cython
-        CMD cat /proc/version && python3 --version
+	    FROM alpine
+	    RUN apk add --update python3 py3-pip python3-dev
+	    RUN pip install cython
+	    CMD cat /proc/version && python3 --version
 
 
-The recipe provided by this Dockerfile will use Alpine Linux as the base container,
-add Python and the Cython library, and set a default print command.
+The recipe provided by this Dockerfile will use Alpine Linux as the
+base container, add Python and the Cython library, and set a default
+print command.
 
 Create a new Docker image
 _________________________
 
-So far, we just have a file. We want Docker to take this file,
-run the install commands inside, and then save the
-resulting container as a new container image. To do this we will use the
-`docker build` command.
+So far, we just have a file. We want Docker to take this file, run the
+install commands inside, and then save the resulting container as a
+new container image. To do this we will use the `docker build`
+command.
 
 We have to provide `docker build` with two pieces of information:
+
 - the location of the `Dockerfile`
-- the name of the new image. Remember the naming scheme from before? You should name
-your new image with your Docker Hub username and a name for the container,
-like this: ``USERNAME/CONTAINERNAME``
+- the name of the new image. Remember the naming scheme from before?
+  You should name your new image with your Docker Hub username and a
+  name for the container, like this: ``USERNAME/CONTAINERNAME``
 
 All together, the build command will look like this:
 
 .. code-block:: bash
 
-  $ docker build -t USERNAME/CONTAINERNAME .
+   docker build -t USERNAME/CONTAINERNAME .
 
 
-The `-t` option names the container; the final dot indicates that the `Dockerfile` is in
-our current directory.
+The `-t` option names the container; the final dot indicates that the
+`Dockerfile` is in our current directory.
 
 For example, if my user name was `alice` and I wanted to call my
 image `alpine-python`, I would use this command:
 
 .. code-block:: bash
 
-  $ docker build -t alice/alpine-python .
+   docker build -t alice/alpine-python .
 
 .. exercise:: Review!
 
-  .. tabs::
+   .. tabs::
 
-    .. tab:: Questions
+      .. tab:: Questions
 
-      1. Think back to earlier. What command can you run to check if your image was created
-      successfully? (Hint: what command shows the images on your computer?)
+         1. Think back to earlier. What command can you run to check if
+            your image was created successfully? (Hint: what command shows
+            the images on your computer?)
 
-      2. We didn't specify a tag for our image name. What did Docker automatically use?
+	 2. We didn't specify a tag for our image name. What did
+            Docker automatically use?
 
-      3. What command will run the container you've created? What should happen by default
-      if you run the container? Can you make it do something different, like print "hello world"?
+         3. What command will run the container you've created? What
+            should happen by default if you run the container? Can you make
+            it do something different, like print "hello world"?
 
-    .. tab:: Solution
+      .. tab:: Solution
 
-      1. To see your new image, run `docker image ls`. You should see the name of your new
-      image under the "REPOSITORY" heading.
+         1. To see your new image, run `docker image ls`. You should
+            see the name of your new image under the "REPOSITORY" heading.
 
-      2. In the output of `docker image ls`, you can see that Docker has automatically
-      used the `latest` tag for our new image.
+         2. In the output of `docker image ls`, you can see that
+            Docker has automatically used the `latest` tag for our new
+            image.
 
-      3. We want to use `docker run` to run the container.
+         3. We want to use `docker run` to run the container.
 
-      .. code-block:: bash
+            .. code-block:: bash
 
-        docker run alice/alpine-python
+               docker run alice/alpine-python
 
-      should run the container and print out our default message, including the version of Linux and Python.
+            should run the container and print out our default
+            message, including the version of Linux and Python.
 
-      .. code-block:: bash
+            .. code-block:: bash
 
-        $ docker run alice/alpine-python echo "Hello World"
+              docker run alice/alpine-python echo "Hello World"
 
-      will run the container and print out "Hello world" instead.
+           will run the container and print out "Hello world" instead.
 
 
-While it may not look like you have achieved much, you have already effected the combination of a lightweight Linux operating system with your specification to run a given command that can operate reliably on macOS, Microsoft Windows, Linux and on the cloud!
+While it may not look like you have achieved much, you have already
+effected the combination of a lightweight Linux operating system with
+your specification to run a given command that can operate reliably on
+macOS, Microsoft Windows, Linux and on the cloud!
 
 Boring but important notes about installation
 _____________________________________________
 
-There are a lot of choices when it comes to installing software - sometimes too many!
-Here are some things to consider when creating your own container:
+There are a lot of choices when it comes to installing software -
+sometimes too many!  Here are some things to consider when creating
+your own container:
 
 - **Start smart**, or, don't install everything from scratch! If
   you're using Python as your main tool, start with a Python
@@ -258,36 +282,41 @@ username, all you need to do is run the opposite of `docker pull` --
 
 .. code-block:: bash
 
-  $ docker push alice/alpine-python
+   docker push alice/alpine-python
 
 Make sure to substitute the full name of your container!
 
-In a web browser, open <https://hub.docker.com>, and on your user page you should now see your container listed, for anyone to use or build on.
+In a web browser, open <https://hub.docker.com>, and on your user page
+you should now see your container listed, for anyone to use or build
+on.
 
 .. callout:: Logging In
 
-  Technically, you have to be logged into Docker on your computer for this to work.
-  Usually it happens by default, but if `docker push` doesn't work for you,
-  run `docker login` first, enter your Docker Hub username and password, and then
-  try `docker push` again.
+   Technically, you have to be logged into Docker on your computer for
+   this to work.  Usually it happens by default, but if `docker push`
+   doesn't work for you, run `docker login` first, enter your Docker
+   Hub username and password, and then try `docker push` again.
 
 What's in a name? (again)
 _________________________
 
-You don't *have* to name your containers using the `USERNAME/CONTAINER:TAG` naming
-scheme. On your own computer, you can call containers whatever you want and refer to
-them by the names you choose. It's only when you want to share a container that it
-needs the correct naming format.
+You don't *have* to name your containers using the
+`USERNAME/CONTAINER:TAG` naming scheme. On your own computer, you can
+call containers whatever you want and refer to them by the names you
+choose. It's only when you want to share a container that it needs the
+correct naming format.
 
-You can rename images using the `docker tag` command. For example, imagine someone
-named Alice has been working on a workflow container and called it `workflow-test`
-on her own computer. She now wants to share it in her `alice` Docker Hub account
-with the name `workflow-complete` and a tag of `v1`. Her `docker tag` command
-would look like this:
+You can rename images using the `docker tag` command. For example,
+imagine someone named Alice has been working on a workflow container
+and called it `workflow-test` on her own computer. She now wants to
+share it in her `alice` Docker Hub account with the name
+`workflow-complete` and a tag of `v1`. Her `docker tag` command would
+look like this:
 
 .. code-block:: bash
 
-  $ docker tag workflow-test alice/workflow-complete:v1
+   docker tag workflow-test alice/workflow-complete:v1
 
 
-She could then push the re-named container to Docker Hub, using `docker push alice/workflow-complete:v1`
+She could then push the re-named container to Docker Hub, using
+`docker push alice/workflow-complete:v1`

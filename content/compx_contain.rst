@@ -12,27 +12,29 @@ using the first 1-2 sections on this page.
 Using scripts and files from outside the container
 --------------------------------------------------
 
-Let's create a file and folder called it ``foo/dummy.py`` in the root folder.
+Let's create a file and folder called it ``foo/dummy.py`` in the root
+folder.
 
 Please copy the ``Dockerfile`` and place it in the ``foo`` directory.
-Let’s say we wanted to try running the script using our recently created ``alpine-python`` container.
+Let’s say we wanted to try running the script using our recently
+created ``alpine-python`` container.
 
 .. callout:: Running containers
 
-   What command would we use to run python from the ``alpine-python``
-   container?
+    What command would we use to run python from the ``alpine-python``
+    container?
 
 If we try running the container and Python script, what happens?
 
 .. code-block:: bash
 
-  $docker run alice/alpine-python python3 dummy.py
+   docker run alice/alpine-python python3 dummy.py
 
 Output
 
-..code-block:: bash
+.. code-block:: bash
 
-  python3: can’t open file ‘dummy.py’: [Errno 2] No such file or directory
+   python3: can’t open file ‘dummy.py’: [Errno 2] No such file or directory
 
 .. callout:: No such file or directory
 
@@ -57,7 +59,7 @@ directory. The option will look like this
 
 .. code-block:: bash
 
-  ``-v $PWD:/temp``
+  -v $PWD:/temp
 
 What this means is – link my current directory with the container, and
 inside the container, name the directory ``/temp``
@@ -66,219 +68,239 @@ Let’s try running the command now:
 
 .. code-block:: bash
 
-  $ docker run -v $PWD:/temp alice/alpine-python python3 dummy.py
+   docker run -v $PWD:/temp alice/alpine-python python3 dummy.py
 
 But we get the same error!
 
+.. code-block:: text
+
+   python3: can't open file 'dummy.py': [Errno 2] No such file or directory
+
+This final piece is a bit tricky -- we really have to remember to put
+ourselves inside the container. Where is the `dummy.py` file? It's in
+the directory that's been mapped to `/temp` -- so we need to include
+that in the path to the script. This command should give us what we
+need:
+
 .. code-block:: bash
 
-  python3: can't open file 'dummy.py': [Errno 2] No such file or directory
+   docker run -v $PWD:/temp alice/alpine-python python3 /temp/dummy.py
 
-This final piece is a bit tricky -- we really have to remember to put ourselves
-inside the container. Where is the `dummy.py` file? It's in the directory that's been
-mapped to `/temp` -- so we need to include that in the path to the script. This
-command should give us what we need:
-
-.. code-block:: bash
-
-  $ docker run -v $PWD:/temp alice/alpine-python python3 /temp/dummy.py
-
-Note that if we create any files in the `/temp` directory while the container is
-running, these files will appear on our host filesystem in the original directory
-and will stay there even when the container stops.
+Note that if we create any files in the `/temp` directory while the
+container is running, these files will appear on our host filesystem
+in the original directory and will stay there even when the container
+stops.
 
 .. exercise:: Checking the options, Interactive jobs
 
-  .. tabs::
+   .. tabs::
 
-    .. tab:: Questions
+      .. tab:: Questions
 
-      1. Can you go through each piece of the Docker command above the explain what it does? How would you characterize the key components of a Docker command?
-      2. Try using the directory mount option but run the container interactively. Can you find the folder that's connected to your computer? What's inside?
+         1. Can you go through each piece of the Docker command above
+            the explain what it does? How would you characterize the
+            key components of a Docker command?
 
-    .. tab:: Solutions
+         2. Try using the directory mount option but run the container
+            interactively. Can you find the folder that's connected to
+            your computer? What's inside?
 
-      1. Here's a breakdown of each piece of the command above
+      .. tab:: Solutions
 
-         - `docker run`: use Docker to run a container
-         - `-v $PWD:/temp`: connect my current working directory (`$PWD`) as a folder inside the container called `/temp`
-         - `alice/alpine-python`: name of the container to run
-         - `python3 /temp/dummy.py`: what commands to run in the container
+         1. Here's a breakdown of each piece of the command above
 
-         More generally, every Docker command will have the form:
-         `docker [action] [docker options] [docker image] [command to run inside]`
+            - `docker run`: use Docker to run a container
+            - `-v $PWD:/temp`: connect my current working directory
+              (`$PWD`) as a folder inside the container called `/temp`
+            - `alice/alpine-python`: name of the container to run
+            - `python3 /temp/dummy.py`: what commands to run in the container
 
-      2. The docker command to run the container interactively is:
+            More generally, every Docker command will have the form:
+            `docker [action] [docker options] [docker image] [command
+            to run inside]`
 
-         .. code-block:: bash
+         2. The docker command to run the container interactively is:
 
-            $ docker run -v $PWD:/temp -it alice/alpine-python sh
+            .. code-block:: bash
 
-         Once inside, you should be able to navigate to the `/temp`
-         folder and see that's contents are the same as the files on your
-         computer:
+               docker run -v $PWD:/temp -it alice/alpine-python sh
 
-      .. code-block:: bash
+            Once inside, you should be able to navigate to the `/temp`
+            folder and see that's contents are the same as the files on your
+            computer:
 
-         /# cd /temp
-         /# ls
+            .. code-block:: bash
 
-Mounting a folder can be very useful when you want to run the software inside your
-container on many different input files. In other situations, you may want to save
-or archive an authoritative version of your data by adding it to the container permanently.
-That's what we will cover next.
+               /# cd /temp
+               /# ls
+
+Mounting a folder can be very useful when you want to run the software
+inside your container on many different input files. In other
+situations, you may want to save or archive an authoritative version
+of your data by adding it to the container permanently.  That's what
+we will cover next.
 
 Including personal scripts and data in a container
 __________________________________________________
 
-Our next project will be to add our own files to a container - something you might
-want to do if you're sharing a finished analysis or just want to have an archived
-copy of your entire analysis including the data. Let's as some that we've finished
-with our `dummy.py` script and want to add it to the container itself.
+Our next project will be to add our own files to a container -
+something you might want to do if you're sharing a finished analysis
+or just want to have an archived copy of your entire analysis
+including the data. Let's as some that we've finished with our
+`dummy.py` script and want to add it to the container itself.
 
-In your shell, you should still be in the `dummy` folder in the `docker-intro` folder.
+In your shell, you should still be in the `dummy` folder in the
+`docker-intro` folder.
 
 .. code-block:: bash
 
-  $ pwd
+   pwd
 
 Output
 
 .. code-block:: bash
 
-  $ /Users/yourname/foo
+   /Users/yourname/foo
 
 
-We will modify our Dockerfile again to build an image based on Alpine Linux with
-Python 3 installed (just as we did perviously). This time we will add an additional
-line before the `CMD` line:
+We will modify our Dockerfile again to build an image based on Alpine
+Linux with Python 3 installed (just as we did perviously). This time
+we will add an additional line before the `CMD` line:
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
-  COPY dummy.py /home
+   COPY dummy.py /home
 
-This line will cause Docker to copy the file from your computer into the container's
-file system *at build time*. Modify the Dockerfile as before (or copy the version from
-the `basic/` subdirectory) and add the extra copy line. Once you have done that, build
-the container like before, but give it a different name:
+This line will cause Docker to copy the file from your computer into
+the container's file system *at build time*. Modify the Dockerfile as
+before (or copy the version from the `basic/` subdirectory) and add
+the extra copy line. Once you have done that, build the container like
+before, but give it a different name:
 
 .. code-block::
 
-  $ docker build -t alice/alpine-dummy .
+   docker build -t alice/alpine-dummy .
 
 
 .. exercise:: Did it work?
 
-  .. tabs::
+   .. tabs::
 
-    .. tab:: Question
+      .. tab:: Question
 
-      Can you remember how to run a container interactively? Try that with this one.
-      Once inside, try running the Python script.
+         Can you remember how to run a container interactively? Try
+         that with this one.  Once inside, try running the Python script.
 
-    .. tab:: Solution
+      .. tab:: Solution
 
-      You can start the container interactively like so:
-      .. code-block:: bash
+         You can start the container interactively like so:
 
-        $ docker run -it alice/alpine-dummy sh
+         .. code-block:: bash
 
-      You should be able to run the python command inside the container like this:
+            docker run -it alice/alpine-dummy sh
 
-      .. code-block:: bash
+         You should be able to run the python command inside the
+         container like this:
 
-        /# python3 /home/dummy.py
+         .. code-block:: bash
 
-This `COPY` keyword can be used to place your own scripts or own data into a container
-that you want to publish or use as a record. Note that it's not necessarily a good idea
-to put your scripts inside the container if you're constantly changing or editing them.
-Then, referencing the scripts from outside the container is a good idea, as we
-did in the previous section. You also want to think carefully about size -- if you
-run `docker image ls` you'll see the size of each image all the way on the right of
-the screen. The bigger your image becomes, the harder it will be to easily download.
+            /# python3 /home/dummy.py
+
+This `COPY` keyword can be used to place your own scripts or own data
+into a container that you want to publish or use as a record. Note
+that it's not necessarily a good idea to put your scripts inside the
+container if you're constantly changing or editing them.  Then,
+referencing the scripts from outside the container is a good idea, as
+we did in the previous section. You also want to think carefully about
+size -- if you run `docker image ls` you'll see the size of each image
+all the way on the right of the screen. The bigger your image becomes,
+the harder it will be to easily download.
 
 .. callout:: Copying alternatives
 
-  Another trick for getting your own files into a container is by using the `RUN`
-  keyword and downloading the files from the internet. For example, if your code
-  is in a GitHub repository, you could include this statement in your Dockerfile
-  to download the latest version every time you build the container:
+   Another trick for getting your own files into a container is by
+   using the `RUN` keyword and downloading the files from the
+   internet. For example, if your code is in a GitHub repository, you
+   could include this statement in your Dockerfile to download the
+   latest version every time you build the container:
 
-  .. code-block:: bash
+   .. code-block:: dockerfile
 
-    RUN git clone https://github.com/alice/mycode
+      RUN git clone https://github.com/alice/mycode
 
-  Similarly, the `wget` command can be used to download any file publicly available on the internet:
+    Similarly, the `wget` command can be used to download any file
+    publicly available on the internet:
 
-  .. code-block:: bash
+    .. code-block:: dockerfile
 
-    RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.10.0/ncbi-blast-2.10.0+-x64-linux.tar.gz
+       RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.10.0/ncbi-blast-2.10.0+-x64-linux.tar.gz
 
 
 More fancy `Dockerfile` options
 _______________________________
 
-We can expand on the example above to make our container even more "automatic".
-Here are some ideas:
+We can expand on the example above to make our container even more
+"automatic".  Here are some ideas:
 
 Make the `dummy.py` script run automatically:
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
-  FROM alpine
+   FROM alpine
 
-  COPY dummy.py /home
-  RUN apk add --update python py-pip python-dev
+   COPY dummy.py /home
+   RUN apk add --update python py-pip python-dev
 
-  # Run the dummy.py script as the default command
-  CMD python3 /home/dummy.py
-  # OR
-  # CMD ["python3", "/home/dummy.py"]
-
-Build and test it:
-
-.. code-block:: bash
-
-  $ docker build -t alpine-dummy:v1 .
-  $ docker run alpine-dummy:v1
-
-Make the `dummy.py` script run automatically with arguments from the command line:
-
-.. code-block:: bash
-
-  FROM alpine
-
-  COPY dummy.py /home
-  RUN apk add --update python3 py3-pip python3-dev
-
-  # Run the dummy.py script as the default command and
-  # allow people to enter arguments for it
-  ENTRYPOINT ["python3", "/home/dummy.py"]
+   # Run the dummy.py script as the default command
+   CMD python3 /home/dummy.py
+   # OR
+   # CMD ["python3", "/home/dummy.py"]
 
 Build and test it:
 
 .. code-block:: bash
 
-  $ docker build -t alpine-dummy:v2 .
-  $ docker run alpine-dummy:v2 1 2 3 4
+   docker build -t alpine-dummy:v1 .
+   docker run alpine-dummy:v1
+
+Make the `dummy.py` script run automatically with arguments from the
+command line:
+
+.. code-block:: dockerfile
+
+   FROM alpine
+
+   COPY dummy.py /home
+   RUN apk add --update python3 py3-pip python3-dev
+
+   # Run the dummy.py script as the default command and
+   # allow people to enter arguments for it
+   ENTRYPOINT ["python3", "/home/dummy.py"]
+
+Build and test it:
+
+.. code-block:: bash
+
+   docker build -t alpine-dummy:v2 .
+   docker run alpine-dummy:v2 1 2 3 4
 
 Add the `dummy.py` script to the `PATH` so you can run it directly:
 
-.. code-block:: bash
+.. code-block:: dockerfile
 
-  FROM alpine
+   FROM alpine
 
-  COPY dummy.py /home
-  # set script permissions
-  RUN chmod +x /home/dummy.py
-  # add /home folder to the PATH
-  ENV PATH /home:$PATH
+   COPY dummy.py /home
+   # set script permissions
+   RUN chmod +x /home/dummy.py
+   # add /home folder to the PATH
+   ENV PATH /home:$PATH
 
-  RUN apk add --update python py-pip python-dev
+   RUN apk add --update python py-pip python-dev
 
 Build and test it:
 
 .. code-block:: bash
 
-  $ docker build -t alpine-dummy:v3 .
-  $ docker run alpine-dummy:v3 dummy.py 1 2 3 4
+   docker build -t alpine-dummy:v3 .
+   docker run alpine-dummy:v3 dummy.py 1 2 3 4

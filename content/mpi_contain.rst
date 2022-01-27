@@ -231,95 +231,124 @@ some information will be provided below in relation to the cluster that you've b
 
 .. exercise:: Undertake a parallel run of the `osu_latency` benchmark (taught course cluster example)
 
+   .. tabs::
+
+     .. tab:: Challenge
+
+	This version of the exercise for undertaking a parallel run of the
+	osu_latency benchmark with your Singularity container that
+	contains an MPI build is specific to this run of the course.  The
+	information provided here is specifically tailored to the HPC
+	platform that you've been given access to for this taught version
+	of the course.  Move the `osu_benchmarks.sif` Singularity image
+	onto the cluster where you're going to undertake your benchmark
+	run.  You should use `scp` or a similar utility to copy the file.
+	The platform you've been provided with access to uses `Slurm`
+	schedule jobs to run on the platform. You now need to create a
+	`Slurm` job submission script to run the benchmark.
+
+	Download this [template
+	script]({{site.url}}{{site.baseurl}}/files/osu_latency.slurm.template)
+	and edit it to suit your configuration.  Submit the modified
+	job submission script to the `Slurm` scheduler using the
+	`sbatch` command.
+
+	.. code-block:: bash
+
+	   sbatch osu_latency.slurm
+
+     .. tab:: Expected output and discussion
+
+	As you will have seen in the commands using the provided
+	template job submission script, we have called `mpirun` on the
+	host system and are passing to MPI the `singularity` executable
+	for which the parameters are the image file and any parameters
+	we want to pass to the image's run script. In this case, the
+	parameters are the path/name of the benchmark executable to
+	run.
+
+	The following shows an example of the output you should expect
+	to see. You should have latency values shown for message sizes
+	up to 4MB.
+
+	.. code-block:: text
+
+	   INFO:    Convert SIF file to sandbox...
+	   INFO:    Convert SIF file to sandbox...
+	   Rank 1 - About to run: /.../mpi/pt2pt/osu_latency
+	   Rank 0 - About to run: /.../mpi/pt2pt/osu_latency
+	   # OSU MPI Latency Test v5.6.2
+	   # Size          Latency (us)
+	   0                       1.49
+	   1                       1.50
+	   2                       1.50
+	   ...
+	   4194304               915.44
+	   INFO:    Cleaning up image...
+	   INFO:    Cleaning up image...
+
+This has demonstrated that we can successfully run a parallel MPI
+executable from within a Singularity container.  However, in this
+case, the two processes will almost certainly have run on the same
+physical node so this is not testing the performance of the
+interconnects between nodes.
+
+You could now try running a larger-scale test. You can also try
+running a benchmark that uses multiple processes, for example try
+`collective/osu_gather`.
+
+.. exercise:: Investigate performance when using a container image
+              built on a local system and run on a cluster
+
   .. tabs::
 
     .. tab:: Challenge
 
-    This version of the exercise for undertaking a parallel run of the osu_latency benchmark with your Singularity container
-    that contains an MPI build is specific to this run of the course.
-    The information provided here is specifically tailored to the HPC platform that you've been given access to for this taught
-    version of the course.
-    Move the `osu_benchmarks.sif` Singularity image onto the cluster where you're going to undertake your benchmark run.
-    You should use `scp` or a similar utility to copy the file.
-    The platform you've been provided with access to uses `Slurm` schedule jobs to run on the platform. You now need
-    to create a `Slurm` job submission script to run the benchmark.
+       To get an idea of any difference in performance between the code
+       within your Singularity image and the same code built natively
+       on the target HPC platform, try building the OSU benchmarks from
+       source, locally on the cluster. Then try running the same
+       benchmark(s) that you ran via the singularity container.  Have a
+       look at the outputs you get when running `collective/osu_gather`
+       or one of the other collective benchmarks to get an idea of
+       whether there is a performance difference and how significant it
+       is.
 
-    Download this [template script]({{site.url}}{{site.baseurl}}/files/osu_latency.slurm.template) and edit it to suit your configuration.
-    Submit the modified job submission script to the `Slurm` scheduler using the `sbatch` command.
+       Try running with enough processes that the processes are spread
+       across different physical nodes so that you're making use of the
+       cluster's network interconnects.
 
-    .. code-block:: bash
-
-      $ sbatch osu_latency.slurm
-
-    .. tab:: Expected output and discussion
-
-      As you will have seen in the commands using the provided template job submission script,
-      we have called `mpirun` on the host system and are passing to MPI the `singularity` executable for which
-      the parameters are the image file and any parameters we want to pass to the image's run script. In this case,
-      the parameters are the path/name of the benchmark executable to run.
-
-      The following shows an example of the output you should expect to see. You should have latency values shown
-      for message sizes up to 4MB.
-
-      .. code-block:: bsah
-
-        INFO:    Convert SIF file to sandbox...
-        INFO:    Convert SIF file to sandbox...
-        Rank 1 - About to run: /.../mpi/pt2pt/osu_latency
-        Rank 0 - About to run: /.../mpi/pt2pt/osu_latency
-        # OSU MPI Latency Test v5.6.2
-        # Size          Latency (us)
-        0                       1.49
-        1                       1.50
-        2                       1.50
-        ...
-        4194304               915.44
-        INFO:    Cleaning up image...
-        INFO:    Cleaning up image...
-
-This has demonstrated that we can successfully run a parallel MPI executable from within a Singularity container.
-However, in this case, the two processes will almost certainly have run on the same physical node so this is not testing
-the performance of the interconnects between nodes.
-
-You could now try running a larger-scale test. You can also try running a benchmark that uses multiple processes,
-for example try `collective/osu_gather`.
-
-.. exercise:: Investigate performance when using a container image built on a local system and run on a cluster
-
-  .. tabs::
-
-    .. tab:: Challenge
-
-      To get an idea of any difference in performance between the code within your Singularity image and
-      the same code built natively on the target HPC platform, try building the OSU benchmarks from source,
-      locally on the cluster. Then try running the same benchmark(s) that you ran via the singularity container.
-      Have a look at the outputs you get when running `collective/osu_gather` or one of the other collective benchmarks
-      to get an idea of whether there is a performance difference and how significant it is.
-
-      Try running with enough processes that the processes are spread across different physical nodes so that you're making
-      use of the cluster's network interconnects.
-
-      What do you see?
+       What do you see?
 
     .. tab:: Discussion
 
-      You may find that performance is significantly better with the version of the code built directly on the HPC platform.
-      Alternatively, performance may be similar between the two versions.
+       You may find that performance is significantly better with the
+       version of the code built directly on the HPC platform.
+       Alternatively, performance may be similar between the two
+       versions.
 
-      How big is the performance difference between the two builds of the code?
+       How big is the performance difference between the two builds of
+       the code?
 
-      What might account for any difference in performance between the two builds of the code?
+       What might account for any difference in performance between the
+       two builds of the code?
 
-      If performance is an issue for you with codes that you'd like to run via Singularity, you are advised to take a look
-      at using the `bind model <https://sylabs.io/guides/3.5/user-guide/mpi.html#bind-model>`_ for building/running MPI applications
-      through Singularity.
+       If performance is an issue for you with codes that you'd like to
+       run via Singularity, you are advised to take a look at using the
+       `bind model
+       <https://sylabs.io/guides/3.5/user-guide/mpi.html#bind-model>`_
+       for building/running MPI applications through Singularity.
 
 Singularity wrap-up
 ___________________
 
-This concludes the 4 episodes of the course covering Singularity. We hope you found this information useful and that
-it has inspired you to use Singularity to help enhance the way you build/work with research software.
+This concludes the 4 episodes of the course covering Singularity. We
+hope you found this information useful and that it has inspired you to
+use Singularity to help enhance the way you build/work with research
+software.
 
-As a new set of material, we appreciate that there are likely to be improvements that can be made to enhance
-the quality of this material. We welcome your thoughts, suggestions and feedback on improvements that could
-be made to help others making use of these lessons.
+As a new set of material, we appreciate that there are likely to be
+improvements that can be made to enhance the quality of this
+material. We welcome your thoughts, suggestions and feedback on
+improvements that could be made to help others making use of these
+lessons.
