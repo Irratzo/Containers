@@ -32,8 +32,6 @@ i.e., supercomputers.
    :widths: auto
    :delim: ;
 
-   filename`
-
    20 min ; :doc:`intro-container`
    20 min ; :doc:`intro_docker`
    20 min ; :doc:`namespc-cgroup`
