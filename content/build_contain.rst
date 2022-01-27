@@ -347,14 +347,14 @@ here assume you've bound the image output directory you created to the `/home/si
 
 .. code-block:: bash
 
-  $ singularity build /home/singularity/my_test_image.sif /home/singularity/my_test_image.def
+  singularity build /home/singularity/my_test_image.sif /home/singularity/my_test_image.def
 
 Recall from the details at the start of this section that if you are running your command from the host system command line,
 running an instance of a Docker container for each run of the command, your command will look something like this:
 
 .. code-block:: bash
 
-  $ docker run -it --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim build /home/singularity/my_test_image.sif /home/singularity/my_test_image.def
+  docker run -it --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim build /home/singularity/my_test_image.sif /home/singularity/my_test_image.def
 
 The above command requests the building of an image based on the `my_test_image.def` file with the resulting image
 saved to the `my_test_image.sif` file. Note that you will need to prefix the command with `sudo` if you're running
@@ -426,7 +426,7 @@ the Docker Singularity container and run your singularity image there.
 
       .. code-block:: bash
 
-        $ docker run -it --entrypoint=/bin/sh --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim
+        docker run -it --entrypoint=/bin/sh --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim
         / # cd /home/singularity
         /home/singularity # singularity run my_test_image.sif
 
@@ -450,7 +450,7 @@ You could, for example, do this using the command line secure copy command `scp`
 
 .. code-block:: bash
 
-  $ scp -i <full path to SSH key file> my_test_image.sif <target hostname>:
+  scp -i <full path to SSH key file> my_test_image.sif <target hostname>:
 
 
 You could provide a destination path for the file straight after the colon at the end of the above command (without a space),
@@ -484,7 +484,7 @@ Now that we've built an image, we can attempt to run it:
 
 .. code-block:: bash
 
-   $ singularity run my_test_image.sif
+   singularity run my_test_image.sif
 
 If everything worked successfully, you should see the message printed
 by Python:
@@ -520,8 +520,8 @@ by Python:
 
    .. code-block:: bash
 
-      $ apk add tzdata
-      $ cp /usr/share/zoneinfo/Europe/London /etc/localtime
+      apk add tzdata
+      cp /usr/share/zoneinfo/Europe/London /etc/localtime
 
 The `singularity run` command should now work successfully.
 

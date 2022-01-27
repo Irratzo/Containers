@@ -31,7 +31,7 @@ using the following command (“ls” is short for “list”):
 
 .. code-block:: bash
 
-  $ docker image ls
+  docker image ls
 
 If you’ve just installed Docker, you won’t see any images listed.
 
@@ -40,7 +40,7 @@ this command:
 
 .. code-block:: bash
 
-  $ docker pull hello-world
+  docker pull hello-world
 
 You should see output like this:
 
@@ -75,7 +75,7 @@ You should see output like this:
 
          .. code-block:: bash
 
-            $ docker image ls
+            docker image ls
 
 Note that the downloaded ``hello-world`` image is not in the folder
 where you are in the terminal! (Run ``ls`` by itself to check.) The
@@ -93,7 +93,7 @@ Note that it does not matter what your current working directory is.
 
 .. code-block:: bash
 
-   $ docker run hello-world
+   docker run hello-world
 
    Hello from Docker!
    This message shows that your installation appears to be working correctly.
@@ -109,7 +109,7 @@ Note that it does not matter what your current working directory is.
       which sent it to your terminal.
 
    To try something more ambitious, you can run an Ubuntu container with:
-   ``$ docker run -it ubuntu bash``
+   ``docker run -it ubuntu bash``
 
    Share images, automate workflows, and more with a free Docker ID:
    https://hub.docker.com/
@@ -121,7 +121,7 @@ To try something more ambitious, you can run an Ubuntu container with:
 
 .. code-block:: bash
 
-   $ docker run -it ubuntu bash
+   docker run -it ubuntu bash
 
 .. callout:: ``docker run``
 
@@ -182,7 +182,7 @@ What happened when you ran the Alpine Docker container?
 
 .. code-block:: bash
 
-   $ docker run alpine
+   docker run alpine
 
 If you never used the *alpine* docker image on your computer, docker
 probably printed a message that it couldn’t find the image and had to
@@ -192,7 +192,7 @@ designed for you to provide commands yourself. Try running this instead:
 
 .. code-block:: bash
 
-  $ docker run alpine cat /etc/os-release
+  docker run alpine cat /etc/os-release
 
 You should see the output of the ``cat /etc/os-release`` command, which
 prints out the version of Alpine Linux that this container is using and
@@ -214,7 +214,7 @@ a few additional bits of information.
 
          .. code-block:: bash
 
-            $ docker run alpine echo ‘Hello World’
+            docker run alpine echo ‘Hello World’
 
 So here, we see another option – we can provide commands at the end of
 the ``docker run`` command and they will execute inside the running
@@ -233,7 +233,7 @@ doesn’t include ``bash`` so we need to use ``sh``.
 
 .. code-block:: bash
 
-   $ docker run -it alpine sh
+   docker run -it alpine sh
 
 Your prompt should change significantly to look like this:
 

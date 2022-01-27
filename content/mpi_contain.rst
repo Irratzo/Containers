@@ -133,7 +133,7 @@ A quick overview of what the above definition file is doing:
 
         .. code-block:: bash
 
-          $ singularity build osu_benchmarks.sif osu_benchmarks.def
+          singularity build osu_benchmarks.sif osu_benchmarks.def
 
         *Note that if you're running the Singularity Docker container directly from the command line to undertake your build,
         you'll need to provide the full path to the `.def` file at which it appears within the container* - for example,
@@ -147,7 +147,7 @@ A quick overview of what the above definition file is doing:
 
         .. code-block:: bash
 
-          $ singularity run osu_benchmarks.sif startup/osu_hello
+          singularity run osu_benchmarks.sif startup/osu_hello
 
         You should see output similar to the following:
 
@@ -208,7 +208,7 @@ some information will be provided below in relation to the cluster that you've b
 
       .. code-block:: bash
 
-        $ mpirun -np 2 singularity run osu_benchmarks.sif pt2pt/osu_latency
+        mpirun -np 2 singularity run osu_benchmarks.sif pt2pt/osu_latency
 
     .. tab:: Expected output and discussion
 
