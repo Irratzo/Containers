@@ -141,5 +141,5 @@ Software
 
 Except where otherwise noted, the example programs and other software
 provided with this repository are made available under the `OSI
-<http://opensource.org/>`_-approved `MIT license
-<https://opensource.org/licenses/mit-license.html>`_.
+<http://opensource.org/>`_-approved
+`MIT license <https://opensource.org/licenses/mit-license.html>`__.
