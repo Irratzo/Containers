@@ -13,10 +13,10 @@ Most of today's workshop will be spent of Docker command line (CLI) utility.
    <https://labs.play-with-docker.com>`_ to try examples provided here.
 
 
-  .. callout:: Reminder of terminology: images and containers
+.. callout:: Reminder of terminology: images and containers
 
-     Recall that a container “image” is the template from which particular
-     instances of containers will be created.
+   Recall that a container “image” is the template from which particular
+   instances of containers will be created.
 
 Let’s explore our first Docker container. The Docker team provides a
 simple container image online called ``hello-world``. We’ll start with
@@ -44,7 +44,7 @@ this command:
 
 You should see output like this:
 
-.. code-block:: bash
+.. code-block:: text
 
    Using default tag: latest
    latest: Pulling from library/hello-world
@@ -65,17 +65,13 @@ You should see output like this:
    had downloaded successfully and was on your computer? Give it a try
    before checking the solution.
 
-   .. tabs::
+   .. solution::
 
-      .. tab:: Try!
+      To see if the ``hello-world`` image is now on your computer, run:
 
-      .. tab:: Solution
+      .. code-block:: bash
 
-         To see if the ``hello-world`` image is now on your computer, run:
-
-         .. code-block:: bash
-
-            docker image ls
+         docker image ls
 
 Note that the downloaded ``hello-world`` image is not in the folder
 where you are in the terminal! (Run ``ls`` by itself to check.) The
@@ -98,24 +94,24 @@ Note that it does not matter what your current working directory is.
    Hello from Docker!
    This message shows that your installation appears to be working correctly.
 
-   To generate this message, Docker took the following steps:
+To generate this message, Docker took the following steps:
 
-   1. The Docker client contacted the Docker daemon.
-   2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-      (arm64v8)
-   3. The Docker daemon created a new container from that image which runs the
-      executable that produces the output you are currently reading.
-   4. The Docker daemon streamed that output to the Docker client,
-      which sent it to your terminal.
+1. The Docker client contacted the Docker daemon.
+2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+   (arm64v8)
+3. The Docker daemon created a new container from that image which runs the
+   executable that produces the output you are currently reading.
+4. The Docker daemon streamed that output to the Docker client,
+   which sent it to your terminal.
 
-   To try something more ambitious, you can run an Ubuntu container with:
-   ``docker run -it ubuntu bash``
+To try something more ambitious, you can run an Ubuntu container with:
+``docker run -it ubuntu bash``
 
-   Share images, automate workflows, and more with a free Docker ID:
-   https://hub.docker.com/
+Share images, automate workflows, and more with a free Docker ID:
+https://hub.docker.com/
 
-   For more examples and ideas, visit:
-   https://docs.docker.com/get-started/
+For more examples and ideas, visit:
+https://docs.docker.com/get-started/
 
 To try something more ambitious, you can run an Ubuntu container with:
 
@@ -203,18 +199,14 @@ a few additional bits of information.
    Can you run the container and make it print a “hello world” message?
    Give it a try before checking the solution.
 
-   .. tabs::
+   .. solution::
 
-      .. tab:: Try!
+      Use the same command as above, but with the ``echo`` command to
+      print a message.
 
-      .. tab:: Solution
+      .. code-block:: bash
 
-         Use the same command as above, but with the ``echo`` command to
-         print a message.
-
-         .. code-block:: bash
-
-            docker run alpine echo ‘Hello World’
+         docker run alpine echo ‘Hello World’
 
 So here, we see another option – we can provide commands at the end of
 the ``docker run`` command and they will execute inside the running

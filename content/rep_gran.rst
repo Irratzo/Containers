@@ -126,7 +126,7 @@ extremes.
          - Potentially easier to maintain (though could be opposite if
            working with large, distributed group)
 
-       .. tab:: Disadvantages
+      .. tab:: Disadvantages
 
          - Could get very large in size, making it more difficult to
            distribute
@@ -184,7 +184,7 @@ yourself.
    to search around for useful information or, better still, contact
    your friendly neighbourhood to discuss what you want to do.
 
-**`Docker Compose <https://docs.docker.com/compose/>`_** provides a
+`Docker Compose <https://docs.docker.com/compose/>`_ provides a
 way of constructing a unified workflow (or service) made up of
 multiple individual Docker containers. In addition to the individual
 Dockerfiles for each container, you provide a higher-level
@@ -195,7 +195,7 @@ can use single commands to start and stop the orchestrated set of
 containers.
 
 
-**`Kubernetes <https://kubernetes.io>`_** is an open source framework
+`Kubernetes <https://kubernetes.io>`_ is an open source framework
 that provides similar functionality to Docker Compose. Its particular
 strengths are that is platform independent and can be used with many
 different container technologies and that it is widely available on
@@ -203,7 +203,7 @@ cloud platforms so once you have implemented your workflow in
 Kubernetes it can be deployed in different locations as required. It
 has become the de facto standard for container orchestration.
 
-**`Docker Swarm** <https://docs.docker.com/engine/swarm/>`_** provides
+`Docker Swarm <https://docs.docker.com/engine/swarm/>`_ provides
 a way to scale out to multiple copies of similar containers. This
 potentially allows you to parallelise and scale out your research
 workflow so that you can run multiple copies and increase

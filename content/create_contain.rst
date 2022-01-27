@@ -30,7 +30,7 @@ installed -- for example, `python3`.
 
 Output
 
-.. code-block:: bash
+.. code-block:: text
 
    sh: python3: not found
 
@@ -44,7 +44,7 @@ can use to install Python 3.
 
 We can test our installation by running a Python command:
 
-.. code-block::
+.. code-block:: docker
 
    /# python3 --version
 
@@ -58,21 +58,17 @@ package installer:
 
 .. exercise:: Exercise: Searching for Help
 
-   .. tabs::
+   Can you find instructions for installing R on Alpine Linux? Do
+   they work?
 
-      .. tab:: Question
+   .. solution::
 
-         Can you find instructions for installing R on Alpine Linux? Do
-         they work?
+      A quick search should hopefully show that the way to install
+      R on Alpine Linux is:
 
-      .. tab:: Solution
+      .. code-block:: bash
 
-         A quick search should hopefully show that the way to install
-         R on Alpine Linux is:
-
-         .. code-block:: bash
-
-            /# apk add R
+         /# apk add R
 
 Once we exit, these changes are not saved to a new container by
 default. There is a command that will "snapshot" our changes, but
@@ -113,24 +109,20 @@ Let's break this file down:
 
 .. exercise:: Take a Guess
 
-   .. tabs::
+   Do you have any ideas about what we should use to fill in the
+   sample Dockerfile to replicate the installation we did above?
 
-      .. tab:: Question
+   .. solution::
 
-         Do you have any ideas about what we should use to fill in the
-         sample Dockerfile to replicate the installation we did above?
+      Based on our experience above, edit the `Dockerfile` (in your
+      text editor of choice) to look like this:
 
-      .. tab:: Solution
+      .. code-block:: dockerfile
 
-         Based on our experience above, edit the `Dockerfile` (in your
-         text editor of choice) to look like this:
-
-         .. code-block:: dockerfile
-
-	    FROM alpine
-	    RUN apk add --update python3 py3-pip python3-dev
-	    RUN pip install cython
-	    CMD cat /proc/version && python3 --version
+         FROM alpine
+         RUN apk add --update python3 py3-pip python3-dev
+         RUN pip install cython
+         CMD cat /proc/version && python3 --version
 
 
 The recipe provided by this Dockerfile will use Alpine Linux as the
@@ -171,44 +163,40 @@ image `alpine-python`, I would use this command:
 
 .. exercise:: Review!
 
-   .. tabs::
+   1. Think back to earlier. What command can you run to check if
+      your image was created successfully? (Hint: what command shows
+      the images on your computer?)
 
-      .. tab:: Questions
+   2. We didn't specify a tag for our image name. What did
+      Docker automatically use?
 
-         1. Think back to earlier. What command can you run to check if
-            your image was created successfully? (Hint: what command shows
-            the images on your computer?)
+   3. What command will run the container you've created? What
+      should happen by default if you run the container? Can you make
+      it do something different, like print "hello world"?
 
-	 2. We didn't specify a tag for our image name. What did
-            Docker automatically use?
+   .. solution::
 
-         3. What command will run the container you've created? What
-            should happen by default if you run the container? Can you make
-            it do something different, like print "hello world"?
+      1. To see your new image, run `docker image ls`. You should
+	 see the name of your new image under the "REPOSITORY" heading.
 
-      .. tab:: Solution
+      2. In the output of `docker image ls`, you can see that
+	 Docker has automatically used the `latest` tag for our new
+	 image.
 
-         1. To see your new image, run `docker image ls`. You should
-            see the name of your new image under the "REPOSITORY" heading.
+      3. We want to use `docker run` to run the container.
 
-         2. In the output of `docker image ls`, you can see that
-            Docker has automatically used the `latest` tag for our new
-            image.
+	 .. code-block:: bash
 
-         3. We want to use `docker run` to run the container.
+	    docker run alice/alpine-python
 
-            .. code-block:: bash
+	 should run the container and print out our default
+	 message, including the version of Linux and Python.
 
-               docker run alice/alpine-python
+	 .. code-block:: bash
 
-            should run the container and print out our default
-            message, including the version of Linux and Python.
+	   docker run alice/alpine-python echo "Hello World"
 
-            .. code-block:: bash
-
-              docker run alice/alpine-python echo "Hello World"
-
-           will run the container and print out "Hello world" instead.
+         will run the container and print out "Hello world" instead.
 
 
 While it may not look like you have achieved much, you have already

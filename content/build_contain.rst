@@ -234,37 +234,33 @@ containers.
 
 .. exercise:: Why look at Singularity Definition Files?
 
-  .. tabs::
+   Why do you think we might be looking at the _definition file
+   approach here rather than the *sandbox approach*?
 
-     .. tab:: Challenge
- 
-        Why do you think we might be looking at the _definition file
-        approach here rather than the *sandbox approach*?
+   .. solution::
 
-     .. tab:: Discussion
+      The sandbox approach is great for prototyping and testing out an
+      image configuration but it doesn't provide the best support for
+      our ultimate goal of _reproducibility_. If you spend time
+      sitting at your terminal in front of a shell typing different
+      commands to add configuration, maybe you realise you made a
+      mistake so you undo one piece of configuration and change
+      it. This goes on until you have your completed configuration but
+      there's no explicit record of exactly what you did to create
+      that configuration.
 
-        The sandbox approach is great for prototyping and testing out an
-        image configuration but it doesn't provide the best support for
-	our ultimate goal of _reproducibility_. If you spend time
-	sitting at your terminal in front of a shell typing different
-	commands to add configuration, maybe you realise you made a
-	mistake so you undo one piece of configuration and change
-	it. This goes on until you have your completed configuration but
-	there's no explicit record of exactly what you did to create
-	that configuration.
+      Say your container image file gets deleted by accident, or
+      someone else wants to create an equivalent image to test
+      something.  How will they do this and know for sure that they
+      have the same configuration that you had?  With a definition
+      file, the configuration steps are explicitly defined and can be
+      easily stored, for example within a version control system, and
+      re-run.
 
-	Say your container image file gets deleted by accident, or
-	someone else wants to create an equivalent image to test
-	something.  How will they do this and know for sure that they
-	have the same configuration that you had?  With a definition
-	file, the configuration steps are explicitly defined and can be
-	easily stored, for example within a version control system, and
-	re-run.
-
-	Definition files are small text files while container files may
-	be very large, multi-gigabyte files that are difficult and time
-	consuming to move around. This makes definition files ideal for
-	storing in a version control system along with their revisions.
+      Definition files are small text files while container files may
+      be very large, multi-gigabyte files that are difficult and time
+      consuming to move around. This makes definition files ideal for
+      storing in a version control system along with their revisions.
 
 Creating a Singularity Definition File
 ++++++++++++++++++++++++++++++++++++++
@@ -361,7 +357,7 @@ saved to the `my_test_image.sif` file. Note that you will need to prefix the com
 a locally installed version of Singularity and not running via Docker because it is necessary to have administrative
 privileges to build the image. You should see output similar to the following:
 
-.. code-block:: bash
+.. code-block:: text
 
   INFO:    Starting build...
   Getting image source signatures
@@ -416,26 +412,23 @@ the Docker Singularity container and run your singularity image there.
 
 .. exercise:: Run the Singularity image you've created
 
-  .. tabs::
+   Can you run the Singularity image you've just built from a shell
+   within the Docker Singularity container?
 
-    .. tab:: Challenge
-
-      Can you run the Singularity image you've just built from a shell within the Docker Singularity container?
-
-    .. tab:: Solution
+   .. solution:: 
 
       .. code-block:: bash
 
-        docker run -it --entrypoint=/bin/sh --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim
-        / # cd /home/singularity
-        /home/singularity # singularity run my_test_image.sif
+         docker run -it --entrypoint=/bin/sh --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim
+         / # cd /home/singularity
+         /home/singularity # singularity run my_test_image.sif
 
       Output
 
-      .. code-block:: bash
+      .. code-block:: text
 
-        Hello World! Hello from our custom Singularity image!
-        /home/singularity #
+         Hello World! Hello from our custom Singularity image!
+         /home/singularity #
 
 .. callout:: Using `singularity run` from within the Docker container
 

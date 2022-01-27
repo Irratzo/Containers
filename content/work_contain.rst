@@ -82,23 +82,21 @@ from Singularity Hub.
 
 .. exercise:: Basic exercise: Clearing specific image types from the cache
 
-   .. tabs:: Question
+   What command would you use to remove only images of type
+   **shub** from your local Singularity image cache?  How could you
+   test this safely to ensure your command is going to do the right
+   thing?
 
-      What command would you use to remove only images of type
-      **shub** from your local Singularity image cache?  How could you
-      test this safely to ensure your command is going to do the right
-      thing?
+   .. solution::
 
-      .. tab:: Solution
+      .. code-block:: bash
 
-         .. code-block:: bash
+	singularity cache clean --type=shub
+	singularity cache clean -n --type=shub
 
-           singularity cache clean --type=shub
-           singularity cache clean -n --type=shub
+      .. code-block:: bash
 
-         .. code-block:: bash
-
-            Removing /<cache_dir>/.singularity/cache/shub
+	 Removing /<cache_dir>/.singularity/cache/shub
 
 
 Working with containers
@@ -138,24 +136,20 @@ terminated.
 .. exercise:: Basic exercise: Running a different command within the
               "hello-world" container
 
-   .. tabs::
+   Can you run a container based on the `hello-world.sif` image that
+   **prints the current date and time**?
 
-      .. tab:: Question
+   .. solution:: 
 
-         Can you run a container based on the `hello-world.sif` image that
-         **prints the current date and time**?
+      .. code-block:: bash
 
-      .. tab:: Solution
+	 singularity exec hello-world.sif /bin/date
 
-         .. code-block:: bash
+      Output
 
-            singularity exec hello-world.sif /bin/date
+      .. code-block:: bash
 
-         Output
-
-         .. code-block:: bash
-
-            Fri Jun 26 15:17:44 BST 2020
+	 Fri Jun 26 15:17:44 BST 2020
 
 Running a shell within a container
 ++++++++++++++++++++++++++++++++++
@@ -264,51 +258,47 @@ on the host Linux system and in a Singularity container:
 
 .. exercise:: Questions and exercises: Files in Singularity containers
 
-   .. tabs::
+   **Q1:** What do you notice about the ownership of files in a
+   container started from the hello-world image?  (e.g. take a look
+   at the ownership of files in the root directory (`/`))
 
-      .. tab:: Questions
+   **Exercise 1:** In this container, try editing (for example
+   using the editor `vi` which should be avaiable in the container)
+   the `/rawr.sh` file. What do you notice?
 
-         Q1:** What do you notice about the ownership of files in a
-         container started from the hello-world image?  (e.g. take a look
-         at the ownership of files in the root directory (`/`))
+   If you're not familiar with `vi` there are many quick
+   reference pages online showing
 
-         **Exercise 1:** In this container, try editing (for example
-         using the editor `vi` which should be avaiable in the container)
-         the `/rawr.sh` file. What do you notice?
+   the main commands for using the editor, for example `this one
+   <http://web.mit.edu/merolish/Public/vi-ref.pdf>`_
 
-         If you're not familiar with `vi` there are many quick
-         reference pages online showing
+   **Exercise 2:** In your home directory within the container
+   shell, try and create a simple text file. Is it possible to
+   do this? If so, why? If not, why not?! If you can
+   successfully create a file, what happens to it when you exit
+   the shell and the container shuts down?
 
-         the main commands for using the editor, for example `this one
-         <http://web.mit.edu/merolish/Public/vi-ref.pdf>`_
+   .. solution:: 
 
-         **Exercise 2:** In your home directory within the container
-         shell, try and create a simple text file. Is it possible to
-         do this? If so, why? If not, why not?! If you can
-         successfully create a file, what happens to it when you exit
-         the shell and the container shuts down?
+      **A1:** Use the `ls -l` command to see a detailed file
+      listing including file ownership and permission details.  You may
+      see that all the files are owned by you, alternatively, most files
+      in the root (`/`) directory may be owned by the `root` user. If
+      the files are owned by you, this looks good - you should be ready
+      to edit something in the exercise that follows...otherwise, if the
+      files are owned by root, maybe not...
 
-      .. tab:: Answers
+      **Exercise 1:** Unfortunately, it's not so easy, depending on how
+      you tried to edit `/rawr.sh` you probably saw an error similar to
+      the following: `Can't open file for writing` or `Read-only file
+      system`
 
-         **A1:** Use the `ls -l` command to see a detailed file
-         listing including file ownership and permission details.  You may
-         see that all the files are owned by you, alternatively, most files
-         in the root (`/`) directory may be owned by the `root` user. If
-         the files are owned by you, this looks good - you should be ready
-         to edit something in the exercise that follows...otherwise, if the
-         files are owned by root, maybe not...
-
-         **A Ex1:** Unfortunately, it's not so easy, depending on how
-         you tried to edit `/rawr.sh` you probably saw an error similar to
-         the following: `Can't open file for writing` or `Read-only file
-         system`
-
-         **A Ex2:** Within your home directory, you **should** be able
-	 to successfully create a file. Since you're seeing your home
-	 directory on the host system which has been bound into the
-	 container, when you exit and the container shuts down, the file
-	 that you created within the container should still be present when
-	 you look at your home directory on the host system.
+      **Exercise 2:** Within your home directory, you **should** be able
+      to successfully create a file. Since you're seeing your home
+      directory on the host system which has been bound into the
+      container, when you exit and the container shuts down, the file
+      that you created within the container should still be present when
+      you look at your home directory on the host system.
 
 Using Docker images with Singularity
 ____________________________________
@@ -368,39 +358,35 @@ singularity image.
 
 .. exercise:: Running the Python 3.8.6 image that we just pulled from Docker Hub
 
-   .. tabs::
+   - **E1**: Try running the Python 3.8.6 image. What happens?
+   - **E2**: Try running some simple Python statements...
 
-      .. tab:: Exercise
+   .. solution:: 
 
-         **E1**: Try running the Python 3.8.6 image. What happens?
-         **E2**: Try running some simple Python statements...
+      Running the Python 3.8.6 image
 
-      .. tab:: Solutions
+      .. code-block:: bash
 
-         Running the Python 3.8.6 image
+	 singularity run python-3.8.6.sif
 
-         .. code-block:: bash
+      This should put you straight into a Python interactive shell
+      within the running container:
 
-            singularity run python-3.8.6.sif
+      .. code-block:: bash
 
-         This should put you straight into a Python interactive shell
-         within the running container:
+	 Python 3.8.6 (default, Nov 25 2020, 02:47:44)
+	 [GCC 8.3.0] on linux
+	 Type "help", "copyright", "credits" or "license" for more information.
+	 >>>
 
-         .. code-block:: bash
+      Now try running some simple Python statements:
 
-            Python 3.8.6 (default, Nov 25 2020, 02:47:44)
-            [GCC 8.3.0] on linux
-            Type "help", "copyright", "credits" or "license" for more information.
-            >>>
+      .. code-block:: bash
 
-         Now try running some simple Python statements:
-
-         .. code-block:: bash
-
-            >>> import math
-            >>> math.pi
-            3.141592653589793
-            >>>
+	 >>> import math
+	 >>> math.pi
+	 3.141592653589793
+	 >>>
 
 In addition to running a container and having it run the default run
 script, you could also start a container running a shell in case you
@@ -409,50 +395,46 @@ covered in the following exercise:
 
 .. exercise:: Open a shell within a Python container
 
-   .. tabs::
+   Try to run a shell within a singularity container based on
+   the `python-3.8.6.sif` image.  That is, run a container that
+   opens a shell rather than the default Python interactive console
+   as we saw above. Can you find more than one way to achieve this?
 
-      .. tab:: Exercise
+   Within the shell, try starting the Python interactive console
+   and running some Python commands.
 
-         Try to run a shell within a singularity container based on
-         the `python-3.8.6.sif` image.  That is, run a container that
-         opens a shell rather than the default Python interactive console
-         as we saw above. Can you find more than one way to achieve this?
+   .. solution:: 
 
-         Within the shell, try starting the Python interactive console
-         and running some Python commands.
+      Recall from the earlier material that we can use the
+      `singularity shell` command to open a shell within a container.
+      To open a regular shell within a container based on the
+      `python-3.8.6.sif` image, we can therefore simply run:
 
-      .. tab:: Solution
+      .. code-block::
 
-         Recall from the earlier material that we can use the
-         `singularity shell` command to open a shell within a container.
-         To open a regular shell within a container based on the
-         `python-3.8.6.sif` image, we can therefore simply run:
+	 singularity shell python-3.8.6.sif
 
-         .. code-block::
+	 Singularity> echo $SHELL
+	 /bin/bash
 
-            singularity shell python-3.8.6.sif
+	 Singularity> cat /etc/issue
+	 Debian GNU/Linux 10 \n \l
 
-            Singularity> echo $SHELL
-            /bin/bash
+	 Singularity> exit
 
-            Singularity> cat /etc/issue
-            Debian GNU/Linux 10 \n \l
+      It is also possible to use the `singularity exec` command to
+      run an executable within a container.  We could, therefore, use
+      the `exec` command to run `/bin/bash`:
 
-            Singularity> exit
+      .. code-block:: bash
 
-         It is also possible to use the `singularity exec` command to
-         run an executable within a container.  We could, therefore, use
-         the `exec` command to run `/bin/bash`:
+	 singularity exec python-3.8.6.sif /bin/bash
 
-         .. code-block:: bash
+	 Singularity> echo $SHELL
+	 /bin/bash
 
-            singularity exec python-3.8.6.sif /bin/bash
-
-            Singularity> echo $SHELL
-            /bin/bash
-
-         You can run the Python console from your container shell
-         simply by running the `python` command.
+      You can run the Python console from your container shell
+      simply by running the `python` command.
 
 This concludes the second episode and Part I of the Singularity
 material. Part II contains a further two episodes where we'll look

@@ -32,7 +32,7 @@ If we try running the container and Python script, what happens?
 
 Output
 
-.. code-block:: bash
+.. code-block:: text
 
    python3: can’t open file ‘dummy.py’: [Errno 2] No such file or directory
 
@@ -93,46 +93,42 @@ stops.
 
 .. exercise:: Checking the options, Interactive jobs
 
-   .. tabs::
+   1. Can you go through each piece of the Docker command above
+      the explain what it does? How would you characterize the
+      key components of a Docker command?
 
-      .. tab:: Questions
+   2. Try using the directory mount option but run the container
+      interactively. Can you find the folder that's connected to
+      your computer? What's inside?
 
-         1. Can you go through each piece of the Docker command above
-            the explain what it does? How would you characterize the
-            key components of a Docker command?
+   .. solution::
 
-         2. Try using the directory mount option but run the container
-            interactively. Can you find the folder that's connected to
-            your computer? What's inside?
+      1. Here's a breakdown of each piece of the command above
 
-      .. tab:: Solutions
+	 - `docker run`: use Docker to run a container
+	 - `-v $PWD:/temp`: connect my current working directory
+	   (`$PWD`) as a folder inside the container called `/temp`
+	 - `alice/alpine-python`: name of the container to run
+	 - `python3 /temp/dummy.py`: what commands to run in the container
 
-         1. Here's a breakdown of each piece of the command above
+	 More generally, every Docker command will have the form:
+	 `docker [action] [docker options] [docker image] [command
+	 to run inside]`
 
-            - `docker run`: use Docker to run a container
-            - `-v $PWD:/temp`: connect my current working directory
-              (`$PWD`) as a folder inside the container called `/temp`
-            - `alice/alpine-python`: name of the container to run
-            - `python3 /temp/dummy.py`: what commands to run in the container
+      2. The docker command to run the container interactively is:
 
-            More generally, every Docker command will have the form:
-            `docker [action] [docker options] [docker image] [command
-            to run inside]`
+	 .. code-block:: bash
 
-         2. The docker command to run the container interactively is:
+	    docker run -v $PWD:/temp -it alice/alpine-python sh
 
-            .. code-block:: bash
+	 Once inside, you should be able to navigate to the `/temp`
+	 folder and see that's contents are the same as the files on your
+	 computer:
 
-               docker run -v $PWD:/temp -it alice/alpine-python sh
+	 .. code-block:: bash
 
-            Once inside, you should be able to navigate to the `/temp`
-            folder and see that's contents are the same as the files on your
-            computer:
-
-            .. code-block:: bash
-
-               /# cd /temp
-               /# ls
+	    /# cd /temp
+	    /# ls
 
 Mounting a folder can be very useful when you want to run the software
 inside your container on many different input files. In other
@@ -184,27 +180,23 @@ before, but give it a different name:
 
 .. exercise:: Did it work?
 
-   .. tabs::
+   Can you remember how to run a container interactively? Try
+   that with this one.  Once inside, try running the Python script.
 
-      .. tab:: Question
+   .. solution:: 
 
-         Can you remember how to run a container interactively? Try
-         that with this one.  Once inside, try running the Python script.
+      You can start the container interactively like so:
 
-      .. tab:: Solution
+      .. code-block:: bash
 
-         You can start the container interactively like so:
+         docker run -it alice/alpine-dummy sh
 
-         .. code-block:: bash
+      You should be able to run the python command inside the
+      container like this:
 
-            docker run -it alice/alpine-dummy sh
+      .. code-block:: bash
 
-         You should be able to run the python command inside the
-         container like this:
-
-         .. code-block:: bash
-
-            /# python3 /home/dummy.py
+         /# python3 /home/dummy.py
 
 This `COPY` keyword can be used to place your own scripts or own data
 into a container that you want to publish or use as a record. Note
@@ -228,12 +220,12 @@ the harder it will be to easily download.
 
       RUN git clone https://github.com/alice/mycode
 
-    Similarly, the `wget` command can be used to download any file
-    publicly available on the internet:
+   Similarly, the `wget` command can be used to download any file
+   publicly available on the internet:
 
-    .. code-block:: dockerfile
+   .. code-block:: dockerfile
 
-       RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.10.0/ncbi-blast-2.10.0+-x64-linux.tar.gz
+      RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.10.0/ncbi-blast-2.10.0+-x64-linux.tar.gz
 
 
 More fancy `Dockerfile` options

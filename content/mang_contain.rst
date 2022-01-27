@@ -17,7 +17,7 @@ laptop contained the following image.
 
    docker image ls
 
-.. code-block:: bash
+.. code-block:: text
 
    REPOSITORY       TAG         IMAGE ID       CREATED          SIZE
    hello-world      latest      fce289e99eb9   15 months ago    1.84kB
@@ -38,7 +38,7 @@ or use the image name, like so:
 
 However, you may see this output:
 
-.. code-block:: bash
+.. code-block:: text
 
    Error response from daemon: conflict: unable to remove repository
    reference "hello-world" (must force) - container e7d3b76b00f4 is
@@ -50,7 +50,7 @@ image, we need to be able to see what containers are currently
 running, or have been run recently, and how to remove these.
 
 What containers are running?
-____________________________
+----------------------------
 
 Working with containers, we are going to shift to a new docker
 command: `docker container`.  Similar to `docker image`, we can list
@@ -60,7 +60,7 @@ running containers by typing:
 
    docker container ls
 
-.. code-block:: bash
+.. code-block:: text
 
    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
@@ -85,7 +85,7 @@ completed recently, which is to add the `--all`/`-a` flag to the
 
    docker container ls --all
 
-.. code-block:: bash
+.. code-block:: text
 
    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
    9c698655416a        hello-world         "/hello"            2 minutes ago       Exited (0) 2 minutes ago                       zen_dubinsky
@@ -113,7 +113,7 @@ will repeat the `CONTAINER ID` back to you, if successful.
 
 output:
 
-.. code-block:: bash
+.. code-block:: text
 
    9c698655416a
 
@@ -130,7 +130,7 @@ full `CONTAINER ID` back to you.
 
 Output:
 
-.. code-block:: bash
+.. code-block:: text
 
    WARNING! This will remove all stopped containers.
    Are you sure you want to continue? [y/N] y
@@ -151,7 +151,7 @@ we can try again to delete the `hello-world` **image**.
 
 output
 
-.. code-block:: bash
+.. code-block:: text
 
    Untagged: hello-world:latest
    Untagged: hello-world@sha256:5f179596a7335398b805f036f7e8561b6f0e32cd30a32f5e19d17a3cda6cc33d

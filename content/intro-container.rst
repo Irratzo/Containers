@@ -52,10 +52,10 @@ level.
 .. image:: img/conts_vms.jpeg
 
 Cons and Pros of Containers
-___________________________
+---------------------------
 
 Pros
-++++
+^^^^
 
 - Containers are lightweight software packages that contain all the
   dependencies.
@@ -63,7 +63,7 @@ Pros
   iteratively modify them.
 
 Cons
-++++
+^^^^
 
 - Since containers share the same underlying hardware system, it is
   possible that an exploit in one container could break out of the
@@ -73,7 +73,7 @@ Cons and Pros of VMs
 --------------------
 
 Pros
-++++
+^^^^
 
 - VMs are immune to any exploits or interference from other VMs on a
   shared host due run in isolation as because of a fully standalone
@@ -84,7 +84,7 @@ Pros
   computer.
 
 Cons
-++++
+^^^^
 
 - It is time consuming to build and regenerate VMs, because they
   encompass a full stack system. Any modifications to a VM snapshot
