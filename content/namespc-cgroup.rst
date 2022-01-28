@@ -60,7 +60,23 @@ has its own unique properties:
 - A `UNIX Time‑Sharing (UTS) namespace <https://man7.org/linux/man-pages/man7/uts_namespaces.7.html>`_
   allows a single system to appear to have different host and domain names to different processes.
 
+An Example of Parent and Child PID Namespaces
++++++++++++++++++++++++++++++++++++++++++++++
 
+In the diagram below, there are three PID namespaces – a parent namespace and
+two child namespaces. Within the parent namespace, there are four processes, 
+named PID1 through PID4. These are normal processes which can all see each
+other and share resources.
+
+The child processes with PID2 and PID3 in the parent namespace also belong to
+their own PID namespaces in which their PID is 1. From within a child namespace,
+the PID1 process cannot see anything outside. For example, PID1 in both child
+namespaces cannot see PID4 in the parent namespace.
+
+This provides isolation between (in this case) processes within different namespaces.
+
+.. image:: https://www.nginx.com/wp-content/uploads/2021/07/Namespaces-cgroups_PID-namespaces.svg
+    :alt: Parent and Child
 
 
 `What Are Namespaces and cgroups, and How Do They Work? <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
