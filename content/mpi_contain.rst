@@ -1,3 +1,5 @@
+.. _mpi_contain:
+
 Running MPI parallel jobs using Singularity containers
 ======================================================
 

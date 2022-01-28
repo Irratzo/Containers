@@ -1,3 +1,5 @@
+.. _mang_contain:
+
 Cleaning Up Containers
 ======================
 

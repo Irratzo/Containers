@@ -1,3 +1,5 @@
+.. _compx_contain:
+
 Creating More Complex Container Images
 ======================================
 
@@ -183,7 +185,7 @@ before, but give it a different name:
    Can you remember how to run a container interactively? Try
    that with this one.  Once inside, try running the Python script.
 
-   .. solution:: 
+   .. solution::
 
       You can start the container interactively like so:
 

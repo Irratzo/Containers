@@ -1,3 +1,5 @@
+.. _singlrty_start:
+
 Singularity: Getting started
 ============================
 

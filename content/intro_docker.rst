@@ -1,3 +1,5 @@
+.. _intro_docker:
+
 Introduction to Docker
 ======================
 

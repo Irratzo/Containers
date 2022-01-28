@@ -1,3 +1,5 @@
+.. _build_contain:
+
 Building Singularity images
 ===========================
 
@@ -415,7 +417,7 @@ the Docker Singularity container and run your singularity image there.
    Can you run the Singularity image you've just built from a shell
    within the Docker Singularity container?
 
-   .. solution:: 
+   .. solution::
 
       .. code-block:: bash
 

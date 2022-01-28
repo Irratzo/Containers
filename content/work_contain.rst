@@ -1,3 +1,4 @@
+.. _work_contain:
 
 Working with Singularity containers
 ===================================
@@ -139,7 +140,7 @@ terminated.
    Can you run a container based on the `hello-world.sif` image that
    **prints the current date and time**?
 
-   .. solution:: 
+   .. solution::
 
       .. code-block:: bash
 
@@ -278,7 +279,7 @@ on the host Linux system and in a Singularity container:
    successfully create a file, what happens to it when you exit
    the shell and the container shuts down?
 
-   .. solution:: 
+   .. solution::
 
       **A1:** Use the `ls -l` command to see a detailed file
       listing including file ownership and permission details.  You may
@@ -361,7 +362,7 @@ singularity image.
    - **E1**: Try running the Python 3.8.6 image. What happens?
    - **E2**: Try running some simple Python statements...
 
-   .. solution:: 
+   .. solution::
 
       Running the Python 3.8.6 image
 
@@ -403,7 +404,7 @@ covered in the following exercise:
    Within the shell, try starting the Python interactive console
    and running some Python commands.
 
-   .. solution:: 
+   .. solution::
 
       Recall from the earlier material that we can use the
       `singularity shell` command to open a shell within a container.

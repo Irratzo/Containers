@@ -1,3 +1,5 @@
+.. _rep_gran:
+
 Containers in research workflows
 ================================
 
