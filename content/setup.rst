@@ -44,7 +44,7 @@ output below.
   Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
   Warning: Permanently added 'cn0381' (ECDSA) to the list of known hosts.
 
-Please enter `yes` to the quesiton and igonre it as it is a self-assigned useless check
+Please enter ```yes``` to the quesiton and igonre it as it is a self-assigned useless check
 that doen't understand what is the purpose of our login. Now, we are able to run
 our jobs interactively.
 
@@ -88,7 +88,7 @@ In your local machin (PC/laptop), open a terminal and use this command to tunnel
 
 The first port number is for your local machine and the second port number is what
 you specified above running a Jupyter Notebook. Open a brower, and enter `http://localhost:8888`.
-You should see a prompt to enter the passowrd or the token. The token in this run is `80d695595aa333c6d97dc6f868f96b36f4812622a5008090`.
+You should see a prompt to enter the passowrd or the token. The token in this run is the number after the ```token```.
 Entering the token, you will be shown the tree of structure of home folder.
 
 To use TensorFlow or Horovod in this course, we can simply load them through module system.
