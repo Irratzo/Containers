@@ -17,7 +17,7 @@ our examples. You can book a node for 1 hour using this command
 
 Once the allocation is granted you will receive a message similar to
 
-.. code-block :: bash
+.. code-block :: text
 
   salloc: Pending job allocation 24122556
   salloc: job 24122556 queued and waiting for resources
@@ -37,12 +37,12 @@ our job using the command
 You might get a warning regarding the authenticity of the host, similar to the
 output below.
 
-.. code-block :: bash
+.. code-block :: text
 
-The authenticity of host 'cn0381 (<no hostip for proxy command>)' can't be established.
-ECDSA key fingerprint is SHA256:0BOlvbjVPLytjYEium04uNTCACCQN/Rr7NMJhje30aw.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added 'cn0381' (ECDSA) to the list of known hosts.
+  The authenticity of host 'cn0381 (<no hostip for proxy command>)' can't be established.
+  ECDSA key fingerprint is SHA256:0BOlvbjVPLytjYEium04uNTCACCQN/Rr7NMJhje30aw.
+  Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+  Warning: Permanently added 'cn0381' (ECDSA) to the list of known hosts.
 
 Please enter `yes` to the quesiton and igonre it as it is a self-assigned useless check
 that doen't understand what is the purpose of our login. Now, we are able to run
@@ -50,9 +50,9 @@ our jobs interactively.
 
 To run Jupyter Notebooks, we need to load Anaconda module.
 
-.. code block ::
+.. code block :: bash
 
-module load Anaconda3/2020.11
+  module load Anaconda3/2020.11
 
 Afterwards, you can run a Jupyter kernel by specifying the port number and ip address.
 The ip address here is the name of compute node, in the example given above is `cn0381`.
@@ -63,16 +63,16 @@ The ip address here is the name of compute node, in the example given above is `
 
 The result should look like
 
-.. code-block :: bash
+.. code-block :: text
 
-[I 13:21:26.105 NotebookApp] JupyterLab extension loaded from /cvmfs/sling.si/modules/el7/software/Anaconda3/2020.11/lib/python3.8/site-packages/jupyterlab
-[I 13:21:26.105 NotebookApp] JupyterLab application directory is /cvmfs/sling.si/modules/el7/software/Anaconda3/2020.11/share/jupyter/lab
-[I 13:21:26.107 NotebookApp] Serving notebooks from local directory: /ceph/hpc/home/euhosseine
-[I 13:21:26.107 NotebookApp] Jupyter Notebook 6.1.4 is running at:
-[I 13:21:26.107 NotebookApp] http://cn0381:8888/?token=80d695595aa333c6d97dc6f868f96b36f4812622a5008090
-[I 13:21:26.107 NotebookApp]  or http://127.0.0.1:8888/?token=80d695595aa333c6d97dc6f868f96b36f4812622a5008090
-[I 13:21:26.107 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-[C 13:21:26.122 NotebookApp]
+  [I 13:21:26.105 NotebookApp] JupyterLab extension loaded from /cvmfs/sling.si/modules/el7/software/Anaconda3/2020.11/lib/python3.8/site-packages/jupyterlab
+  [I 13:21:26.105 NotebookApp] JupyterLab application directory is /cvmfs/sling.si/modules/el7/software/Anaconda3/2020.11/share/jupyter/lab
+  [I 13:21:26.107 NotebookApp] Serving notebooks from local directory: /ceph/hpc/home/euhosseine
+  [I 13:21:26.107 NotebookApp] Jupyter Notebook 6.1.4 is running at:
+  [I 13:21:26.107 NotebookApp] http://cn0381:8888/?token=80d695595aa333c6d97dc6f868f96b36f4812622a5008090
+  [I 13:21:26.107 NotebookApp]  or http://127.0.0.1:8888/?token=80d695595aa333c6d97dc6f868f96b36f4812622a5008090
+  [I 13:21:26.107 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+  [C 13:21:26.122 NotebookApp]
 
     To access the notebook, open this file in a browser:
         file:///ceph/hpc/home/euhosseine/.local/share/jupyter/runtime/nbserver-339349-open.html
