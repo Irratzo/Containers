@@ -7,7 +7,7 @@ You should have recieved your username from the Vega support with the help of ou
 colleagues at ENCCS. One important step to login to the system is to generate an SSH key
 and upload your public to the server. You can read it in `the Vega documentation <https://doc.vega.izum.si/ssh/>`_.
 
-Once the setup is completed, you can login to the system. While the `Singularity`
+Once the setup is completed, you can login to the system. While the ``Singularity``
 module is readily avaiable in the login node, we should book a compute node to run
 our examples. You can book a node for 1 hour using this command
 
@@ -44,7 +44,7 @@ output below.
   Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
   Warning: Permanently added 'cn0381' (ECDSA) to the list of known hosts.
 
-Please enter ```yes``` to the quesiton and igonre it as it is a self-assigned useless check
+Please enter ``yes`` to the quesiton and igonre it as it is a self-assigned useless check
 that doen't understand what is the purpose of our login. Now, we are able to run
 our jobs interactively.
 
@@ -87,8 +87,8 @@ In your local machin (PC/laptop), open a terminal and use this command to tunnel
   ssh -N -f -L 8888:cn0381:8888 euhosseine@vglogin0005.vega.izum.si
 
 The first port number is for your local machine and the second port number is what
-you specified above running a Jupyter Notebook. Open a brower, and enter `http://localhost:8888`.
-You should see a prompt to enter the passowrd or the token. The token in this run is the number after the ```token```.
+you specified above running a Jupyter Notebook. Open a brower, and enter ``http://localhost:8888``.
+You should see a prompt to enter the passowrd or the token. The token in this run is the number after the ``token``.
 Entering the token, you will be shown the tree of structure of home folder.
 
 To use TensorFlow or Horovod in this course, we can simply load them through module system.
