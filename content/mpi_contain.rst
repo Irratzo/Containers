@@ -9,8 +9,7 @@ ______________________________________________________
 MPI overview
 ++++++++++++
 
-MPI - [Message Passing
-Interface](https://en.wikipedia.org/wiki/Message_Passing_Interface) -
+`MPI (Message Passing Interface) <https://en.wikipedia.org/wiki/Message_Passing_Interface>` -
 is a widely used standard for parallel programming. It is used for
 exchanging messages/data between processes in a parallel application.
 If you've been involved in developing or working with computational
@@ -145,41 +144,41 @@ content]({{site.url}}{{site.baseurl}}/files/osu_benchmarks.def) to a
 
 A quick overview of what the above definition file is doing:
 
- - The image is being bootstrapped from the `ubuntu:20.04` Docker
+ - The image is being bootstrapped from the ``ubuntu:20.04`` Docker
    image.
- - In the `%files` section: The OSU Micro-Benchmarks and MPICH tar
-   files are copied from the current directory into the `/root`
+ - In the ``%files`` section: The OSU Micro-Benchmarks and MPICH tar
+   files are copied from the current directory into the ``/root``
    directory in the image.
- - In the `%environment` section: Set an environment variable that
+ - In the ``%environment`` section: Set an environment variable that
    will be available within all containers run from the generated
    image.
- - In the `%post` section:
+ - In the ``%post`` section:
 
-   - Ubuntu's `apt-get` package manager is used to update the package
+   - Ubuntu's ``apt-get`` package manager is used to update the package
      directory and then install the compilers and other libraries
      required for the MPICH build.
    - The MPICH .tar.gz file is extracted and the configure, build and
-     install steps are run. Note the use of the --with-device option
+     install steps are run. Note the use of the ``--with-device`` option
      to configure MPICH to use the correct driver to support improved
      communication performance on a high performance cluster.
    - The OSU Micro-Benchmarks tar.gz file is extracted and the
      configure, build and install steps are run to build the benchmark
      code from source.
 
-- In the `%runscript` section: A runscript is set up that will echo
+- In the ``%runscript`` section: A runscript is set up that will echo
   the rank number of the current process and then run the command
   provided as a command line argument.
 
 *Note that base path of the the executable to run is hardcoded in the
 run script* so the command line parameter to provide when running a
 container based on this image is relative to this base path, for
-example, `startup/osu_hello`, `collective/osu_allgather`,
-`pt2pt/osu_latency`, `one-sided/osu_put_latency`.
+example, ``startup/osu_hello``, ``collective/osu_allgather``,
+``pt2pt/osu_latency``, ``one-sided/osu_put_latency``.
 
 .. exercise:: Build and test the OSU Micro-Benchmarks image
 
    Using the above definition file, build a Singularity image named
-   `osu_benchmarks.sif`.  Once you have built the image, use it to
+   ``osu_benchmarks.sif``.  Once you have built the image, use it to
    run the `osu_hello` benchmark that is found in the `startup`
    benchmark folder.
 
@@ -198,18 +197,18 @@ example, `startup/osu_hello`, `collective/osu_allgather`,
 
       *Note that if you're running the Singularity Docker container
       directly from the command line to undertake your build, you'll
-      need to provide the full path to the `.def` file at which it
-      appears within the container* - for example, if you've bind
+      need to provide the full path to the ``.def`` file at which it
+      appears within the container - for example, if you've bind
       mounted the directory containing the file to
-      `/home/singularity` within the container, the full path to the
-      `.def` file will be `/home/singularity/osu_benchmarks.def`.
+      ``/home/singularity`` within the container, the full path to the
+      ``.def`` file will be ``/home/singularity/osu_benchmarks.def``.
 
       Assuming the image builds successfully, you can then try
       running the container locally and also transfer the SIF file
       to a cluster platform that you have access to (that has
       Singularity installed) and run it there.
 
-      Let's begin with a single-process run of `osu_hello` on the
+      Let's begin with a single-process run of ``osu_hello`` on the
       local system to ensure that we can run the container as
       expected:
 
@@ -226,47 +225,57 @@ example, `startup/osu_hello`, `collective/osu_allgather`,
          This is a test with 1 processes
 
       Note that no rank number is shown since we didn't run the
-      container via mpirun and so the `${PMI_RANK}` environment
+      container via mpirun and so the ``${PMI_RANK}`` environment
       variable that we'd normally have set in an MPICH run process is
       not set.
 
 Running Singularity containers via MPI
 ++++++++++++++++++++++++++++++++++++++
 
-Assuming the above tests worked, we can now try undertaking a parallel run of one of the OSU benchmarking tools within our container image.
+Assuming the above tests worked, we can now try undertaking a parallel run of
+one of the OSU benchmarking tools within our container image.
 
-This is where things get interesting and we'll begin by looking at how Singularity containers are run within an MPI environment.
+This is where things get interesting and we'll begin by looking at how Singularity
+containers are run within an MPI environment.
 
-If you're familiar with running MPI codes, you'll know that you use `mpirun`, `mpiexec` or a similar MPI executable to start
-your application. This executable may be run directly on the local system or cluster platform that you're using, or you may need
-to run it through a job script submitted to a job scheduler. Your MPI-based application code, which will be linked against
-the MPI libraries, will make MPI API calls into these MPI libraries which in turn talk to the MPI daemon process running on
-the host system. This daemon process handles the communication between MPI processes, including talking to the daemons on
-other nodes to exchange information between processes running on different machines, as necessary.
+If you're familiar with running MPI codes, you'll know that you use ``mpirun``,
+``mpiexec`` or a similar MPI executable to start your application. This executable
+may be run directly on the local system or cluster platform that you're using, or
+you may need to run it through a job script submitted to a job scheduler.
+Your MPI-based application code, which will be linked against the MPI libraries,
+will make MPI API calls into these MPI libraries which in turn talk to the MPI
+daemon process running on the host system. This daemon process handles the
+communication between MPI processes, including talking to the daemons on other
+nodes to exchange information between processes running on different machines, as necessary.
 
-When running code within a Singularity container, we don't use the MPI executables stored within the container
-(i.e. we DO NOT run `singularity exec mpirun -np <numprocs> /path/to/my/executable`). Instead we use the MPI installation on
-the host system to run Singularity and start an instance of our executable from within a container for each MPI process.
-Without Singularity support in an MPI implementation, this results in starting a separate Singularity container instance
-within each process. This can present some overhead if a large number of processes are being run on a host.
-Where Singularity support is built into an MPI implementation this can address this potential issue and reduce
+When running code within a Singularity container, we don't use the MPI executables
+stored within the container (i.e. we DO NOT run ``singularity exec mpirun -np <numprocs> /path/to/my/executable``).
+Instead we use the MPI installation on the host system to run Singularity and start
+an instance of our executable from within a container for each MPI process.
+Without Singularity support in an MPI implementation, this results in starting
+a separate Singularity container instance within each process. This can present
+some overhead if a large number of processes are being run on a host. Where Singularity
+support is built into an MPI implementation this can address this potential issue and reduce
 the overhead of running code from within a container as part of an MPI job.
 
-Ultimately, this means that our running MPI code is linking to the MPI libraries from the MPI install within
-our container and these are, in turn, communicating with the MPI daemon on the host system which is part of
-the host system's MPI installation. These two installations of MPI may be different but as long as there is ABI
-compatibility between the version of MPI installed in your container image and the version on the host system,
+Ultimately, this means that our running MPI code is linking to the MPI libraries
+from the MPI install within our container and these are, in turn, communicating
+with the MPI daemon on the host system which is part of the host system's MPI installation.
+These two installations of MPI may be different but as long as there is ABI compatibility
+between the version of MPI installed in your container image and the version on the host system,
 your job should run successfully.
 
-We can now try running a 2-process MPI run of a point to point benchmark `osu_latency`. If your local system has
-both MPI and Singularity installed and has multiple cores, you can run this test on that system. Alternatively
-you can run on a cluster. Note that you may need to submit this command via a job submission script submitted
-to a job scheduler if you're running on a cluster. If you're attending a taught version of this course,
-some information will be provided below in relation to the cluster that you've been provided with access to.
+We can now try running a 2-process MPI run of a point to point benchmark ``osu_latency``.
+If your local system has both MPI and Singularity installed and has multiple cores,
+you can run this test on that system. Alternatively you can run on a cluster. Note
+that you may need to submit this command via a job submission script submitted
+to a job scheduler if you're running on a cluster. If you're attending a taught
+version of this course, some information will be provided below in relation to
+the cluster that you've been provided with access to.
 
-.. exercise:: Undertake a parallel run of the `osu_latency` benchmark (general example)
+.. exercise:: Undertake a parallel run of the ``osu_latency`` benchmark (general example)
 
-    Move the `osu_benchmarks.sif` Singularity image onto the cluster
+    Move the ``osu_benchmarks.sif`` Singularity image onto the cluster
     (or other suitable) platform where you're going to undertake
     your benchmark run.
 
@@ -282,8 +291,8 @@ some information will be provided below in relation to the cluster that you've b
     .. solution:: Expected output and discussion
 
        As you can see in the mpirun command shown above, we have called
-       `mpirun` on the host system and are passing to MPI the
-       `singularity` executable for which the parameters are the image
+       ``mpirun`` on the host system and are passing to MPI the
+       ``singularity`` executable for which the parameters are the image
        file and any parameters we want to pass to the image's run
        script, in this case the path/name of the benchmark executable
        to run.
@@ -302,7 +311,7 @@ some information will be provided below in relation to the cluster that you've b
           1                       0.34
           ...
 
-.. exercise:: Undertake a parallel run of the `osu_latency` benchmark (taught course cluster example)
+.. exercise:: Undertake a parallel run of the ``osu_latency`` benchmark (taught course cluster example)
 
    This version of the exercise for undertaking a parallel run of the
    osu_latency benchmark with your Singularity container that
@@ -364,7 +373,7 @@ interconnects between nodes.
 
 You could now try running a larger-scale test. You can also try
 running a benchmark that uses multiple processes, for example try
-`collective/osu_gather`.
+``collective/osu_gather``.
 
 .. exercise:: Investigate performance when using a container image
               built on a local system and run on a cluster
@@ -374,7 +383,7 @@ running a benchmark that uses multiple processes, for example try
    on the target HPC platform, try building the OSU benchmarks from
    source, locally on the cluster. Then try running the same
    benchmark(s) that you ran via the singularity container.  Have a
-   look at the outputs you get when running `collective/osu_gather`
+   look at the outputs you get when running ``collective/osu_gather``
    or one of the other collective benchmarks to get an idea of
    whether there is a performance difference and how significant it
    is.

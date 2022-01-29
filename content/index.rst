@@ -38,7 +38,7 @@ i.e., supercomputers.
    20 min ; :doc:`mang_contain`
    20 min ; :doc:`create_contain`
    20 min ; :doc:`compx_contain`
-   20 min ; :doc: `pwd_exmps`
+   20 min ; :doc:`pwd_exmps`
    20 min ; :doc:`rep_gran`
    20 min ; :doc:`singlrty_start`
    20 min ; :doc:`work_contain`
