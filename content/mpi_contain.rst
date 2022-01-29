@@ -9,7 +9,7 @@ ______________________________________________________
 MPI overview
 ++++++++++++
 
-`MPI (Message Passing Interface) <https://en.wikipedia.org/wiki/Message_Passing_Interface>` -
+`MPI (Message Passing Interface) <https://en.wikipedia.org/wiki/Message_Passing_Interface>`_
 is a widely used standard for parallel programming. It is used for
 exchanging messages/data between processes in a parallel application.
 If you've been involved in developing or working with computational
@@ -184,7 +184,7 @@ example, ``startup/osu_hello``, ``collective/osu_allgather``,
 
    *NOTE: If you're not using the Singularity Docker image to build
    your Singularity image, you will need to edit the path to the
-   .tar.gz file in the `%files` section of the definition file.*
+   .tar.gz file in the ``%files`` section of the definition file.*
 
    .. solution::
 
@@ -412,17 +412,3 @@ running a benchmark that uses multiple processes, for example try
       `bind model
       <https://sylabs.io/guides/3.5/user-guide/mpi.html#bind-model>`_
       for building/running MPI applications through Singularity.
-
-Singularity wrap-up
-___________________
-
-This concludes the 4 episodes of the course covering Singularity. We
-hope you found this information useful and that it has inspired you to
-use Singularity to help enhance the way you build/work with research
-software.
-
-As a new set of material, we appreciate that there are likely to be
-improvements that can be made to enhance the quality of this
-material. We welcome your thoughts, suggestions and feedback on
-improvements that could be made to help others making use of these
-lessons.
