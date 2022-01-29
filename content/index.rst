@@ -38,13 +38,14 @@ i.e., supercomputers.
    20 min ; :doc:`mang_contain`
    20 min ; :doc:`create_contain`
    20 min ; :doc:`compx_contain`
+   20 min ; :doc: `pwd_exmps`
    20 min ; :doc:`rep_gran`
    20 min ; :doc:`singlrty_start`
    20 min ; :doc:`work_contain`
    20 min ; :doc:`build_contain`
    20 min ; :doc:`mpi_contain`
 
-   
+
 
 .. toctree::
    :maxdepth: 1
@@ -57,6 +58,7 @@ i.e., supercomputers.
    create_contain
    compx_contain
    rep_gran
+   pwd_exmps
    singlrty_start
    work_contain
    build_contain
