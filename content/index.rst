@@ -64,6 +64,7 @@ i.e., supercomputers.
    build_contain
    mpi_contain
    tf_intro
+   tf_mltgpus
 
 .. toctree::
    :maxdepth: 1
