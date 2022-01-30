@@ -184,4 +184,3 @@ Enabling device placement logging causes any Tensor allocations or operations to
   Can you place manually some parts on GPU and some on CPU?
 
   .. literalinclude:: codes/SVHN_class.ipynb
-      :language: jupyter_execute_notebooks
