@@ -117,14 +117,12 @@ the CPU or GPU respectively.
 .. code-block :: python
 
   import time
-
   def time_matadd(x):
     start = time.time()
     for loop in range(10):
         tf.add(x, x)
     result = time.time()-start
     print("Matrix addition (10 loops): {:0.2f}ms".format(1000*result))
-
 
   def time_matmul(x):
     start = time.time()
