@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "A lesson"
+project = "Up Scaling AI with Containers"
 copyright = "2021, Hossein Ehteshami and individual contributors."
 author = "Hossein Ehteshami and individual contributors."
 github_user = "ENCCS"
