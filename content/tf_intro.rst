@@ -116,22 +116,22 @@ the CPU or GPU respectively.
 
 .. code-block :: python
 
-import time
+  import time
 
-def time_matadd(x):
-  start = time.time()
-  for loop in range(10):
-      tf.add(x, x)
-  result = time.time()-start
-  print("Matrix addition (10 loops): {:0.2f}ms".format(1000*result))
+  def time_matadd(x):
+    start = time.time()
+    for loop in range(10):
+        tf.add(x, x)
+    result = time.time()-start
+    print("Matrix addition (10 loops): {:0.2f}ms".format(1000*result))
 
 
-def time_matmul(x):
-  start = time.time()
-  for loop in range(10):
-      tf.matmul(x, x)
-  result = time.time()-start
-  print("Matrix multiplication (10 loops): {:0.2f}ms".format(1000*result))
+  def time_matmul(x):
+    start = time.time()
+    for loop in range(10):
+        tf.matmul(x, x)
+    result = time.time()-start
+    print("Matrix multiplication (10 loops): {:0.2f}ms".format(1000*result))
 
 .. code-block :: bash
 
@@ -157,9 +157,9 @@ And doing the same operations on the GPU:
 
 .. code-block :: python
 
-if tf.config.experimental.list_physical_devices("GPU"):
-  print("On GPU:")
-  with tf.device("GPU:0"):
+  if tf.config.experimental.list_physical_devices("GPU"):
+    print("On GPU:")
+    with tf.device("GPU:0"):
       x = tf.random.uniform([1000, 1000])
       assert x.device.endswith("GPU:0")
       time_matadd(x)
