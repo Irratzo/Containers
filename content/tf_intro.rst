@@ -131,8 +131,6 @@ the CPU or GPU respectively.
     result = time.time()-start
     print("Matrix multiplication (10 loops): {:0.2f}ms".format(1000*result))
 
-.. code-block :: bash
-
 We run the above tests first on a CPU using ``tf.device("CPU:0")``,
 which forces the operations to be run on the CPU.
 
@@ -170,3 +168,10 @@ And doing the same operations on the GPU:
   Matrix multiplication (10 loops): 22.64ms
 
 Note the significant time difference between running these operations on different devices.
+
+Logging device placement
+________________________
+
+We can find out which devices your operations and tensors are assigned to by putting
+``tf.debugging.set_log_device_placement(True)`` as the first statement of your program.
+Enabling device placement logging causes any Tensor allocations or operations to be printed.
