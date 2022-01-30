@@ -175,3 +175,13 @@ ________________________
 We can find out which devices your operations and tensors are assigned to by putting
 ``tf.debugging.set_log_device_placement(True)`` as the first statement of your program.
 Enabling device placement logging causes any Tensor allocations or operations to be printed.
+
+.. exercise :: Training on CPU and GPU
+
+  You can find two neural networks for image classifier for the The Street View
+  House Numbers (SVHN) dataset. Try to train the model on CPU and GPU. Compare the results.
+
+  Can you place manually some parts on GPU and some on CPU?
+
+  .. literalinclude:: codes/SVHN_class.ipynb
+      :language: jupyter_execute_notebooks
