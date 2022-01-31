@@ -11,7 +11,7 @@ tooling and namespace types have been added. Real container support was added to
 the Linux kernel only in 2013, however. This is what made namespaces really useful
 and brought them to the masses.
 
-.. callout :: Definition according to `Wikipedia <https://en.wikipedia.org/wiki/Linux_namespaces>`_
+.. callout :: Definition according to `Wikipedia <https://en.wikipedia.org/wiki/Linux_namespaces>`__
 
   `Namespaces are a feature of the Linux kernel that partitions kernel resources
   such that one set of processes sees one set of resources while another set of
@@ -203,7 +203,7 @@ he remaining percentage is available to other cgroups (and individual processes)
 Cgroup Versions
 +++++++++++++++
 
-According to `Wikipedia <https://en.wikipedia.org/wiki/Cgroups>`_, the first version
+According to `Wikipedia <https://en.wikipedia.org/wiki/Cgroups>`__, the first version
 of cgroups was merged into the Linux kernel mainline in late 2007 or early 2008,
 and “the documentation of cgroups‑v2 first appeared in [the] Linux kernel … [in] 2016”.
 Among the many changes in version 2, the big ones are a much simplified tree architecture,

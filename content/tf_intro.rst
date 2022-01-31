@@ -1,4 +1,4 @@
-.. _tf_intro ::
+.. _tf_intro:
 
 TensorFlow on a single GPU
 ==========================
@@ -37,20 +37,20 @@ ________________________
 After booking a node with multiple GPUs, let's check if we have TensorFlow module
 loaded and if the physical GPU device is available.
 
-.. code-block :: bash
+.. code-block:: python
 
   import tensorflow as tf
   print("Num of GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
   print("TensorFlow version: ", tf.__version__)
 
-.. code-block :: bash
+.. code-block:: bash
 
   Num of GPUs Available:  6
   TensorFlow version:  2.5.0
 
 We can see the list of all of available devices:
 
-.. code-block :: bash
+.. code-block:: python
 
   tf.config.list_physical_devices()
 
@@ -67,7 +67,7 @@ We can see the list of all of available devices:
 If you have GPUs, then you should see the GPU device in the above list.
 We can also check specifically for the GPU or CPU devices.
 
-.. code-block :: python
+.. code-block:: python
 
   tf.config.list_physical_devices('GPU')
   tf.config.list_physical_devices('CPU')
@@ -79,7 +79,7 @@ TensorFlow automatically place tensor operations to physical devices which is by
 default is the GPU if available. Now, let's define a random Tensor, and check where
 it is placed.
 
-.. code-block :: python
+.. code-block:: python
 
   x = tf.random.uniform([3, 3])
   x.device

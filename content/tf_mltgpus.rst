@@ -1,4 +1,4 @@
-.. _tf_mltgpus ::
+.. _tf_mltgpus:
 
 Distributed training in TensorFlow
 ==================================
@@ -143,7 +143,7 @@ The setup for the saving the checkpoint callback is:
 
 For the decay learning rate is:
 
-.. code-block :: python
+.. code-block:: python
 
   # Define a function for decaying the learning rate.
   # You can define any decay function you need.
@@ -157,7 +157,7 @@ For the decay learning rate is:
 
 And for printing the learning rate at the end of each epoch:
 
-.. code-block :: python
+.. code-block:: python
 
   class PrintLR(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
@@ -165,12 +165,13 @@ And for printing the learning rate at the end of each epoch:
 
 Put all of the callbacks together.
 
-.. code-block :: python
-  callbacks = [
-    tf.keras.callbacks.TensorBoard(log_dir='./logs'),
-    tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_prefix, save_weights_only=True),
-    tf.keras.callbacks.LearningRateScheduler(decay),
-    PrintLR()]
+.. code-block:: python
+
+   callbacks = [
+     tf.keras.callbacks.TensorBoard(log_dir='./logs'),
+     tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_prefix, save_weights_only=True),
+     tf.keras.callbacks.LearningRateScheduler(decay),
+     PrintLR()]
 
 Training with ``Model.fit``
 +++++++++++++++++++++++++++
@@ -500,12 +501,14 @@ The output will be
 
 .. callout :: Compare the results
 
-  Now have three time elapsed using three different methods:
+   Now have three time elapsed using three different methods:
+
     1. MirroredStrategy - ``Model.fit``: 25876.68ms
     2. MirroredStrategy - custom loop  : 39034.53ms
     3. A single GPU - ``Model.fit``    : 13603.21ms
-  As we can see, distributed training not only did not improve the elapsed time
-  but also substantially incresed it! Can you explain why?
+
+   As we can see, distributed training not only did not improve the elapsed time
+   but also substantially incresed it! Can you explain why?
 
 The ``for`` loop that marches though the input (training or test datasets) can be implemented
 using other methods too. For example, one can make use of Python iterator functions

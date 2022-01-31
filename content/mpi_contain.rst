@@ -195,7 +195,7 @@ example, ``startup/osu_hello``, ``collective/osu_allgather``,
 
 	singularity build osu_benchmarks.sif osu_benchmarks.def
 
-      *Note that if you're running the Singularity Docker container
+      Note that if you're running the Singularity Docker container
       directly from the command line to undertake your build, you'll
       need to provide the full path to the ``.def`` file at which it
       appears within the container - for example, if you've bind

@@ -1,4 +1,4 @@
-.. _pwd_exmps ::
+.. _pwd_exmps:
 
 PWD exercises
 =============
