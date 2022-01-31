@@ -224,3 +224,58 @@ To launch the training, we need to use this command in the Jupyter notebook
 
   - Change the ``verbose`` variable to ``True`` and inspect the results. What do you see?
   - Time the calculations. Can you compare the result with the results reported in :doc:`tf_mltgpus`?
+
+.. exercise :: Playing with Horovod
+
+    1. Play with different parameters in the code and check the effect on the elapsed time and accuracy.
+    which parameters are more important?
+
+    2. Use Horovod using Keras ``Model.fit``, similar to the above, to upscale SVHN notebook you worked
+    before. Are the results comparable to those in the section :doc:`tf_mltgpus`?
+
+    3. Instead of using ``Model.fit``, write a custom training loop within the framework of Horovod.
+
+    .. solution ::
+
+        3. Two main differences that should be made are:
+
+          - Definig the loss function using Horovod
+
+          .. code-block :: python
+
+            @tf.function
+            def training_step(images, labels, first_batch):
+                with tf.GradientTape() as tape:
+                      probs = mnist_model(images, training=True)
+                      loss_value = loss(labels, probs)
+
+                # Horovod: add Horovod Distributed GradientTape.
+                tape = hvd.DistributedGradientTape(tape)
+
+                grads = tape.gradient(loss_value, mnist_model.trainable_variables)
+                opt.apply_gradients(zip(grads, mnist_model.trainable_variables))
+
+                # Horovod: broadcast initial variable states from rank 0 to all other processes.
+                # This is necessary to ensure consistent initialization of all workers when
+                # training is started with random weights or restored from a checkpoint.
+                # Please see `the documentation <https://horovod.readthedocs.io/en/stable/api.html#horovod.tensorflow.broadcast_variables>`_.
+                # Note: broadcast should be done after the first gradient step to ensure optimizer
+                # initialization.
+
+                if first_batch:
+                    hvd.broadcast_variables(mnist_model.variables, root_rank=0)
+                    hvd.broadcast_variables(opt.variables(), root_rank=0)
+
+                return loss_value
+
+          - Looping over the dataset
+
+          .. code-block :: python
+
+            kk
+            for batch, (images, labels) in enumerate(dataset.take(10000 // hvd.size())):
+                loss_value = training_step(images, labels, batch == 0)
+
+                if batch % 10 == 0 and hvd.local_rank() == 0:
+                    print('Step #%d\tLoss: %.6f' % (batch, loss_value))
+          
