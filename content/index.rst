@@ -46,6 +46,7 @@ i.e., supercomputers.
    20 min ; :doc:`mpi_contain`
    20 min ; :doc:`tf_intro`
    20 min ; :doc:`tf_mltgpus`
+   20 min ; :doc:`hvd_intro`
 
 
 
@@ -69,7 +70,6 @@ i.e., supercomputers.
    tf_intro
    tf_mltgpus
    hvd_intro
-   hvd_mltgpus
 
 .. toctree::
    :maxdepth: 1
