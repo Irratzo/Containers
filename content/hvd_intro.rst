@@ -222,4 +222,5 @@ To launch the training, we need to use this command in the Jupyter notebook
 
 .. Challenge :: ``verbose = True``
 
-  Change the ``verbose`` variable to ``True`` and inspect the results. What do you see?
+  - Change the ``verbose`` variable to ``True`` and inspect the results. What do you see?
+  - Time the calculations. Can you compare the result with the results reported in :doc:`tf_mltgpus`?
