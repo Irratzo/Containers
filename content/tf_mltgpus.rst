@@ -335,7 +335,7 @@ We can use .result() to get the accumulated statistics at any time.
   test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
     name='test_accuracy')
 
-Model, optimizer, and checkpoint must be created under ```strategy.scope``.
+Model, optimizer, and checkpoint must be created under ``strategy.scope``.
 
 .. code-block :: python
 
@@ -371,7 +371,7 @@ Calculations of loss, gradients and updating the gradients
   test_loss.update_state(t_loss)
   test_accuracy.update_state(labels, predictions)
 
-The ```run`` command replicates the provided computation and runs it with
+The ``run`` command replicates the provided computation and runs it with
 the distributed input.
 
 .. code-block :: python

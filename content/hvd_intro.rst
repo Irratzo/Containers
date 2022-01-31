@@ -1,4 +1,4 @@
-.. _hvd_intro:
+.. _hvd_intro ::
 
 Intoduction to Horovod
 ======================
@@ -47,8 +47,9 @@ Say we launched a training script on 4 servers, each having 4 GPUs. If we launch
 - **Allreduce** is an operation that aggregates data among multiple processes and
   distributes results back to them. Allreduce is used to average dense tensors.
 
-  .. image:: http://mpitutorial.com/tutorials/mpi-reduce-and-allreduce/mpi_allreduce_1.png
-    :alt: Allreduce
+  .. image :: http://mpitutorial.com/tutorials/mpi-reduce-and-allreduce/mpi_allreduce_1.png
+  :alt: Allreduce
+    :alt: allreduce
 
 - **Allgather** is an operation that gathers data from all processes on every process.
   Allgather is used to collect values of sparse tensors.
@@ -129,3 +130,96 @@ And for the second example
 
 The recipe for running inside Jupyter Notebook is different, as we will see in
 the next section.
+
+Training with ``Model.fit``
+___________________________
+
+Let's go back to our CNN model for classification and upscale the training using
+Horovod.
+
+There are three Horovod callbacks.
+
+  1. Horovod.broadcasts sends initial variable states from rank 0 to all other processes.
+  This is necessary to ensure consistent initialization of all workers when
+  training is started with random weights or restored from a checkpoint.
+
+  2. Horovod.metric.averages calculates metrics among workers at the end of every epoch.
+  Note: This callback must be in the list before the ReduceLROnPlateau, TensorBoard or other
+  metrics-based callbacks.
+
+  3. Horovod.LearningRateWarmup initializes the learning rate from the very beginning.
+  Starting the training using ```lr = 1.0 * hvd.size()`` with leads to worse final accuracy.
+  This funciton scales the learning rate ``lr = 1.0`` ---> ``lr = 1.0 * hvd.size()`` during
+  the first three epochs. See `this article <https://arxiv.org/abs/1706.02677>`_ for details.
+
+.. code-block :: python
+
+  import horovod
+
+.. code-block :: python
+
+  def training_func():
+
+    import tensorflow as tf
+    import horovod.tensorflow as hvd
+
+    hvd.init()
+
+    # Pinning GPUs (one GPU per process)
+    gpus = tf.config.experimental.list_physical_devices('GPU')
+    for gpu in gpus:
+        tf.config.experimental.set_memory_growth(gpu, True)
+    if gpus:
+        tf.config.experimental.set_visible_devices(gpus[hvd.local_rank()], 'GPU')
+
+    (mnist_images, mnist_labels), _ = tf.keras.datasets.mnist.load_data(path='mnist-%d.npz' % hvd.rank())
+
+    dataset = tf.data.Dataset.from_tensor_slices(
+        (tf.cast(mnist_images[..., tf.newaxis] / 255.0, tf.float32),
+         tf.cast(mnist_labels, tf.int64)))
+    batch_size = 128
+    dataset = dataset.repeat().shuffle(10000).batch(batch_size)
+
+    # Horovod: adjust learning rate based on number of GPUs.
+    scaled_lr = 0.001 * hvd.size()
+    opt = tf.optimizers.Adam(scaled_lr)
+    opt = hvd.DistributedOptimizer(opt, backward_passes_per_step=1, average_aggregated_gradients=True)
+
+    mnist_model = tf.keras.Sequential([
+        tf.keras.layers.Conv2D(32, 3, activation='relu'),
+        tf.keras.layers.MaxPooling2D(),
+        tf.keras.layers.Conv2D(64, 3, activation='relu'),
+        tf.keras.layers.MaxPooling2D(),
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(64, activation='relu'),
+        tf.keras.layers.Dense(10, activation='softmax')
+    ])
+
+    mnist_model.compile(loss=tf.losses.SparseCategoricalCrossentropy(),
+                    optimizer=opt,
+                    metrics=['accuracy'],
+                    experimental_run_tf_function=False)
+
+    callbacks = [
+    horovod.tensorflow.keras.callbacks.BroadcastGlobalVariablesCallback(0),
+    horovod.tensorflow.keras.callbacks.MetricAverageCallback(),
+    horovod.tensorflow.keras.callbacks.LearningRateWarmupCallback(initial_lr=scaled_lr,
+    warmup_epochs=3, verbose=1),
+    ]
+
+    if hvd.rank() == 0:
+        callbacks.append(tf.keras.callbacks.ModelCheckpoint('./checkpoint-{epoch}.h5'))
+
+    verbose = 1 if hvd.rank() == 0 else 0
+
+    mnist_model.fit(dataset, steps_per_epoch=500 // hvd.size(), callbacks=callbacks, epochs=24, verbose=verbose)
+
+To launch the training, we need to use this command in the Jupyter notebook
+
+.. code-block :: python
+
+  horovod.run(training_func, np=2, verbose=False, disable_cache=True, use_mpi=True)
+
+.. Challenge :: ``verbose = True``
+
+  Change the ``verbose`` variable to ``True`` and inspect the results. What do you see?
