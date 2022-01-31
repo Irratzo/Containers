@@ -65,3 +65,70 @@ Say we launched a training script on 4 servers, each having 4 GPUs. If we launch
 
 - **Alltoall** is an operation to exchange data between all processes.
   Alltoall may be useful to implement neural networks with advanced architectures that span multiple devices.
+
+How to use Horovod
+____________________
+
+To use Horovod, we should add the following to the program:
+
+  1. Run hvd.init() to initialize Horovod.
+
+  2. Pin each GPU to a single process to avoid resource contention. With the typical
+    setup of one GPU per process, set this to local rank.
+    The first process on the server will be allocated the first GPU, the second process
+    will be allocated the second GPU, and so forth.
+
+  3. Scale the learning rate by the number of workers. Effective batch size in
+    synchronous distributed training is scaled by the number of workers.
+    An increase in learning rate compensates for the increased batch size.
+
+  4. Wrap the optimizer in ``hvd.DistributedOptimizer``. The distributed optimizer
+    delegates gradient computation to the original optimizer, averages gradients
+    using allreduce or allgather, and then applies those averaged gradients.
+
+  5. Broadcast the initial variable states from rank 0 to all other processes.
+  This is necessary to ensure consistent initialization of all workers when training
+  is started with random weights or restored from a checkpoint.
+
+  6. Modify your code to save checkpoints only on worker 0 to prevent other workers
+    from corrupting them.
+
+Once the script is transformed to a proper form, it can be launched using ``horovodrun`` command.
+For example, to run the train scrip on a machine with 4 GPUs, we use
+
+.. code-block :: bash
+
+  $ horovodrun -np 4 -H localhost:4 python train.py
+
+And for running on 4 machines with 4 GPUs each, we use
+
+.. code-block :: bash
+
+  horovodrun -np 16 -H server1:4,server2:4,server3:4,server4:4 pyth
+
+It is also possible to run the script using Open MPI without the horovodrun wrapper.
+The launch command for the first example using ``mpirun`` would be
+
+.. code-block :: bash
+
+  mpirun -np 4 \
+    -bind-to none -map-by slot \
+    -x NCCL_DEBUG=INFO -x LD_LIBRARY_PATH -x PATH \
+    -mca pml ob1 -mca btl ^openib \
+    python train.py
+
+And for the second example
+
+.. code-block :: bash
+
+  mpirun -np 16 \
+    -H server1:4,server2:4,server3:4,server4:4 \
+    -bind-to none -map-by slot \
+    -x NCCL_DEBUG=INFO -x LD_LIBRARY_PATH -x PATH \
+    -mca pml ob1 -mca btl ^openib \
+    python train.py
+
+
+
+The recipe for running inside Jupyter Notebook is different, as we will see in
+the next section. 
