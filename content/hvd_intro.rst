@@ -4,7 +4,7 @@ Intoduction to Horovod
 ======================
 
 .. image :: https://horovod.readthedocs.io/en/stable/_static/logo.png
-  :alt: Horovod
+  :width: 40%
 
 Why Horovod
 ___________
