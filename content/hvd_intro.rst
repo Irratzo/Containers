@@ -272,10 +272,8 @@ To launch the training, we need to use this command in the Jupyter notebook
 
           .. code-block :: python
 
-            kk
             for batch, (images, labels) in enumerate(dataset.take(10000 // hvd.size())):
                 loss_value = training_step(images, labels, batch == 0)
 
                 if batch % 10 == 0 and hvd.local_rank() == 0:
                     print('Step #%d\tLoss: %.6f' % (batch, loss_value))
-          
