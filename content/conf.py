@@ -59,6 +59,7 @@ exclude_patterns = [
     ".DS_Store",
     "jupyter_execute",
     "*venv*",
+    "code/SVHN_class.ipynb"
 ]
 
 # -- Options for HTML output -------------------------------------------------
