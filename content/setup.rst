@@ -3,9 +3,9 @@
 Access to Vega
 ===============
 
-You should have recieved your username from the Vega support with the help of our
-colleagues at ENCCS. One important step to login to the system is to generate an SSH key
-and upload your public to the server. You can read it in `the Vega documentation <https://doc.vega.izum.si/ssh/>`_.
+You should have recieved your username from the Vega support with the help of our colleagues at
+ENCCS. One important step to login to the system is to generate an SSH key and upload your public
+to the server. You can read it in `the Vega documentation <https://doc.vega.izum.si/ssh/>`_.
 
 Once the setup is completed, you can login to the system. While the ``Singularity``
 module is readily avaiable in the login node, we should book a compute node to run
