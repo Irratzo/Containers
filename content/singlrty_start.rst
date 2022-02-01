@@ -94,7 +94,7 @@ may see a different version.
 
       module load singularity
 
-    Nonetheless, for the Vega system `singularity` is readily available.
+Nonetheless, for the Vega system `singularity` is readily available.
 
 
 Images and containers

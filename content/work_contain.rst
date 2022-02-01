@@ -268,16 +268,14 @@ on the host Linux system and in a Singularity container:
    the `/rawr.sh` file. What do you notice?
 
    If you're not familiar with `vi` there are many quick
-   reference pages online showing
-
-   the main commands for using the editor, for example `this one
-   <http://web.mit.edu/merolish/Public/vi-ref.pdf>`_
+   reference pages online showing  the main commands for using the editor,
+   for example `this one <http://web.mit.edu/merolish/Public/vi-ref.pdf>`_
 
    **Exercise 2:** In your home directory within the container
    shell, try and create a simple text file. Is it possible to
-   do this? If so, why? If not, why not?! If you can
-   successfully create a file, what happens to it when you exit
-   the shell and the container shuts down?
+   do this? If so, why? If not, why not?! If you can  successfully create
+   a file, what happens to it when you exit the shell and the container
+   shuts down?
 
    .. solution::
 
@@ -306,7 +304,7 @@ ____________________________________
 
 Singularity can also start containers from Docker images, opening up
 access to a huge number of existing container images available on
-[Docker Hub](https://hub.docker.com/) and other registries.
+`Docker Hub <https://hub.docker.com/>`_ and other registries.
 
 While Singularity doesn't support running Docker images directly, it
 can pull them from Docker Hub and convert them into a suitable format
@@ -368,26 +366,26 @@ singularity image.
 
       .. code-block:: bash
 
-	 singularity run python-3.8.6.sif
+        singularity run python-3.8.6.sif
 
       This should put you straight into a Python interactive shell
       within the running container:
 
       .. code-block:: bash
 
-	 Python 3.8.6 (default, Nov 25 2020, 02:47:44)
-	 [GCC 8.3.0] on linux
-	 Type "help", "copyright", "credits" or "license" for more information.
-	 >>>
+        Python 3.8.6 (default, Nov 25 2020, 02:47:44)
+	      [GCC 8.3.0] on linux
+	      Type "help", "copyright", "credits" or "license" for more information.
+	      >>>
 
       Now try running some simple Python statements:
 
       .. code-block:: bash
 
-	 >>> import math
-	 >>> math.pi
-	 3.141592653589793
-	 >>>
+        >>> import math
+	      >>> math.pi
+	      3.141592653589793
+	      >>>
 
 In addition to running a container and having it run the default run
 script, you could also start a container running a shell in case you
@@ -413,15 +411,15 @@ covered in the following exercise:
 
       .. code-block::
 
-	 singularity shell python-3.8.6.sif
+        singularity shell python-3.8.6.sif
 
-	 Singularity> echo $SHELL
-	 /bin/bash
+	      Singularity> echo $SHELL
+	      /bin/bash
 
-	 Singularity> cat /etc/issue
-	 Debian GNU/Linux 10 \n \l
+	      Singularity> cat /etc/issue
+	      Debian GNU/Linux 10 \n \l
 
-	 Singularity> exit
+        Singularity> exit
 
       It is also possible to use the `singularity exec` command to
       run an executable within a container.  We could, therefore, use
@@ -429,10 +427,10 @@ covered in the following exercise:
 
       .. code-block:: bash
 
-	 singularity exec python-3.8.6.sif /bin/bash
+        singularity exec python-3.8.6.sif /bin/bash
 
-	 Singularity> echo $SHELL
-	 /bin/bash
+        Singularity> echo $SHELL
+	      /bin/bash
 
       You can run the Python console from your container shell
       simply by running the `python` command.
@@ -445,4 +443,4 @@ running MPI parallel applications.
 References
 __________
 
-`[1\] Gregory M. Kurzer, Containers for Science, Reproducibility and Mobility: Singularity P2. Intel HPC Developer Conference, 2017. Available at: <https://www.intel.com/content/dam/www/public/us/en/documents/presentation/hpc-containers-singularity-advanced.pdf>`_
+`[1\] Gregory M. Kurzer, Containers for Science, Reproducibility and Mobility: Singularity P2. Intel HPC Developer Conference, 2017. <https://www.intel.com/content/dam/www/public/us/en/documents/presentation/hpc-containers-singularity-advanced.pdf>`_
