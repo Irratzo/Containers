@@ -216,14 +216,14 @@ Different approaches to building images
 There are various approaches to building Singularity images. We
 highlight two different approaches here and focus on one of them:
 
-- **Building within a sandbox:** You can build a container
+- Building within a sandbox: You can build a container
   interactively within a `sandbox environment
   <https://sylabs.io/guides/3.7/user-guide/build_a_container.html#creating-writable-sandbox-directories>`_.
   This means you get a shell within the container environment and
   install and configure packages and code as you wish before exiting the
   sandbox and converting it into a container image.
 
-- **Building from a `Singularity Definition File**
+- Building from a `Singularity Definition File
   <https://sylabs.io/guides/3.7/user-guide/build_a_container.html#building-containers-from-singularity-definition-files>`_:
   This is Singularity's equivalent to building a Docker container from a
   `Dockerfile` and we'll discuss this approach in this section.
@@ -235,14 +235,14 @@ containers.
 
 .. exercise:: Why look at Singularity Definition Files?
 
-   Why do you think we might be looking at the _definition file
+   Why do you think we might be looking at the definition file
    approach here rather than the *sandbox approach*?
 
    .. solution::
 
       The sandbox approach is great for prototyping and testing out an
       image configuration but it doesn't provide the best support for
-      our ultimate goal of _reproducibility_. If you spend time
+      our ultimate goal of **reproducibility**. If you spend time
       sitting at your terminal in front of a shell typing different
       commands to add configuration, maybe you realise you made a
       mistake so you undo one piece of configuration and change
