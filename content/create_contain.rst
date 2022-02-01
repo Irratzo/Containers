@@ -214,8 +214,8 @@ sometimes too many!  Here are some things to consider when creating
 your own container:
 
 - **Start smart**, or, don't install everything from scratch! If
-  you're using Python as your main tool, start with a Python
-  container](https://hub.docker.com/_/python).  We've used Alpine Linux
+  you're using Python as your main tool, start with a `Python
+  container <https://hub.docker.com/_/python>`_.  We've used Alpine Linux
   as an example in this lesson, but it's generally not a good container
   to start with because it is a less common version of Linux; using
   Ubuntu, Debian and CentOS are all good options for scientific software
