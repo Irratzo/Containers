@@ -97,58 +97,79 @@ on this image will be able to run MPI benchmarks using the `OSU
 Micro-Benchmarks <https://mvapich.cse.ohio-state.edu/benchmarks/>`_
 software.
 
-In this example, the target platform is a remote HPC cluster that uses
-`MPICH <https://www.mpich.org/>`_.  The container can be built via the
-Singularity Docker image that we used in the previous episode of the
-Singularity material.
+In the OSU example, the target platform is a remote HPC cluster that uses
+`MPICH <https://www.mpich.org/>`_. However, since the MPI launcher in the Vega system
+is OpenMPI, we create a container with proper OpenMPI libraries.
+The container can be built via the Singularity Docker image that we
+used in the previous episode of the Singularity material.
 
-Begin by creating a directory and, within that directory, downloading
-and saving the "tarballs" for version 5.6.3 of the OSU
-Micro-Benchmarks from the `OSU Micro-Benchmarks page
-<https://mvapich.cse.ohio-state.edu/benchmarks/>`_ and for MPICH
-version 3.3.2 from the `MPICH downloads page
-<https://www.mpich.org/downloads/>`_.
+We can either download OpenMPI and OSU Micro-Benchmarks locally and copy them to
+the container for the installation, or we can download them on-the-fly and install
+at the same time. Here we take the later approach. Please note the links to the
+"tarballs" for version 5.8 of the OSU Micro-Benchmarks from the `OSU Micro-Benchmarks page
+<https://mvapich.cse.ohio-state.edu/benchmarks/>`_ and for OpenMPI
+version 4.0.5 from the `OpenMPI downloads page <https://www.open-mpi.org/software/ompi/v4.0/>`_.
 
-In the same directory, save the following [definition file
-content]({{site.url}}{{site.baseurl}}/files/osu_benchmarks.def) to a
-`.def` file, e.g. `osu_benchmarks.def`:
+Begin by creating a directory and, within that directory save
+the following [definition file ``/my_folder/osu_benchmarks.def`` to a
+``.def`` file, e.g. ``osu_benchmarks.def``:
 
 .. code-block:: bash
 
-   Bootstrap: docker
-   From: ubuntu:20.04
+  Bootstrap: docker
+  From: ubuntu:18.04
 
-   %files
-     /home/singularity/osu-micro-benchmarks-5.6.3.tar.gz /root/
-     /home/singularity/mpich-3.3.2.tar.gz /root/
-
-   %environment
-     export SINGULARITY_MPICH_DIR=/usr
+  %environment
+    export OMPI_DIR=/opt/ompi
+    export PATH="$OMPI_DIR/bin:$PATH"
+    export LD_LIBRARY_PATH="$OMPI_DIR/lib:$LD_LIBRARY_PATH"
+    export MANPATH="$OMPI_DIR/share/man:$MANPATH"
+    export LC_ALL=C
 
    %post
-     apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential libfabric-dev libibverbs-dev gfortran
-     cd /root
-     tar zxvf mpich-3.3.2.tar.gz && cd mpich-3.3.2
-     echo "Configuring and building MPICH..."
-     ./configure --prefix=/usr --with-device=ch3:nemesis:ofi && make -j2 && make install
-     cd /root
-     tar zxvf osu-micro-benchmarks-5.6.3.tar.gz
-     cd osu-micro-benchmarks-5.6.3/
-     echo "Configuring and building OSU Micro-Benchmarks..."
-     ./configure --prefix=/usr/local/osu CC=/usr/bin/mpicc CXX=/usr/bin/mpicxx
-     make -j2 && make install
+    mkdir /data1 /data2 /data0
+    mkdir -p /var/spool/slurm
+    mkdir -p /d/hpc
+    mkdir -p /ceph/grid
+    mkdir -p /ceph/hpc
+    mkdir -p /scratch
+    mkdir -p /exa5/scratch
 
-   %runscript
-     echo "Rank ${PMI_RANK} - About to run: /usr/local/osu/libexec/osu-micro-benchmarks/mpi/$*"
-     exec /usr/local/osu/libexec/osu-micro-benchmarks/mpi/$*
+    echo "Installing required packages..."
+    apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential libfabric-dev libibverbs-dev gfortran
+    apt-get install -y wget git bash gcc g++ make file
+
+    echo "Installing Open MPI"
+    export OMPI_DIR=/opt/ompi
+    export OMPI_VERSION=4.0.5
+    export OMPI_URL="https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-$OMPI_VERSION.tar.bz2"
+    mkdir -p /tmp/ompi
+    mkdir -p /opt
+    # Download
+    cd /tmp/ompi && wget -O openmpi-$OMPI_VERSION.tar.bz2 $OMPI_URL && tar -xjf openmpi-$OMPI_VERSION.tar.bz2
+    # Compile and install
+    cd /tmp/ompi/openmpi-$OMPI_VERSION && ./configure --prefix=$OMPI_DIR && make -j8 install
+
+    # Set env variables so we can compile our application
+    export PATH=$OMPI_DIR/bin:$PATH
+    export LD_LIBRARY_PATH=$OMPI_DIR/lib:$LD_LIBRARY_PATH
+
+    export OSU_URL="https://mvapich.cse.ohio-state.edu/download/mvapich/osu-micro-benchmarks-5.8.tgz"
+    mkdir -p /tmp/osub
+    cd /tmp/osub && wget -O osu_mic_bench.tar $OSU_URL && tar -xf osu_mic_bench.tar
+    cd osu-micro-benchmarks-5.8/
+    echo "Configuring and building OSU Micro-Benchmarks..."
+    ./configure --prefix=/usr/local/osu CC=/opt/ompi/bin/mpicc CXX=/opt/ompi/bin/mpicxx
+    make -j2 && make install
+
+%runscript
+    echo "Rank ${PMI_RANK} - About to run: /usr/local/osu/libexec/osu-micro-benchmarks/mpi/$*"
+    exec /usr/local/osu/libexec/osu-micro-benchmarks/mpi/$*
 
 A quick overview of what the above definition file is doing:
 
- - The image is being bootstrapped from the ``ubuntu:20.04`` Docker
+ - The image is being bootstrapped from the ``ubuntu:18.04`` Docker
    image.
- - In the ``%files`` section: The OSU Micro-Benchmarks and MPICH tar
-   files are copied from the current directory into the ``/root``
-   directory in the image.
  - In the ``%environment`` section: Set an environment variable that
    will be available within all containers run from the generated
    image.
@@ -156,11 +177,9 @@ A quick overview of what the above definition file is doing:
 
    - Ubuntu's ``apt-get`` package manager is used to update the package
      directory and then install the compilers and other libraries
-     required for the MPICH build.
-   - The MPICH .tar.gz file is extracted and the configure, build and
-     install steps are run. Note the use of the ``--with-device`` option
-     to configure MPICH to use the correct driver to support improved
-     communication performance on a high performance cluster.
+     required for the OpenMPI build.
+   - The OpenMPI ``.tar.gz`` file is extracted and the configure, build and
+     install steps are run.
    - The OSU Micro-Benchmarks tar.gz file is extracted and the
      configure, build and install steps are run to build the benchmark
      code from source.
@@ -182,9 +201,9 @@ example, ``startup/osu_hello``, ``collective/osu_allgather``,
    run the `osu_hello` benchmark that is found in the `startup`
    benchmark folder.
 
-   *NOTE: If you're not using the Singularity Docker image to build
+   **NOTE**: If you're not using the Singularity Docker image to build
    your Singularity image, you will need to edit the path to the
-   .tar.gz file in the ``%files`` section of the definition file.*
+   .tar.gz file in the ``%files`` section of the definition file.
 
    .. solution::
 
