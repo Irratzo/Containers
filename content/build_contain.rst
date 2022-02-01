@@ -223,6 +223,7 @@ highlight two different approaches here and focus on one of them:
   install and configure packages and code as you wish before exiting the
   sandbox and converting it into a container image.
 
+
 - Building from a `Singularity Definition File
   <https://sylabs.io/guides/3.7/user-guide/build_a_container.html#building-containers-from-singularity-definition-files>`_:
   This is Singularity's equivalent to building a Docker container from a
@@ -298,7 +299,7 @@ Let's step through this definition file and look at the lines in more detail:
   From: ubuntu:20.04
 
 
-These first two lines define where to _bootstrap_ our image from. Why can't we just put some application binaries into
+These first two lines define where to **bootstrap** our image from. Why can't we just put some application binaries into
 a blank image? Any applications or tools that we want to run will need to interact with standard system libraries and
 potentially a wide range of other libraries and tools. These need to be available within the image and we therefore
 need some sort of operating system as the basis for our image. The most straightforward way to achieve this is to start
@@ -306,9 +307,9 @@ from an existing base image containing an operating system. In this case, we're 
 Linux Docker image. Note that we're using a Docker image as the basis for creating a Singularity image.
 This demonstrates the flexibility in being able to start from different types of images when creating a new Singularity image.
 
-The `Bootstrap: docker` line is similar to prefixing an image path with `docker://` when using, for example,
-the `singularity pull` command. A range of `different bootstrap options <https://sylabs.io/guides/3.7/user-guide/definition_files.html#preferred-bootstrap-agents>`_
-are supported. `From: ubuntu:20.04` says that we want to use the `ubuntu` image with the tag `20.04`.
+The ``Bootstrap: docker`` line is similar to prefixing an image path with ``docker://`` when using, for example,
+the ``singularity pull`` command. A range of `different bootstrap options <https://sylabs.io/guides/3.7/user-guide/definition_files.html#preferred-bootstrap-agents>`_
+are supported. ``From: ubuntu:20.04`` says that we want to use the ``ubuntu`` image with the tag ``20.04``.
 
 Next we have the `%post` section of the definition file:
 
@@ -319,16 +320,16 @@ Next we have the `%post` section of the definition file:
 
 In this section of the file we can do tasks such as package installation, pulling data files from remote locations
 and undertaking local configuration within the image. The commands that appear in this section are standard shell
-commands and they are run _within_ the context of our new container image. So, in the case of this example,
+commands and they are run **within** the context of our new container image. So, in the case of this example,
 these commands are being run within the context of a minimal Ubuntu 20.04 image that initially has only a very small
 set of core packages installed.
 
-Here we use Ubuntu's package manager to update our package indexes and then install the `python3` package along
-with any required dependencies (in Ubuntu 20.04, the _python3_ package installs `python 3.8.5`). The `-y` switches
+Here we use Ubuntu's package manager to update our package indexes and then install the ``python3`` package along
+with any required dependencies (in Ubuntu 20.04, the **python3** package installs ``python 3.8.5``). The ``-y`` switches
 are used to accept, by default, interactive prompts that might appear asking you to confirm package updates or installation.
 This is required because our definition file should be able to run in an unattended, non-interactive environment.
 
-Finally we have the `%runscript` section:
+Finally we have the ``%runscript`` section:
 
 .. code-block:: bash
 
@@ -391,11 +392,12 @@ privileges to build the image. You should see output similar to the following:
   $
 
 
-You should now have a `my_test_image.sif` file in the current directory. Note that in your version of the above output,
-after it says `INFO:  Starting build...` you may see a series of `skipped: already exists` messages for the `Copying blob` lines.
-This happens when the Docker image slices for the Ubuntu 20.04 image have previously been downloaded and are cached on the system
-where this example is being run. On your system, if the image is not already cached, you will see the slices being downloaded
-from Docker Hub when these lines of output appear.
+You should now have a ``my_test_image.sif`` file in the current directory. Note that in
+your version of the above output, after it says ``INFO:  Starting build...`` you may see
+a series of ``skipped: already exists`` messages for the ``Copying blob`` lines. This happens
+when the Docker image slices for the Ubuntu 20.04 image have previously been downloaded and
+are cached on the system where this example is being run. On your system, if the image is not
+already cached, you will see the slices being downloaded from Docker Hub when these lines of output appear.
 
 Permissions of the created image file
 +++++++++++++++++++++++++++++++++++++
@@ -422,25 +424,25 @@ the Docker Singularity container and run your singularity image there.
 
          docker run -it --entrypoint=/bin/sh --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim
          / # cd /home/singularity
-         /home/singularity # singularity run my_test_image.sif
+         /home/singularity# singularity run my_test_image.sif
 
       Output
 
       .. code-block:: text
 
          Hello World! Hello from our custom Singularity image!
-         /home/singularity #
+         /home/singularity#
 
-.. callout:: Using `singularity run` from within the Docker container
+.. callout:: Using ``singularity run`` from within the Docker container
 
   It is strongly recommended that you don't use the Docker container for running Singularity images
   in any production setting, only for creating them, since the Singularity command runs within the container as the root user.
   However, for the purposes of this simple example, the Docker Singularity container provides an ideal environment to test that
   you have successfully built your container.
 
-Now we'll test our image on an HPC platform. Move your created `.sif` image file to a platform with an installation of Singularity.
-You could, for example, do this using the command line secure copy command `scp`. For example, the following command would copy
-`my_test_image.sif` to the remote server identified by `<target hostname>` (don't forget the colon at the end of the hostname!):
+Now we'll test our image on an HPC platform. Move your created ``.sif`` image file to a platform with an installation of Singularity.
+You could, for example, do this using the command line secure copy command ``scp``. For example, the following command would copy
+`my_test_image.sif` to the remote server identified by ``<target hostname>`` (don't forget the colon at the end of the hostname!):
 
 .. code-block:: bash
 
@@ -451,25 +453,6 @@ You could provide a destination path for the file straight after the colon at th
 but by default, the file will be uploaded to you home directory.
 
 Try to run the container on the login node of the HPC platform and check that you get the expected output.
-
-.. callout:: Cluster platform configuration for running Singularity containers
-
-  On the cluster platform that we're using for the course, it is necesary to setup a shared temporary storage space
-  for Singularity to use because it is not possible for it to use the standard `/tmp` directory on this platform.
-
-  First create a directory in the `/lustre/home/shared` directory. It is 	recommended that you create a directory
-  named `$USER-singularity`. We then need to 	set Singularity's temporary directory environment variable to point to this location.
-  Run the following commands:
-
-  .. code-block:: bash
-
-    mkdir /lustre/home/shared/$USER-singularity
-    export TMPDIR=/lustre/home/shared/$USER-singularity
-    export SINGULARITY_TMPDIR=$TMPDIR
-
-  When running Singularity containers on this platform, you'll need to set 	`SINGULARITY_TMPDIR` in each shell session that you open.
-  However, you could add 	these commands to your `~/.bashrc` or `~/.bash_profile` so that the values are set 	by default in each shell
-  that you open.
 
 It is recommended that you move the create `.sif` file to a platform with an installation of Singularity, rather than attempting to run
 the image using the Docker container. However, if you do try to use the Docker container, see the notes below on "*Using singularity run from within the Docker container*" for further information.
