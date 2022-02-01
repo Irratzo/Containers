@@ -4,8 +4,8 @@ Singularity: Getting started
 ============================
 
 The episodes in this lesson will introduce you to the `Singularity
-<https://sylabs.io/singularity>` container platform and demonstrate
-how to set up and use Singularity.
+<https://sylabs.io/singularity>`_ container platform and demonstrate
+how to use Singularity.
 
 This material is split into 2 parts:
 
@@ -65,13 +65,10 @@ have the Singularity software pre-installed.
 .. callout:: Installing Singularity on your own laptop/desktop
 
    If you have a Linux system on which you have administrator access
-   and you would like to install Singularity locally on this system.
+   and you can install Singularity locally on this system.
 
-**Check that Singularity is available**
-
-Sign in to the remote platform, with Singularity installed, that
-you've been provided with access to.  Check that the `singularity`
-command is available in your terminal:
+Sign in to the Vega system that you've been provided with access to.
+Check that the `singularity` command is available in your terminal:
 
 .. code-block:: bash
 
@@ -81,11 +78,10 @@ Output
 
 .. code-block:: bash
 
-   singularity version 3.7.0
+   SingularityPRO version 3.7-5.el8
 
 Depending on the version of Singularity installed on your system, you
-may see a different version.  At the time of writing, `v3.7.0` is the
-latest release of Singularity.
+may see a different version.
 
 .. callout:: Singularity on HPC systems: Loading a module
 
@@ -97,6 +93,8 @@ latest release of Singularity.
    .. code-block:: bash
 
       module load singularity
+
+    Nonetheless, for the Vega system `singularity` is readily available.
 
 
 Images and containers
@@ -137,7 +135,7 @@ images are provided as single `SIF` files. Singularity images can be
 pulled from `Singularity Hub <https://singularity-hub.org/>`_, a
 registry for container images. Singularity is also capable of running
 containers based on images pulled from `Docker Hub
-<https://hub.docker.com/>` and some other sources. We'll look at
+<https://hub.docker.com/>`_ and some other sources. We'll look at
 accessing containers from Docker Hub later in the Singularity
 material.
 
@@ -157,6 +155,11 @@ pulling a test Hello World image from Singularity Hub:
    mkdir test
    cd test
    singularity pull hello-world.sif shub://vsoch/hello-world
+
+.. note::
+
+  What is the main difference between above and the Docker pull request?
+
 
 Output
 
