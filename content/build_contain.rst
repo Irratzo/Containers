@@ -470,15 +470,15 @@ by Python:
 
    Hello World! Hello from our custom Singularity image!
 
-.. callout:: Using `singularity run` from within the Docker container
+.. callout:: Using ``singularity run`` from within the Docker container
 
    It is strongly recommended that you don't use the Docker container
    for running Singularity images, only for creating then, since the
    Singularity command runs within the container as the root
    user. However, for the purposes of this simple example, if you are
-   trying to run the container using the `singularity` command from
+   trying to run the container using the ``singularity`` command from
    within the Docker container, it is likely that you will get an error
-   relating to `/etc/localtime` similar to the following:
+   relating to ``/etc/localtime`` similar to the following:
 
    .. code-block:: text
 
@@ -487,7 +487,7 @@ by Python:
       /etc/localtime->/etc/localtime error: while mounting
       /etc/localtime: mount source /etc/localtime doesn't exist
 
-   This occurs because the `/etc/localtime` file that provides
+   This occurs because the ``/etc/localtime`` file that provides
    timezone configuration is not present within the Docker container.
    If you want to use the Docker container to test that your newly
    created image runs, you'll need to open a shell in the Docker
@@ -500,7 +500,7 @@ by Python:
       apk add tzdata
       cp /usr/share/zoneinfo/Europe/London /etc/localtime
 
-The `singularity run` command should now work successfully.
+The ``singularity run`` command should now work successfully.
 
 More advanced definition files
 ______________________________
@@ -509,15 +509,15 @@ Here we've looked at a very simple example of how to create an
 image. At this stage, you might want to have a go at creating your own
 definition file for some code of your own or an application that you
 work with regularly. There are several definition file sections that
-were _not_ used in the above example, these are:
+were **not** used in the above example, these are:
 
- - `%setup`
- - `%files`
- - `%environment`
- - `%startscript`
- - `%test`
- - `%labels`
- - `%help`
+ - ``%setup``
+ - ``%files``
+ - ``%environment``
+ - ``%startscript``
+ - ``%test``
+ - ``%labels``
+ - ``%help``
 
 The `"Sections" part of the definition file documentation
 <https://sylabs.io/guides/3.7/user-guide/definition_files.html#sections>`_
@@ -534,14 +534,14 @@ highlight a couple of key features here that may be of use/interest:
 
 **Remote Builder Capabilities:** If you have access to a platform with
 Singularity installed but you don't have root access to create
-containers, you may be able to use the [Remote
-Builder](https://cloud.sylabs.io/builder) functionality to offload the
+containers, you may be able to use the `Remote
+Builder <https://cloud.sylabs.io/builder>`_ functionality to offload the
 process of building an image to remote cloud resources.  You'll need
-to register for a *cloud token* via the link on the Remote Builder
+to register for a **cloud token** via the link on the Remote Builder
 page.
 
 **Signing containers:** If you do want to share container image
- (`.sif`) files directly with colleagues or collaborators, how can the
+ (``.sif``) files directly with colleagues or collaborators, how can the
  people you send an image to be sure that they have received the file
  without it being tampered with or suffering from corruption during
  transfer/storage? And how can you be sure that the same goes for any
@@ -551,5 +551,4 @@ page.
  file has been signed by the holder of a specific key and that the
  file is unchanged from when it was signed. You can find full details
  of how to use this functionality in the Singularity documentation on
- [Signing and Verifying
- Containers](https://sylabs.io/guides/3.7/user-guide/signNverify.html).
+ `Signing and Verifying Containers <https://sylabs.io/guides/3.7/user-guide/signNverify.html>`_.
