@@ -162,7 +162,7 @@ the following [definition file ``/my_folder/osu_benchmarks.def`` to a
     ./configure --prefix=/usr/local/osu CC=/opt/ompi/bin/mpicc CXX=/opt/ompi/bin/mpicxx
     make -j2 && make install
 
-%runscript
+   %runscript
     echo "Rank ${PMI_RANK} - About to run: /usr/local/osu/libexec/osu-micro-benchmarks/mpi/$*"
     exec /usr/local/osu/libexec/osu-micro-benchmarks/mpi/$*
 
