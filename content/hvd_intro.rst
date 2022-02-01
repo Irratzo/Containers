@@ -1,4 +1,4 @@
-.. _hvd_intro ::
+.. _hvd_intro:
 
 Intoduction to Horovod
 ======================
@@ -48,8 +48,7 @@ Say we launched a training script on 4 servers, each having 4 GPUs. If we launch
   distributes results back to them. Allreduce is used to average dense tensors.
 
   .. image :: http://mpitutorial.com/tutorials/mpi-reduce-and-allreduce/mpi_allreduce_1.png
-  :alt: Allreduce
-    :alt: allreduce
+    :alt: Allreduce
 
 - **Allgather** is an operation that gathers data from all processes on every process.
   Allgather is used to collect values of sparse tensors.
