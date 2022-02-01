@@ -541,14 +541,14 @@ to register for a **cloud token** via the link on the Remote Builder
 page.
 
 **Signing containers:** If you do want to share container image
- (``.sif``) files directly with colleagues or collaborators, how can the
- people you send an image to be sure that they have received the file
- without it being tampered with or suffering from corruption during
- transfer/storage? And how can you be sure that the same goes for any
- container image file you receive from others? Singularity supports
- signing containers. This allows a digital signature to be linked to
- an image file. This signature can be used to verify that an image
- file has been signed by the holder of a specific key and that the
- file is unchanged from when it was signed. You can find full details
- of how to use this functionality in the Singularity documentation on
- `Signing and Verifying Containers <https://sylabs.io/guides/3.7/user-guide/signNverify.html>`_.
+(``.sif``) files directly with colleagues or collaborators, how can the
+people you send an image to be sure that they have received the file
+without it being tampered with or suffering from corruption during
+transfer/storage? And how can you be sure that the same goes for any
+container image file you receive from others? Singularity supports
+signing containers. This allows a digital signature to be linked to
+an image file. This signature can be used to verify that an image
+file has been signed by the holder of a specific key and that the
+file is unchanged from when it was signed. You can find full details
+of how to use this functionality in the Singularity documentation on
+`Signing and Verifying Containers <https://sylabs.io/guides/3.7/user-guide/signNverify.html>`_.
