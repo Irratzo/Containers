@@ -223,8 +223,8 @@ highlight two different approaches here and focus on one of them:
   install and configure packages and code as you wish before exiting the
   sandbox and converting it into a container image.
 
-- **Building from a `Singularity Definition File
-  <https://sylabs.io/guides/3.7/user-guide/build_a_container.html#building-containers-from-singularity-definition-files>`_**:
+- **Building from a `Singularity Definition File**
+  <https://sylabs.io/guides/3.7/user-guide/build_a_container.html#building-containers-from-singularity-definition-files>`_:
   This is Singularity's equivalent to building a Docker container from a
   `Dockerfile` and we'll discuss this approach in this section.
 
