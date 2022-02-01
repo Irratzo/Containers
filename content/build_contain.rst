@@ -33,7 +33,7 @@ account as a non-privileged user.  This part of the Singularity
 material requires that you use Singularity in an environment where you
 have administrative (root) access. While it is possible to build
 Singularity containers without root access, it is highly recommended
-that you do this as the _root_ user, as highlighted in `this section
+that you do this as the **root** user, as highlighted in `this section
 <https://sylabs.io/guides/3.7/user-guide/build_a_container.html#creating-writable-sandbox-directories>`_
 of the Singularity documentation. Bear in mind that the system that
 you use to build containers doesn't have to be the system where you
@@ -79,13 +79,13 @@ be covering this.
    <https://github.com/sylabs/singularity/blob/master/INSTALL.md>`_
    file within the Singularity repository that explains how to install
    the prerequisites and build and install the software.  Singularity
-   is written in the [Go](https://golang.org/) programming language and
+   is written in the `Go <https://golang.org/>`_ programming language and
    Go is the main dependency that you'll need to install on your
    system. The process of installing Go and any other requirements is
    detailed in the INSTALL.md file.
 
 
-.. callout:: Note
+.. note ::
 
    If you do not have access to a system with Docker installed, or a
    Linux system where you can build and install Singularity but you
@@ -104,7 +104,7 @@ be covering this.
    Singularity images can be built.
 
    You could also attempt to follow this section of the lesson without
-   using root and instead using the `singularity` command's `--fakeroot
+   using root and instead using the ``singularity`` command's `--fakeroot
    <https://sylabs.io/guides/3.7/user-guide/fakeroot.html>`_ option.
    However, you may encounter issues with permissions when trying to
    build images and run your containers and this is why running the
@@ -120,13 +120,13 @@ The `Singularity Docker image <https://quay.io/repository/singularity/singularit
 .. exercise:: Familiarise yourself with the Docker Singularity image
 
   - Using your previously acquired Docker knowledge, get the
-    Singularity image for `v3.7.0` and ensure that you can run a Docker
+    Singularity image for ``v3.7.0`` and ensure that you can run a Docker
     container using this image. You might want to use the `v3.7.0-slim`
     version of this image since it is significantly smaller than the
-    standard image - the _slim_ version of the image will be used in the
+    standard image - the **slim** version of the image will be used in the
     examples below.
 
-  - Create a directory (e.g. `$HOME/singularity_data`) on your host
+  - Create a directory (e.g. ``$HOME/singularity_data``) on your host
     machine that you can use for storage of **definition files** (we'll
     introduce these shortly) and generated image files.
 
@@ -134,10 +134,10 @@ The `Singularity Docker image <https://quay.io/repository/singularity/singularit
     the location `/home/singularity` every time you run it - this will
     give you a location in which to store built images so that they are
     available on the host system once the container exits.  (take a look
-    at the `-v` switch)
+    at the ``-v`` switch)
 
     **Note**: To be able to build an image using the Docker Singularity
-    container, you'll probably need to add the `--privileged` switch to
+    container, you'll probably need to add the ``--privileged`` switch to
     your docker command line.
 
     .. tabs::
@@ -154,20 +154,20 @@ The `Singularity Docker image <https://quay.io/repository/singularity/singularit
 	  place created images so that they are accessible on the host
 	  system after the container exits.  Begin by changing into the
 	  directory that you created above for storing your definiton
-	  files and built images (e.g. `$HOME/singularity_data`).
+	  files and built images (e.g. ``$HOME/singularity_data``).
 
 	  You may choose to:
 
 	  - open a shell within the Docker image so you can work at a
-	    command prompt and run the `singularity` command directly
-	  - use the `docker run` command to run a new container instance
+	    command prompt and run the ``singularity`` command directly
+	  - use the ``docker run`` command to run a new container instance
 	    every time you want to run the `singularity` command.
 
 	  Either option is fine for this section of the material.
 
 	  **Some examples:**
 
-	  To run the `singularity` command within the docker container
+	  To run the ``singularity`` command within the docker container
 	  directly from the host system's terminal:
 
 	  .. code-block:: bash
@@ -183,14 +183,13 @@ The `Singularity Docker image <https://quay.io/repository/singularity/singularit
 	     docker run -it --entrypoint=/bin/sh --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim
 
 	  To make things easier to read in the remainder of the material,
-	  command examples will use the `singularity` command directly,
-	  e.g. `singularity cache list`. If you're running a shell in the
+	  command examples will use the ``singularity`` command directly,
+	  e.g. ``singularity cache list``. If you're running a shell in the
 	  Docker container, you can enter the commands as they appear.  If
 	  you're using the container's default run behaviour and running a
 	  container instance for each run of the command, you'll need to
-	  replace `singularity` with `docker run --privileged -v
-	  ${PWD}:/home/singularity
-	  quay.io/singularity/singularity:v3.7.0-slim` or similar.
+	  replace ``singularity`` with ``docker run --privileged -v
+	  ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim`` or similar.
 
 Building Singularity images
 ___________________________
