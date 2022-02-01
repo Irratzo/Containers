@@ -17,7 +17,7 @@ our examples. You can book a CPU-node for 1 hour using this command
 
 And for a GPU-node with *X* number of GPUs per node (there are 4 GPUs avaiable per node in Vega)
 
-..code-block :: bash
+.. code-block :: bash
 
   salloc -n 1 --gres=gpu:X --partition=gpu -t 5:00:00
 

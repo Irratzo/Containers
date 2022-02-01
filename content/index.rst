@@ -119,8 +119,7 @@ by `CodeRefinery <https://coderefinery.org/>`_ licensed under the `MIT
 license <http://opensource.org/licenses/mit-license.html>`_. We have
 copied and adapted most of their license text.
 
-The material from below references have been used in some form various parts of this course.
-
+Materials from the below references have been used in various parts of this course.
   - The Carpentries lesson on `"Reproducible Computational Environments Using Containers: Introduction to Docker and Singularity" <https://epcced.github.io/2020-12-08-Containers-Online/>`_
   - `What Are Namespaces and cgroups, and How Do They Work? <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
   - `Docker for Beginners <https://training.play-with-docker.com/beginner-linux/>`_
