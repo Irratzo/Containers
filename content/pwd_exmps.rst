@@ -675,5 +675,3 @@ You can browse to ``https://hub.docker.com/r/<your docker id>/`` and see your
 newly-pushed Docker images. These are public repositories, so anyone can pull
 the image - you don’t even need a Docker ID to pull public images.
 Docker Hub also supports private repositories.
-
-`Docker for Beginners <https://training.play-with-docker.com/beginner-linux/>`_

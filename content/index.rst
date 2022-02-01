@@ -103,10 +103,12 @@ practical advice.
 
 See also
 --------
+Docker provides plenty of educational materials for users. Therefore, checking `Docker official website <https://docs.docker.com/get-started/>`_
+is highly recommended. The same can be stated about `Singularity <https://sylabs.io/guides/latest/user-guide/>`_
+, where one can find many compelling examples with relevant details.
 
-
-
-
+TensorFlow and Horovorod documentation are also good sources of learning about commands
+and their proper use.
 
 Credits
 -------
@@ -116,6 +118,15 @@ derived from `work <https://github.com/coderefinery/sphinx-lesson>`_
 by `CodeRefinery <https://coderefinery.org/>`_ licensed under the `MIT
 license <http://opensource.org/licenses/mit-license.html>`_. We have
 copied and adapted most of their license text.
+
+The material from below references have been used in some form various parts of this course.
+
+  - The Carpentries lesson on `"Reproducible Computational Environments Using Containers: Introduction to Docker and Singularity" <https://epcced.github.io/2020-12-08-Containers-Online/>`_
+  - `What Are Namespaces and cgroups, and How Do They Work? <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
+  - `Docker for Beginners <https://training.play-with-docker.com/beginner-linux/>`_
+  - `TensorFlow documentation <https://www.tensorflow.org/guide/distributed_training>`_
+  - `Horovod documentation <https://horovod.readthedocs.io/en/stable/>`_
+
 
 Instructional Material
 ^^^^^^^^^^^^^^^^^^^^^^

@@ -9,11 +9,17 @@ and upload your public to the server. You can read it in `the Vega documentation
 
 Once the setup is completed, you can login to the system. While the ``Singularity``
 module is readily avaiable in the login node, we should book a compute node to run
-our examples. You can book a node for 1 hour using this command
+our examples. You can book a CPU-node for 1 hour using this command
 
 .. code-block :: bash
 
   salloc -n 1 -t 1:00:00
+
+And for a GPU-node with *X* number of GPUs per node (there are 4 GPUs per node in Vega)
+
+..code-block :: bash
+
+  salloc -n 1 --gres=gpu:X --partition=gpu -t 5:00:00
 
 Once the allocation is granted you will receive a message similar to
 
@@ -26,8 +32,8 @@ Once the allocation is granted you will receive a message similar to
   salloc: Waiting for resource configuration
   salloc: Nodes cn0381 are ready for job
 
-The granted compute node here is `cn0381`. In general from the compute node will
-be similar like `cn0XXX`. Now you should SSH to the compute node to run interactively
+The granted CPU compute node here is `cn0381`. The general form for the CPU compute node likes
+like `cn0XXX` for GPU compute node `gnXXX`. Now you should SSH to the compute node to run interactively
 our job using the command
 
 .. code-block :: bash
@@ -95,5 +101,10 @@ To use TensorFlow or Horovod in this course, we can simply load them through mod
 
 .. code-block :: bash
 
-  module load TensorFlow
-  module load Horovod
+  module load TensorFlow/2.5.0-fosscuda-2020b
+
+Or
+
+.. code-block :: bash
+
+  module load Horovod/0.22.1-fosscuda-2020b-TensorFlow-2.5.0

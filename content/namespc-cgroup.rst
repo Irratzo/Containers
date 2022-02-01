@@ -277,7 +277,7 @@ We can also check the amount of memory currently ``test.sh`` is using with the c
   $ sudo cat /sys/fs/cgroup/memory/foo/memory.usage_in_bytes
   1712128
 
-Namespaces and cgroups are the building blocks for containers and modern applications. 
+Namespaces and cgroups are the building blocks for containers and modern applications.
 Having an understanding of how they work is important as we refactor applications
 to more modern architectures.
 
@@ -286,5 +286,3 @@ control and enforcement of limits for those resources.
 
 Containers are not the only way that you can use namespaces and cgroups.
 Namespaces and cgroup interfaces are built into the Linux kernel, which means that other applications can use them to provide separation and resource constraints.
-
-`What Are Namespaces and cgroups, and How Do They Work? <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
