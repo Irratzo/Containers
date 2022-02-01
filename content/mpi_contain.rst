@@ -212,7 +212,7 @@ example, ``startup/osu_hello``, ``collective/osu_allgather``,
 
       .. code-block:: bash
 
-	singularity build osu_benchmarks.sif osu_benchmarks.def
+        singularity build osu_benchmarks.sif osu_benchmarks.def
 
       Note that if you're running the Singularity Docker container
       directly from the command line to undertake your build, you'll
@@ -233,7 +233,7 @@ example, ``startup/osu_hello``, ``collective/osu_allgather``,
 
       .. code-block:: bash
 
-	singularity run osu_benchmarks.sif startup/osu_hello
+        singularity run osu_benchmarks.sif startup/osu_hello
 
       You should see output similar to the following:
 
@@ -268,7 +268,7 @@ communication between MPI processes, including talking to the daemons on other
 nodes to exchange information between processes running on different machines, as necessary.
 
 When running code within a Singularity container, we don't use the MPI executables
-stored within the container (i.e. we DO NOT run ``singularity exec mpirun -np <numprocs> /path/to/my/executable``).
+stored within the container (i.e. we **DO NOT** run ``singularity exec mpirun -np <numprocs> /path/to/my/executable``).
 Instead we use the MPI installation on the host system to run Singularity and start
 an instance of our executable from within a container for each MPI process.
 Without Singularity support in an MPI implementation, this results in starting
@@ -288,9 +288,7 @@ We can now try running a 2-process MPI run of a point to point benchmark ``osu_l
 If your local system has both MPI and Singularity installed and has multiple cores,
 you can run this test on that system. Alternatively you can run on a cluster. Note
 that you may need to submit this command via a job submission script submitted
-to a job scheduler if you're running on a cluster. If you're attending a taught
-version of this course, some information will be provided below in relation to
-the cluster that you've been provided with access to.
+to a job scheduler if you're running on a cluster.
 
 .. exercise:: Undertake a parallel run of the ``osu_latency`` benchmark (general example)
 
@@ -339,16 +337,16 @@ the cluster that you've been provided with access to.
    platform that you've been given access to for this taught version
    of the course.  Move the `osu_benchmarks.sif` Singularity image
    onto the cluster where you're going to undertake your benchmark
-   run.  You should use `scp` or a similar utility to copy the file.
+   run.  You should use ``scp`` or a similar utility to copy the file.
    The platform you've been provided with access to uses `Slurm`
    schedule jobs to run on the platform. You now need to create a
-   `Slurm` job submission script to run the benchmark.
+   ``Slurm`` job submission script to run the benchmark.
 
-   Download this [template
-   script]({{site.url}}{{site.baseurl}}/files/osu_latency.slurm.template)
-   and edit it to suit your configuration.  Submit the modified
-   job submission script to the `Slurm` scheduler using the
-   `sbatch` command.
+   Find a template script on `the Vega support website <https://doc.vega.izum.si/first-job/>`_
+   and edit it to suit your configuration. You can find more details about the Slurm
+   `here <https://doc.vega.izum.si/slurm/>`_. Create and appropriate bash file and submit
+   the modified job submission script to the `Slurm` scheduler using the
+   ``sbatch`` command.
 
    .. code-block:: bash
 
@@ -357,8 +355,8 @@ the cluster that you've been provided with access to.
    .. solution:: Expected output and discussion
 
       As you will have seen in the commands using the provided
-      template job submission script, we have called `mpirun` on the
-      host system and are passing to MPI the `singularity` executable
+      template job submission script, we have called ``mpirun`` on the
+      host system and are passing to MPI the ``singularity`` executable
       for which the parameters are the image file and any parameters
       we want to pass to the image's run script. In this case, the
       parameters are the path/name of the benchmark executable to
@@ -370,19 +368,19 @@ the cluster that you've been provided with access to.
 
       .. code-block:: text
 
-	 INFO:    Convert SIF file to sandbox...
-	 INFO:    Convert SIF file to sandbox...
-	 Rank 1 - About to run: /.../mpi/pt2pt/osu_latency
-	 Rank 0 - About to run: /.../mpi/pt2pt/osu_latency
-	 # OSU MPI Latency Test v5.6.2
-	 # Size          Latency (us)
-	 0                       1.49
-	 1                       1.50
-	 2                       1.50
-	 ...
-	 4194304               915.44
-	 INFO:    Cleaning up image...
-	 INFO:    Cleaning up image...
+        INFO:    Convert SIF file to sandbox...
+	      INFO:    Convert SIF file to sandbox...
+	      Rank 1 - About to run: /.../mpi/pt2pt/osu_latency
+	      Rank 0 - About to run: /.../mpi/pt2pt/osu_latency
+	      # OSU MPI Latency Test v5.6.2
+	      # Size          Latency (us)
+	      0                       1.49
+	      1                       1.50
+	      2                       1.50
+	      ...
+	      4194304               915.44
+	      INFO:    Cleaning up image...
+        INFO:    Cleaning up image...
 
 This has demonstrated that we can successfully run a parallel MPI
 executable from within a Singularity container.  However, in this
