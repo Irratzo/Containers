@@ -429,3 +429,109 @@ running a benchmark that uses multiple processes, for example try
       `bind model
       <https://sylabs.io/guides/3.5/user-guide/mpi.html#bind-model>`_
       for building/running MPI applications through Singularity.
+
+A simpler MPI example
++++++++++++++++++++++
+
+While the OSU benchmark is an impressive test that shows how one can use containers
+with MPI launcher, it might obscure the structure behind the whole setup. Let's take a
+look at an example in which we can simply see how MPI is run within a container.
+
+Create a new directory and save the ``mpitest.c`` given below.
+
+.. code-block :: bash
+
+  kk
+  #include <mpi.h>
+  #include <stdio.h>
+  #include <stdlib.h>
+
+  int main (int argc, char **argv) {
+        int rc;
+        int size;
+        int myrank;
+
+        rc = MPI_Init (&argc, &argv);
+        if (rc != MPI_SUCCESS) {
+                fprintf (stderr, "MPI_Init() failed");
+                return EXIT_FAILURE;
+        }
+
+        rc = MPI_Comm_size (MPI_COMM_WORLD, &size);
+        if (rc != MPI_SUCCESS) {
+                fprintf (stderr, "MPI_Comm_size() failed");
+                goto exit_with_error;
+        }
+
+        rc = MPI_Comm_rank (MPI_COMM_WORLD, &myrank);
+        if (rc != MPI_SUCCESS) {
+                fprintf (stderr, "MPI_Comm_rank() failed");
+                goto exit_with_error;
+        }
+
+        fprintf (stdout, "Hello, I am rank %d/%d\n", myrank, size);
+
+        MPI_Finalize();
+
+        return EXIT_SUCCESS;
+
+  exit_with_error:
+        MPI_Finalize();
+        return EXIT_FAILURE;
+  }
+
+We can either compile directly, or compile inside the contianer. For learning
+purposes, let's compile the code inside the container. Create a container with the defintion
+file given below.
+
+.. code-block :: bash
+
+  Bootstrap: docker
+  From: ubuntu:18.04
+
+  %files
+    mpitest.c /opt
+
+  %environment
+    # Point to OMPI binaries, libraries, man pages
+    export OMPI_DIR=/opt/ompi
+    export PATH="$OMPI_DIR/bin:$PATH"
+    export LD_LIBRARY_PATH="$OMPI_DIR/lib:$LD_LIBRARY_PATH"
+    export MANPATH="$OMPI_DIR/share/man:$MANPATH"
+
+  %post
+    echo "Installing required packages..."
+    apt-get update && apt-get install -y wget git bash gcc gfortran g++ make file
+
+    echo "Installing Open MPI"
+    export OMPI_DIR=/opt/ompi
+    export OMPI_VERSION=4.0.5
+    export OMPI_URL="https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-$OMPI_VERSION.tar.bz2"
+    mkdir -p /tmp/ompi
+    mkdir -p /opt
+    # Download
+    cd /tmp/ompi && wget -O openmpi-$OMPI_VERSION.tar.bz2 $OMPI_URL && tar -xjf openmpi-$OMPI_VERSION.tar.bz2
+    # Compile and install
+    cd /tmp/ompi/openmpi-$OMPI_VERSION && ./configure --prefix=$OMPI_DIR && make -j8 install
+
+    # Set env variables so we can compile our application
+    export PATH=$OMPI_DIR/bin:$PATH
+    export LD_LIBRARY_PATH=$OMPI_DIR/lib:$LD_LIBRARY_PATH
+
+    echo "Compiling the MPI application..."
+    cd /opt && mpicc -o mpitest mpitest.c
+
+.. code-block :: bash
+
+  mpirun -n 8 singularity run mpi_hybrid.sif /opt/mpitest
+
+.. code-block :: bash
+
+  Hello, I am rank 1/8
+  Hello, I am rank 2/8
+  Hello, I am rank 3/8
+  Hello, I am rank 4/8
+  Hello, I am rank 5/8
+  Hello, I am rank 6/8
+  Hello, I am rank 7/8
+  Hello, I am rank 0/8
