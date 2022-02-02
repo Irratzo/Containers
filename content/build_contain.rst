@@ -503,7 +503,7 @@ by Python:
 The ``singularity run`` command should now work successfully.
 
 More about definiton files
---------------------------
+__________________________
 
 A {Singularity} Definition file is divided into two parts:
 
@@ -528,9 +528,9 @@ repository <https://github.com/hpcng/singularity/tree/master/examples>`_
 For a comparison between Dockerfile and {Singularity} definition file,
 please see: :ref:`this section <sec:deffile-vs-dockerfile>`.
 
-------
+
 Header
-------
+++++++
 
 The header should be written at the top of the def file. It tells {Singularity}
 about the base operating system that it should use to build the container. It is
@@ -573,7 +573,7 @@ them and see examples in the :ref:`appendix section<buildmodules>`:
 
 
 Preferred bootstrap agents
-==========================
+++++++++++++++++++++++++++
 
 -  :ref:`library <build-library-module>` (images hosted on the `Container Library <https://cloud.sylabs.io/library>`_)
 
@@ -609,7 +609,7 @@ Other bootstrap agents
 -  :ref:`zypper <build-zypper>` (zypper based systems such as Suse and OpenSuse)
 
 Sections
---------
+++++++++
 
 The main content of the bootstrap file is broken into sections. Different
 sections add different content or execute commands at different times during the
@@ -673,8 +673,8 @@ Although the order of the sections in the def file is unimportant, they have
 been documented below in the order of their execution during the build process
 for logical understanding.
 
-%setup
-======
+``%setup``
+++++++++++
 
 During the build process, commands in the ``%setup`` section are first executed
 on the host system outside of the container after the base OS has been installed.
@@ -708,8 +708,8 @@ use is generally discouraged.
 
 ``%setup`` can be used for exporting environmental variables.
 
-%files
-======
+``%files``
+++++++++++
 
 The ``%files`` section allows you to copy files into the container with greater
 safety than using the ``%setup`` section. Its general form is:
@@ -756,8 +756,8 @@ during the copy to the container, while in the latter symbolic links are preserv
 Files in the ``%files`` section are always copied before the ``%post`` section is
 executed so that they are available during the build and configuration process.
 
-%post
-=====
+``%post``
++++++++++
 
 This section is where you can download files from the internet with tools like ``git``
 and ``wget``, install new software and libraries, write configuration files,
@@ -784,8 +784,8 @@ variable is provided. Redirecting text to this variable will cause it to be
 written to a file called ``/.singularity.d/env/91-environment.sh`` that will be
 sourced at runtime.
 
-%test
-=====
+``%test``
++++++++++
 
 The ``%test`` section runs at the very end of the build process to
 validate the container using a method of your choice. You can also
@@ -864,8 +864,8 @@ with a non-zero error code if there is a problem during the tests.
 Now, the following sections are all inserted into the container filesystem in
 single step:
 
-%environment
-============
+``%environment``
+++++++++++++++++
 
 The ``%environment`` section allows you to define environment variables that
 will be set at runtime. Note that these variables are not made available at
@@ -915,8 +915,8 @@ that variables in the ``%post`` section take precedence over those added  via
 See :ref:`Environment and Metadata <environment-and-metadata>` for more
 information about the {Singularity} container environment.
 
-%runscript
-==========
+``%runscript``
+++++++++++++++
 
 The contents of the ``%runscript`` section are written to a file within the
 container that is executed when the container image is run (either via the
@@ -957,8 +957,8 @@ Running the container built using this def file will yield the following:
     this that and the other
 
 
-%labels
-=======
+``%labels``
++++++++++++
 
 The ``%labels`` section is used to add metadata to the file
 ``/.singularity.d/labels.json`` within your container. The general format is a
@@ -1003,8 +1003,8 @@ To inspect the available labels on your image you can do so by running the follo
 Some labels that are captured automatically from the build process. You can read
 more about labels and metadata :ref:`here <environment-and-metadata>`.
 
-%help
-=====
+``%help``
++++++++++
 
 Any text in the ``%help`` section is transcribed into a metadata file in the
 container during the build. This text can then be displayed using the
@@ -1032,7 +1032,7 @@ details all the sections and provides an example definition file that
 makes use of all the sections.
 
 Additional Singularity features
-+++++++++++++++++++++++++++++++
+_______________________________
 
 Singularity has a wide range of features. You can find full details in
 the `Singularity User Guide
