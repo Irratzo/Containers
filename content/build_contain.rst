@@ -572,8 +572,7 @@ Each bootstrap agent enables its own options and keywords. You can read about
 them and see examples in the :ref:`appendix section<buildmodules>`:
 
 
-Preferred bootstrap agents
-++++++++++++++++++++++++++
+**Preferred bootstrap agents**
 
 -  :ref:`library <build-library-module>` (images hosted on the `Container Library <https://cloud.sylabs.io/library>`_)
 
@@ -585,8 +584,7 @@ Preferred bootstrap agents
 
 -  :ref:`scratch <scratch-agent>` (a flexible option for building a container from scratch)
 
-Other bootstrap agents
-++++++++++++++++++++++
+**Other bootstrap agents**
 
 -  :ref:`localimage <build-localimage>` (images saved on your machine)
 
