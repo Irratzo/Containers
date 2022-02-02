@@ -1,19 +1,21 @@
 import time
 from scipy.io import loadmat
 import os
-
-os.system("wget http://ufldl.stanford.edu/housenumbers/train_32x32.mat")
-os.system("wget http://ufldl.stanford.edu/housenumbers/test_32x32.mat")
-
-train = loadmat('train_32x32.mat')
-test = loadmat('test_32x32.mat')
-
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+import tensorflow as tf
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D, BatchNormalization, Dropout
 from tensorflow.keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, EarlyStopping
+
+if os.path.isfile('train_32x32.mat'):
+    print('Files exist. Skip downloading.')
+else:
+    os.system("wget http://ufldl.stanford.edu/housenumbers/train_32x32.mat")
+    os.system("wget http://ufldl.stanford.edu/housenumbers/test_32x32.mat")
+
+train = loadmat('train_32x32.mat')
+test = loadmat('test_32x32.mat')
 
 x_train = train['X']/255.
 y_train = train['y']
@@ -21,6 +23,11 @@ x_test = test['X']/255.
 y_test = test['y']
 y_train[y_train == 10] = 0
 y_test[y_test == 10] = 0
+
+x_train_gs = np.mean(x_train, axis = 2, keepdims=True)
+x_train_gs = x_train_gs.transpose(3,0,1,2)
+x_test_gs = np.mean(x_test, axis = 2, keepdims=True)
+x_test_gs = x_test_gs.transpose(3,0,1,2)
 
 def get_model(input_shape, dropout_rate, nn_units):
     model = Sequential([Flatten(input_shape = input_shape),
@@ -37,12 +44,16 @@ def get_model(input_shape, dropout_rate, nn_units):
     
     return model
 
+
 model_mlp = get_model(x_train_gs.shape[1:4],0,64)
 earlystop = EarlyStopping(monitor='loss', patience = 5)
 
+epochs = 3
+batch_size = 2*64
+
 start = time.time()
 history_mlp = model_mlp.fit(x_train_gs, y_train, epochs = epochs, batch_size=batch_size, 
-                        validation_split = 0.15, callbacks=[checkpoint_best, earlystop])
+                        validation_split = 0.15, callbacks=[earlystop])
 endt = time.time()-start
 print("Time for {} epochs: {:0.2f}ms".format(epochs,1000*endt))
 
@@ -69,7 +80,7 @@ earlystop = EarlyStopping(monitor='loss', patience = 5)
 
 start = time.time()
 history_cnn = model_cnn.fit(x_train_gs, y_train, epochs = epochs, batch_size=batch_size, 
-                    validation_split = 0.15, callbacks=[checkpoint_best, earlystop])
+                    validation_split = 0.15, callbacks=[earlystop])
 endt = time.time()-start
 print("Time for {} epochs: {:0.2f}ms".format(epochs,1000*endt))
 
