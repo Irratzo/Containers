@@ -423,7 +423,7 @@ the Docker Singularity container and run your singularity image there.
       .. code-block:: bash
 
          docker run -it --entrypoint=/bin/sh --privileged --rm -v ${PWD}:/home/singularity quay.io/singularity/singularity:v3.7.0-slim
-         / # cd /home/singularity
+         /# cd /home/singularity
          /home/singularity# singularity run my_test_image.sif
 
       Output
