@@ -276,3 +276,7 @@ To launch the training, we need to use this command in the Jupyter notebook
 
                 if batch % 10 == 0 and hvd.local_rank() == 0:
                     print('Step #%d\tLoss: %.6f' % (batch, loss_value))
+
+It is possible to carry the same procedure without using Jupyter notebook as the main developing tool.
+You can download :download:`the python script  <code/SVHN_class.py>` from the github. We will go through
+some of the steps together.
