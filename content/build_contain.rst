@@ -574,37 +574,37 @@ them and see examples in the :ref:`appendix section<buildmodules>`:
 
 **Preferred bootstrap agents**
 
--  :ref:`library <build-library-module>` (images hosted on the `Container Library <https://cloud.sylabs.io/library>`_)
+-  library (images hosted on the `Container Library <https://cloud.sylabs.io/library>`_)
 
--  :ref:`docker <build-docker-module>` (images hosted on Docker Hub)
+-  docker (images hosted on Docker Hub)
 
--  :ref:`shub <build-shub>` (images hosted on Singularity Hub)
+-  build-shub (images hosted on Singularity Hub)
 
--  :ref:`oras <build-oras>` (images from supporting OCI registries)
+-  oras (images from supporting OCI registries)
 
--  :ref:`scratch <scratch-agent>` (a flexible option for building a container from scratch)
+-  scratch (a flexible option for building a container from scratch)
 
 **Other bootstrap agents**
 
--  :ref:`localimage <build-localimage>` (images saved on your machine)
+-  localimage (images saved on your machine)
 
--  :ref:`yum <build-yum>` (yum based systems such as CentOS and Scientific Linux)
+-  yum (yum based systems such as CentOS and Scientific Linux)
 
--  :ref:`debootstrap <build-debootstrap>` (apt based systems such as Debian and Ubuntu)
+-  debootstrap (apt based systems such as Debian and Ubuntu)
 
--  :ref:`oci <cli-oci-bootstrap-agent>` (bundle compliant with OCI Image Specification)
+-  oci (bundle compliant with OCI Image Specification)
 
--  :ref:`oci-archive <cli-oci-archive-bootstrap-agent>` (tar files obeying the OCI Image Layout Specification)
+-  oci-archive (tar files obeying the OCI Image Layout Specification)
 
--  :ref:`docker-daemon <docker-daemon-archive>` (images managed by the locally running docker daemon)
+-  docker-daemon (images managed by the locally running docker daemon)
 
--  :ref:`docker-archive <docker-daemon-archive>` (archived docker images)
+-  docker-archive (archived docker images)
 
--  :ref:`arch <build-arch>` (Arch Linux)
+-  arch (Arch Linux)
 
--  :ref:`busybox <build-busybox>` (BusyBox)
+-  busybox (BusyBox)
 
--  :ref:`zypper <build-zypper>` (zypper based systems such as Suse and OpenSuse)
+-  zypper (zypper based systems such as Suse and OpenSuse)
 
 A general definition
 ++++++++++++++++++++
