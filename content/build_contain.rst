@@ -586,7 +586,7 @@ Preferred bootstrap agents
 -  :ref:`scratch <scratch-agent>` (a flexible option for building a container from scratch)
 
 Other bootstrap agents
-======================
+++++++++++++++++++++++
 
 -  :ref:`localimage <build-localimage>` (images saved on your machine)
 
@@ -608,8 +608,8 @@ Other bootstrap agents
 
 -  :ref:`zypper <build-zypper>` (zypper based systems such as Suse and OpenSuse)
 
-Sections
-++++++++
+A general definition
+++++++++++++++++++++
 
 The main content of the bootstrap file is broken into sections. Different
 sections add different content or execute commands at different times during the
