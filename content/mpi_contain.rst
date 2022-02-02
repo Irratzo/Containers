@@ -441,7 +441,6 @@ Create a new directory and save the ``mpitest.c`` given below.
 
 .. code-block :: bash
 
-  kk
   #include <mpi.h>
   #include <stdio.h>
   #include <stdlib.h>
