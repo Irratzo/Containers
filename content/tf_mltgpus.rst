@@ -331,48 +331,46 @@ We can use .result() to get the accumulated statistics at any time.
 .. code-block :: python
 
   with strategy.scope():
-  test_loss = tf.keras.metrics.Mean(name='test_loss') # from logits
+    test_loss = tf.keras.metrics.Mean(name='test_loss') # from logits
 
-  train_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
-    name='train_accuracy')
-  test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
-    name='test_accuracy')
+    train_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name='train_accuracy')
+    test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name='test_accuracy')
 
 Model, optimizer, and checkpoint must be created under ``strategy.scope``.
 
 .. code-block :: python
 
   with strategy.scope():
-  model = create_model()
+    model = create_model()
 
-  optimizer = tf.keras.optimizers.Adam()
-  checkpoint = tf.train.Checkpoint(optimizer=optimizer, model=model)
+    optimizer = tf.keras.optimizers.Adam()
+    checkpoint = tf.train.Checkpoint(optimizer=optimizer, model=model)
 
 Calculations of loss, gradients and updating the gradients
 
 .. code-block :: python
 
   def train_step(inputs):
-  images, labels = inputs
+    images, labels = inputs
 
-  with tf.GradientTape() as tape:
-    predictions = model(images, training=True)
-    loss = compute_loss(labels, predictions)
+    with tf.GradientTape() as tape:
+      predictions = model(images, training=True)
+      loss = compute_loss(labels, predictions)
 
-  gradients = tape.gradient(loss, model.trainable_variables)
-  optimizer.apply_gradients(zip(gradients, model.trainable_variables))
+    gradients = tape.gradient(loss, model.trainable_variables)
+    optimizer.apply_gradients(zip(gradients, model.trainable_variables))
 
-  train_accuracy.update_state(labels, predictions)
-  return loss
+    train_accuracy.update_state(labels, predictions)
+    return loss
 
   def test_step(inputs):
-  images, labels = inputs
+    images, labels = inputs
 
-  predictions = model(images, training=False)
-  t_loss = loss_object(labels, predictions)
+    predictions = model(images, training=False)
+    t_loss = loss_object(labels, predictions)
 
-  test_loss.update_state(t_loss)
-  test_accuracy.update_state(labels, predictions)
+    test_loss.update_state(t_loss)
+    test_accuracy.update_state(labels, predictions)
 
 The ``run`` command replicates the provided computation and runs it with
 the distributed input.
