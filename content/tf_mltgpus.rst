@@ -289,7 +289,7 @@ How to do this in TensorFlow?
 - This reduction and scaling is done automatically in keras ``model.compile``
   and ``model.fit`` (Why aren't we grateful then?!)
 - If using ``tf.keras.losses`` classes (as in the example below),
-  the loss reduction needs to be explicitly specified to be one of ``NONE or ``SUM``.
+  the loss reduction needs to be explicitly specified to be one of ``NONE`` or ``SUM``.
   ``AUTO`` and ``SUM_OVER_BATCH_SIZE`` are disallowed when used with ``tf.distribute.Strategy``.
   ``AUTO`` is disallowed because the user should explicitly think about what reduction
   they want to make sure it is correct in the distributed case. ``SUM_OVER_BATCH_SIZE``
