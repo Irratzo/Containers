@@ -173,6 +173,9 @@ Put all of the callbacks together.
      tf.keras.callbacks.LearningRateScheduler(decay),
      PrintLR()]
 
+For illustrative purposes, a custom callback called ``PrintLR`` was added
+to display the learning rate in the notebook.
+
 Training with ``Model.fit``
 +++++++++++++++++++++++++++
 
