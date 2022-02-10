@@ -3,11 +3,11 @@
 Introduction to Containers
 ==========================
 
-.. image:: img/containers.jpeg
+.. image:: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/MAERSK_MC_KINNEY_MÖLLER_%26_MARSEILLE_MAERSK_%2848694054418%29.jpg/2560px-MAERSK_MC_KINNEY_MÖLLER_%26_MARSEILLE_MAERSK_%2848694054418%29.jpg
    :width: 45%
+   :alt: Containers Ship
 
-.. image:: img/containers_amazon.jpeg
-   :width: 35%
+   Image source: `Wikipedia <https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/MAERSK_MC_KINNEY_MÖLLER_%26_MARSEILLE_MAERSK_%2848694054418%29.jpg/2560px-MAERSK_MC_KINNEY_MÖLLER_%26_MARSEILLE_MAERSK_%2848694054418%29.jpg>`_
 
 When software is deployed, a set of libraries and configuration files
 is used in a runtime environment.  Typically, we have several
