@@ -77,7 +77,6 @@ This provides isolation between (in this case) processes within different namesp
 
 .. image:: https://www.nginx.com/wp-content/uploads/2021/07/Namespaces-cgroups_PID-namespaces.svg
   :alt: PID-namespaces
-
   `Image source <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
 
 `Image source <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
