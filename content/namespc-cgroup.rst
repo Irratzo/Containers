@@ -208,6 +208,13 @@ Among the many changes in version 2, the big ones are a much simplified tree arc
 new features and interfaces in the cgroup hierarchy, and better
 accommodation of “rootless” containers (with non‑zero UIDs).
 
+.. figure :: https://www.nginx.com/wp-content/uploads/2021/07/Namespaces-cgroups_resource-limits.svg
+
+
+  `(Image Source) <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
+
+`(Image Source) <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
+
 Creating a cgroup
 +++++++++++++++++
 
@@ -278,10 +285,6 @@ We can also check the amount of memory currently ``test.sh`` is using with the c
 Namespaces and cgroups are the building blocks for containers and modern applications.
 Having an understanding of how they work is important as we refactor applications
 to more modern architectures.
-
-.. figure :: https://www.nginx.com/wp-content/uploads/2021/07/Namespaces-cgroups_resource-limits.svg
-
-  `(Image Source) <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
 
 Namespaces provide isolation of system resources, and cgroups allow for fine‑grained
 control and enforcement of limits for those resources.

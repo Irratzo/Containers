@@ -4,8 +4,8 @@ Introduction to Containers
 ==========================
 
 .. figure :: https://upload.wikimedia.org/wikipedia/commons/1/1c/MAERSK_MC_KINNEY_MÖLLER_%26_MARSEILLE_MAERSK_%2848694054418%29.jpg
-   :width: 45%
-   
+   :width: 90%
+
    `(Image Source) <https://upload.wikimedia.org/wikipedia/commons/1/1c/MAERSK_MC_KINNEY_MÖLLER_%26_MARSEILLE_MAERSK_%2848694054418%29.jpg>`_
 
 When software is deployed, a set of libraries and configuration files
