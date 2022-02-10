@@ -198,10 +198,6 @@ The following diagram illustrates how when you allocate a particular percentage
 of available system resources to a cgroup (in this case **cgroup‑1**),
 he remaining percentage is available to other cgroups (and individual processes) on the system.
 
-.. figure :: https://www.nginx.com/wp-content/uploads/2021/07/Namespaces-cgroups_resource-limits.svg
-
-  `(Image Source) <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
-
 Cgroup Versions
 +++++++++++++++
 
@@ -211,6 +207,10 @@ and “the documentation of cgroups‑v2 first appeared in [the] Linux kernel �
 Among the many changes in version 2, the big ones are a much simplified tree architecture,
 new features and interfaces in the cgroup hierarchy, and better
 accommodation of “rootless” containers (with non‑zero UIDs).
+
+.. figure :: https://www.nginx.com/wp-content/uploads/2021/07/Namespaces-cgroups_resource-limits.svg
+
+  `(Image Source) <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
 
 Creating a cgroup
 +++++++++++++++++
