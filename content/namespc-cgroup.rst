@@ -208,7 +208,7 @@ Among the many changes in version 2, the big ones are a much simplified tree arc
 new features and interfaces in the cgroup hierarchy, and better
 accommodation of “rootless” containers (with non‑zero UIDs).
 
-.. figure :: https://www.nginx.com/wp-content/uploads/2021/07/Namespaces-cgroups_resource-limits.svg
+.. figure:: https://www.nginx.com/wp-content/uploads/2021/07/Namespaces-cgroups_resource-limits.svg
 
   `(Image Source) <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
 
