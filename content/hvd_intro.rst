@@ -3,8 +3,10 @@
 Intoduction to Horovod
 ======================
 
-.. image :: https://horovod.readthedocs.io/en/stable/_static/logo.png
+.. figure :: https://horovod.readthedocs.io/en/stable/_static/logo.png
   :width: 40%
+
+  `(Image Source) <https://horovod.ai>`_
 
 Why Horovod
 ___________

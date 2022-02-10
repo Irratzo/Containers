@@ -77,9 +77,7 @@ This provides isolation between (in this case) processes within different namesp
 
 .. figure :: https://www.nginx.com/wp-content/uploads/2021/07/Namespaces-cgroups_PID-namespaces.svg
 
-  `Image source <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
-
-`Image source <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
+  `(Image Source) <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
 
 Creating a Namespace
 ++++++++++++++++++++
@@ -200,8 +198,9 @@ The following diagram illustrates how when you allocate a particular percentage
 of available system resources to a cgroup (in this case **cgroup‑1**),
 he remaining percentage is available to other cgroups (and individual processes) on the system.
 
-.. image :: https://www.nginx.com/wp-content/uploads/2021/07/Namespaces-cgroups_resource-limits.svg
-  :alt: cgroup hs
+.. figure :: https://www.nginx.com/wp-content/uploads/2021/07/Namespaces-cgroups_resource-limits.svg
+
+    `(Image Source) <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
 
 Cgroup Versions
 +++++++++++++++
