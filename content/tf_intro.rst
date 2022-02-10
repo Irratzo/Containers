@@ -3,7 +3,7 @@
 .. figure :: https://www.gstatic.com/devrel-devsite/prod/v93a6dcf50ad5e38e51034415df5b4a8345b5c8613f785e48818ae468dabf73c8/tensorflow/images/lockup.svg
   :width: 40%
 
-    `(Image Source) <https://www.tensorflow.org>`_
+  `(Image Source) <https://www.tensorflow.org>`_
 
 TensorFlow on a single GPU
 ==========================

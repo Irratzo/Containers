@@ -200,7 +200,7 @@ he remaining percentage is available to other cgroups (and individual processes)
 
 .. figure :: https://www.nginx.com/wp-content/uploads/2021/07/Namespaces-cgroups_resource-limits.svg
 
-    `(Image Source) <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
+  `(Image Source) <https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work>`_
 
 Cgroup Versions
 +++++++++++++++
